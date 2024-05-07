@@ -1,0 +1,30 @@
+'<<--CONFIGURATION SCRIPT-->>
+Dim replicateTbl, repWhCls, repPriKyLst, newPriKyVlLst
+
+RepBrowseView "SystemUserByBranchCASH", "SystemUserMadeByJoseph"
+
+UpdBrowseView "SystemUserMadeByJoseph", "BrowseViewName", "Joseph's System User By Supervisor Report"
+UpdBrowseView "SystemUserMadeByJoseph", "ReportGroupByID", "InitialSystemUserID"
+UpdBrowseView "SystemUserMadeByJoseph", "WhereClsExtra", " and System.User.SystemUserID<>'' "
+'UpdBrowseView "SystemUserMadeByJoseph", "OrderByExtra", "Staff.StaffID asc "
+
+
+
+
+Sub MakeSomeChanges()
+    Dim patId, name, newName
+    patId = Trim(Request("inpPatientID"))
+    name = Trim(Request("inpOthername"))
+    newName = Trim(name & " " & patId)
+End Sub
+
+'Option 1'
+sql = "Update Patient Set Othername= '" & newName & "'Where Patient ID='" & patId & "' "
+conn.execute sql
+
+
+
+
+
+
+
