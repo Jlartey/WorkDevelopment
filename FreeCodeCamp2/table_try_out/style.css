@@ -1,0 +1,35 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 2rem;
+}
+
+div {
+    max-width: 600px;
+}
+
+span {
+    display: inline-block;
+    background-color: #006100;
+    width: 140px;
+    height: 140px;
+}
+
+.table {
+   display: table;
+}
+
+.row {
+   display: table-row;
+}
+
+.cell {
+   display: table-cell;
+}
+
+.row,
+.cell {
+  padding: 10px;
+}

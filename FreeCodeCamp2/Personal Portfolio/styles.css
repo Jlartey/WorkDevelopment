@@ -1,0 +1,224 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+}
+
+#navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: orange;
+    color: white;
+    /* margin-right: 50px; */
+    font-size: large;
+    height: 70px;
+    width: 100%;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.nav-links {
+    display: flex;    
+    
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-link {
+    /* This is to make it possible for the hover
+     to display the green colour*/
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: auto;
+    justify-content: center;
+    padding: 10px;
+
+    list-style: none;
+    margin-right: 30px;
+    
+}
+
+.nav-link:hover {
+    background-color: green;
+}
+
+#welcome-section {
+
+    background-color: brown;
+    text-align: center;
+    height: 100vh;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.description > h1 {
+    color: white;
+    font-size: 50px;
+}
+
+.description > p {
+    font-style: italic;
+    font-size: 30px;
+}
+
+#projects {
+    background-color: lightskyblue;
+    
+}
+
+#projects > h2 {
+    text-align: center;
+    text-decoration: underline;
+    color: white;
+    font-weight: 700;
+    padding-top: 70px;
+    margin-bottom: 30px;
+    font-size: 50px;
+}
+
+.project-tiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3px;
+    place-items: center;
+}
+
+.project-tile {
+    margin-bottom: 40px;
+}
+
+img{
+    width: 400px;
+    height: 400px;
+}
+
+.project-desc {
+    margin-top: -4px;
+    display: flex;
+    background-color: gray;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+button {
+    display: block;
+    width: 100px;
+    height: 50px;
+    margin: auto;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+#contacts {
+    margin-top: 0px;
+    background-color: gray;
+    color: white;
+    height: 100vh;
+}
+
+#contacts > h1 {
+    padding-top: 200px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 70px;
+    line-height: 50px;
+}
+
+#contacts > p {
+    font-style: italic;
+    text-align: center;
+}
+
+.contact-links{
+    display: flex;
+    justify-content: center;
+}
+
+.contact-link {
+    padding-top: 40px;
+    padding-bottom: 100px;
+    list-style: none;
+    margin-right: 10px;
+    font-size: 30px
+}
+
+.line {
+    border-bottom: 5px solid lightskyblue;
+}
+
+small{
+    display: flex;
+    width: auto;
+    margin: auto;
+    color: orange;
+    padding: 30px  100px;
+    text-align: center;
+}
+
+@media(max-width: 700px) {
+    .project-tiles {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .click-button {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: orange;
+    margin: auto; 
+    padding-top: 20px;
+    display: flex;
+} */
+

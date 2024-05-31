@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pentagon</title>
+  <style>
+    .pentagon {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: red;
+      position: relative;
+    }
+    .pentagon-side {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: black;
+    }
+    .pentagon-side:nth-child(1) {
+      transform: rotate(0deg);
+    }
+    .pentagon-side:nth-child(2) {
+      transform: rotate(72deg);
+    }
+    .pentagon-side:nth-child(3) {
+      transform: rotate(144deg);
+    }
+    .pentagon-side:nth-child(4) {
+      transform: rotate(216deg);
+    }
+    .pentagon-side:nth-child(5) {
+      transform: rotate(288deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="pentagon">
+    <div class="pentagon-side"></div>
+    <div class="pentagon-side"></div>
+    <div class="pentagon-side"></div>
+    <div class="pentagon-side"></div>
+    <div class="pentagon-side"></div>
+  </div>
+</body>
+</html>
