@@ -1,0 +1,23 @@
+Here are some resources to learn classic ASP (Active Server Pages):
+
+1. **W3Schools ASP Tutorial**: W3Schools has a good introductory tutorial on classic ASP that covers the basics of ASP syntax, forms, cookies, sessions, and more. It's a great starting point for beginners. Link: https://www.w3schools.com/asp/
+
+2. **Microsoft's Official ASP Documentation**: Microsoft has official documentation on ASP that covers the language in detail, along with various examples and references. Although it's a bit more technical, it's a comprehensive resource for learning ASP. Link: https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/
+
+3. **Books**:
+   - "Classic ASP by Example" by Scott Mitchell
+   - "Beginning Active Server Pages 3.0" by David Buser, et al.
+   - "Professional Active Server Pages 3.0" by Alex Homer, et al.
+
+4. **Online Courses**:
+   - Udemy has several courses on classic ASP, such as "Learn Classic ASP from Scratch" by Joe Parys.
+   - Pluralsight also has courses like "ASP.NET Classic from Scratch" by Shawn Wildermuth.
+
+5. **Online Forums and Communities**:
+   - Classic ASP Forums (https://classicaspforums.com/): A dedicated forum for classic ASP discussions and help.
+   - StackOverflow (https://stackoverflow.com/): While StackOverflow is a general programming Q&A site, you can find many classic ASP-related questions and answers there.
+
+6. **Video Tutorials**:
+   - YouTube has various tutorial playlists and videos on classic ASP, such as "Classic ASP Tutorial for Beginners" by Kudvenkat.
+
+It's important to note that while classic ASP is still used in some legacy applications, it's generally considered an older technology. Many developers have moved on to more modern web development frameworks like ASP.NET or other server-side languages like PHP or Node.js. However, learning classic ASP can still be valuable if you need to maintain or work with existing ASP applications.

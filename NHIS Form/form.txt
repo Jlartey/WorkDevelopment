@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>NHIS FORM</title>
+  </head>
+
+  <body style="margin-top: 50px; margin-bottom: 50px" class="container">
+    <h2 class="heading">NATIONAL HEALTH INSURANCE SCHEME</h2>
+    <section id="form-info">
+      <div class="form-and-regulation" style="display: flex">
+        <img
+          style="margin-right: 0.625rem"
+          src="https://c8.alamy.com/comp/KYBMDA/national-health-insurance-scheme-ghana-nhis-logo-KYBMDA.jpg"
+          alt="National Health Insurance Logo"
+          height="70"
+          width="70"
+        />
+        <div style="display: flex; flex-direction: column">
+          <p id="claim-form">Claim Form</p>
+          <p>(Regulation 62)</p>
+        </div>
+      </div>
+
+      <div class="form-no-and-hi-code" style="display: block">
+        <label for="form-no">Form No.:</label>
+        <input type="text" id="form-no" name="form-no" /><br />
+
+        <label for="hi-code" style="margin-right: 0.6785rem">HI Code:</label>
+        <input type="number" id="hi-code" name="hi-code" />
+      </div>
+    </section>
+
+    <section
+      id="claims-info"
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <div style="display: flex; flex-direction: column">
+        <div style="display: block">
+          <label
+            for="claim-code"
+            class="claims-info-label"
+            style="margin-right: 14px"
+            >Claim Code:</label
+          >
+          <input type="text" id="claim-code" name="claim-code" />
+        </div>
+
+        <div style="display: block">
+          <label for="scheme-code" class="claims-info-label"
+            >Scheme Code:</label
+          >
+          <input type="text" id="scheme-code" name="scheme-code" />
+        </div>
+
+        <div style="display: block">
+          <label
+            for="referral-no"
+            class="claims-info-label"
+            style="margin-right: 14px"
+            >Referral No:</label
+          >
+          <input type="text" id="referral-no" name="referral-no" />
+        </div>
+      </div>
+
+      <div>
+        <label for="month-claim">Month of Claim:</label>
+        <input
+          type="text"
+          id="month-claim"
+          name="month-claim"
+          style="margin-right: 5px"
+        />
+      </div>
+      <div>
+        <label for="date-claim">Date of Claim: </label>
+        <input type="text" id="date-claim" name="date-claim" />
+      </div>
+    </section>
+
+    <hr />
+
+    <h4>Client Information</h4>
+    <div class="client-information">
+      <div
+        class="surname-others-dob-hosp"
+        style="display: flex; flex-direction: column"
+      >
+        <div style="display: flex">
+          <label for="surname" style="margin-right: 77.5px">Surname:</label>
+          <input type="text" id="surname" name="surname" />
+        </div>
+
+        <div tyle="display: flex">
+          <label for="other-names" style="margin-right: 42px"
+            >Other Names:</label
+          >
+          <input type="text" id="other-names" name="other-names" />
+        </div>
+
+        <div tyle="display: flex">
+          <label for="dob" style="margin-right: 43px">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" />
+        </div>
+
+        <div style="display: flex">
+          <label for="hospital-record" style="margin-right: 5px"
+            >Hospital Record No:</label
+          >
+          <input type="text" id="hospital-record" name="hospital-record" />
+        </div>
+      </div>
+
+      <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" />
+      </div>
+
+      <div class="age-gender-member-claims">
+        <div>
+          <label for="gender">Gender</label>
+          <input type="text" id="gender" name="gender" />
+        </div>
+
+        <div>
+          <label for="member-no">Member No.:</label>
+          <input type="text" id="member-no" name="member-no" />
+        </div>
+
+        <div style="display: flex">
+          <label for="cliams-code">Claims Check Code:</label>
+          <input type="text" id="cliams-code" name="cliams-code" />
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <p>
+      <strong>Services Provided</strong>
+      <em>(to be filled by health care providers)</em>
+    </p>
+
+    <section id="services-provided">
+      <div id="service-type">
+        <p><em>Type of Services</em></p>
+        (a)
+        <input type="checkbox" id="outpatient" name="outpatient" />
+        <label for="outpatient">Outpatient</label>
+
+        <input type="checkbox" id="inpatient" name="inpatient" />
+        <label for="inpatient">Inpatient</label>
+
+        <input type="checkbox" id="pharmacy" name="pharmacy" />
+        <label for="pharmacy">Pharmacy</label>
+
+        <p style="margin-left: 100px; margin-bottom: -2px">Investigation</p>
+        <hr />
+
+        (b)
+        <input
+          type="checkbox"
+          id="all-inclusive"
+          name="all-inclusive"
+          value="1"
+        />
+        <label for="all-inclusive">All Inclusive</label>
+
+        <input type="checkbox" id="unbundled" name="unbundled" />
+        <label for="unbundled">Unbundled</label>
+        <hr />
+
+        <p><em>Outcome</em></p>
+        <input type="checkbox" id="discharged" name="discharged" />
+        <label for="discharged">Discharged</label>
+
+        <input type="checkbox" id="died" name="died" />
+        <label for="died">Died</label>
+
+        <input type="checkbox" id="transfer" name="transfer" />
+        <label for="transfer">Transfer</label>
+
+        <br />
+        <input type="checkbox" id="absconded" name="absconded" />
+        <label for="absconded"
+          >Absconded/Discharged against medical advice</label
+        >
+      </div>
+
+      <div id="provision-date">
+        <h4>Date(s) of Services Provision</h4>
+
+        <label for="first-visit" style="margin-right: 40px"
+          >1st Visit/Admission</label
+        >
+        <input type="date" id="first-visit" name="first-visit" /><br />
+
+        <label for="second-visit" style="margin-right: 35px"
+          >2nd Visit/Admission</label
+        >
+        <input type="date" id="second-visit" name="second-visit" /><br />
+
+        <label for="third-visit" style="margin-right: 117px">3rd Visit</label>
+        <input type="date" id="third-visit" name="third-visit" /><br />
+
+        <label for="fourth-visit" style="margin-right: 38px"
+          >4th Visit/Admission</label
+        >
+        <input type="date" id="fourth-visit" name="fourth-visit" /><br />
+
+        <label for="duration-spell">Duration of Spell(days)</label>
+        <input
+          type="number"
+          id="duration-spell"
+          name="duration-spell"
+          style="width: 50px; margin-left: 77px"
+        /><br />
+      </div>
+    </section>
+
+    <section id="attendance-type">
+      <p><em>Type of Attendance</em></p>
+      <input type="checkbox" id="follow-up" name="follow-up" />
+      <label for="follow-up">Chronic Follow-up</label>
+
+      <input type="checkbox" id="emergency" name="emergency" />
+      <label for="emergency">Emergency</label>
+
+      <input type="checkbox" id="acute-episode" name="acute-episode" />
+      <label for="acute-episode">Acute Episode</label>
+
+      <input type="checkbox" id="anc" name="anc" />
+      <label for="anc">ANC</label>
+    </section>
+
+    <section id="physician-details">
+      <label for="physician-name">Physician/Clinician Name: </label>
+      <input
+        type="text"
+        id="physician-name"
+        name="physician-name"
+      /><br /><br />
+
+      <label for="physician-Id" style="margin-right: 26px"
+        >Physician/Clinician ID:
+      </label>
+      <input type="text" id="physician-Id" name="physician-Id" /><br /><br />
+
+      <label for="speciality-code" style="margin-right: 65px"
+        >Specialilty Code:
+      </label>
+      <input
+        type="text"
+        id="speciality-code"
+        name="speciality-code"
+      /><br /><br />
+    </section>
+
+    <table cellpadding="2" border="1" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <td colspan="4">
+            <strong style="padding: 0px 2px">Diagnosis</strong
+            ><em style="font-size: 12px"
+              >(to be filled by health care providers who have provided out and
+              in-patient services)</em
+            >
+          </td>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Description</th>
+          <th>ICD-10</th>
+          <th>G-DRG</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>MALARIA</td>
+          <td>B54</td>
+          <td>OPDC06C</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>ANAEMIA (UNSPECIFIED)</td>
+          <td>D64.9</td>
+          <td>OPDC06C</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+
+-- Style.css
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 950px;
+  margin: auto;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 0px;
+  font-size: 1.4rem;
+}
+
+@media (max-width: 360px) {
+  .heading {
+    margin-bottom: 0px;
+    font-size: 0.625rem;
+  }
+}
+
+#form-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.625rem;
+}
+
+#claim-form {
+  margin-bottom: -15px;
+}
+
+/* I am done with this section */
+#claims-info input {
+  width: 80px;
+}
+
+.client-information {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+}
+
+.surname-others-dob-hosp input {
+  width: 120px;
+}
+
+.age-gender-member-claims {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+#services-provided {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: space-between;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+#service-type {
+  border: 1px solid black;
+  width: 60%;
+  margin-right: auto;
+  padding: 5px 5px;
+}
+
+#provision-date {
+  border: 1px solid black;
+  width: 35%;
+  padding: 15px 15px;
+}
+
+#attendance-type {
+  border: 1px solid black;
+  padding: 5px 5px;
+  margin-bottom: 30px;
+}
+
+#physician-details {
+  margin-top: 10px;
+  border: 1px solid black;
+  width: 100%;
+  padding-top: 15px;
+  padding-left: 15px;
+  margin-bottom: 30px;
+}
+
+#physician-details input {
+  border: none;
+}
+

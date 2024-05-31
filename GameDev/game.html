@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Coding Rover</title>
+    <style>
+      #grid {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+        width: 500px;
+        height: 500px;
+        border: 1px solid black;
+      }
+
+      .cell {
+        border: 1px solid gray;
+      }
+
+      .rover {
+        background-color: green;
+      }
+
+      .obstacle {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="grid"></div>
+    <textarea id="codeEditor"></textarea>
+    <button onclick="executeCode()">Run Code</button>
+
+    <script>
+      const grid = document.getElementById('grid');
+      const codeEditor = document.getElementById('codeEditor');
+      let rover = { x: 0, y: 0, direction: 'right' };
+      let obstacles = [];
+
+      function createGrid() {
+        for (let y = 0; y < 10; y++) {
+          for (let x = 0; x < 10; x++) {
+            const cell = document.createElement('div');
+            cell.className = 'cell';
+            grid.appendChild(cell);
+
+            if (x === rover.x && y === rover.y) {
+              cell.classList.add('rover');
+            } else if (
+              obstacles.some((obstacle) => obstacle.x === x && obstacle.y === y)
+            ) {
+              cell.classList.add('obstacle');
+            }
+          }
+        }
+      }
+
+      function moveForward() {
+        switch (rover.direction) {
+          case 'right':
+            rover.x++;
+            break;
+          case 'left':
+            rover.x--;
+            break;
+          case 'up':
+            rover.y--;
+            break;
+          case 'down':
+            rover.y--;
+            break;
+        }
+      }
+
+      function turnLeft() {
+        switch (rover.direction) {
+          case 'right':
+            rover.direction = 'up';
+            break;
+          case 'left':
+            rover.direction = 'down';
+            break;
+          case 'up':
+            rover.direction = 'left';
+            break;
+          case 'down':
+            rover.direction = 'right';
+            break;
+        }
+      }
+
+      function turnRight() {
+        switch (rover.direction) {
+          case 'right':
+            rover.direction = 'down';
+            break;
+          case 'left':
+            rover.direction = 'up';
+            break;
+          case 'up':
+            rover.direction = 'right';
+            break;
+          case 'down':
+            rover.direction = 'left';
+            break;
+        }
+      }
+
+      function executeCode() {
+        const userCode = codeEditor.value;
+        eval(userCode);
+        updateGrid();
+      }
+
+      function updateGrid() {
+        grid.innerHTML = '';
+        createGrid();
+      }
+
+      createGrid();
+    </script>
+  </body>
+</html>
