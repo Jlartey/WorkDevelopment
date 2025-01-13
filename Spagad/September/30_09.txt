@@ -1,0 +1,6 @@
+http://192.168.5.11/rmchms01/wpgprocessCompKeydata.asp?PositionForTableName=EMRData&EMRDataID=
+
+&EMRCompTabID=EMR062&POSITIONFORQUERYSTRING&CompTableKeyID=EMRComponentID
+
+This is the print layout that i want to see:
+http://192.168.5.11/rmchms01/wpgPrtPrintLayoutAll.asp?PrintLayoutName=ExcuseDutyTest&PositionForTableName=Visitation&VisitationID=V1240516001

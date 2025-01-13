@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Select Dropdown</title>
+    <style>
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content input {
+        margin: 5px;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown-content label {
+        display: block;
+        padding: 8px 16px;
+        cursor: pointer;
+      }
+
+      .dropdown-content label:hover {
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dropdown">
+      <button>Select Options</button>
+      <div class="dropdown-content">
+        <label><input type="checkbox" value="Option 1" /> Option 1</label>
+        <label><input type="checkbox" value="Option 2" /> Option 2</label>
+        <label><input type="checkbox" value="Option 3" /> Option 3</label>
+        <label><input type="checkbox" value="Option 4" /> Option 4</label>
+      </div>
+    </div>
+
+    <script>
+      const checkboxes = document.querySelectorAll(
+        '.dropdown-content input[type="checkbox"]'
+      );
+      const selectedOptions = [];
+
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', (event) => {
+          const value = event.target.value;
+          if (event.target.checked) {
+            selectedOptions.push(value);
+          } else {
+            const index = selectedOptions.indexOf(value);
+            if (index > -1) {
+              selectedOptions.splice(index, 1);
+            }
+          }
+          console.log('Selected Options:', selectedOptions);
+        });
+      });
+    </script>
+  </body>
+</html>

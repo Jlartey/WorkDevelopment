@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Treatment Flow Sheet</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        padding: 20px 20px;
+        margin:  auto;
+        width: 600px;
+        line-height: 1.6;
+      }
+      .row {
+        display: flex;
+        margin-bottom: 10px;
+      }
+      label {
+        width: 200px;
+        margin-right: 20px;
+        text-align: right;
+      }
+      .value {
+        flex: 1;
+      }
+      button {
+        width: 75px;
+        margin: auto;
+        margin-left: 350px;
+        border-radius: 10px;
+        background-color: blue;
+        color: white;
+        padding: 10px 10px;
+        outline: none;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <label for="treatment-date">Treatment Date :</label>
+        <input type="date">
+      </div>
+      <div class="row">
+        <label for="treatment-type">Type :</label>
+        <select name="treatment-type" id="treatment-type">
+          <option value="Therapeutic Exercises">Therapeutic Exercises</option>
+          <option value="Manual">Manual</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="intervention">Intervention :</label>
+        <input type="text" name="intervention" id="intervention" style="width: 300px" />
+      </div>
+      <div class="row">
+        <label for="value">Value :</label>
+        <input type="text" name="value" id="value" style="width: 300px"/>
+      </div>
+      <button onclick="updateTreatment()">SAVE</button>
+    </div>
+  </body>
+</html>

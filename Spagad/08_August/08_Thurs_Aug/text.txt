@@ -1,0 +1,1 @@
+http://192.168.5.11/thhms15/wpgPrtPrintLayoutAll.asp?PrintLayoutName=dispAdmissionTimeSeries&PositionForTableName=WorkingDay&startDate=20180101&endDate=20221231&branID=B001

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Select Dropdown</title>
+    <style>
+      .multi-select {
+        width: 200px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Multi-Select Dropdown Example</h2>
+    <form>
+      <label for="items">Choose items:</label>
+      <select id="items" name="items" multiple class="multi-select">
+        <option value="item1">Item 1</option>
+        <option value="item2">Item 2</option>
+        <option value="item3">Item 3</option>
+        <option value="item4">Item 4</option>
+        <option value="item5">Item 5</option>
+      </select>
+      <br /><br />
+      <button type="button" onclick="showSelectedItems()">Submit</button>
+    </form>
+
+    <p id="selectedItems"></p>
+
+    <script>
+      function showSelectedItems() {
+        const select = document.getElementById('items');
+        const selectedItems = Array.from(select.selectedOptions).map(
+          (option) => option.text
+        );
+        document.getElementById(
+          'selectedItems'
+        ).innerText = `Selected items: ${selectedItems.join(', ')}`;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+select top 100 * from Receipt
+
+select top 100 * from ReceiptStatus
+
+select top 100 * from Receipt
+where ReceiptStatusID = 'R002'
+
+select top 10 * from PatientReceipt2
+
+select top 10 * from ReceiptCheque
+
+select Receiptname, ReceiptID, UPPER(CAST(Remarks AS VARCHAR(30))) AS Remarks, ReceiptDate
+from Receipt
+where ReceiptStatusID = 'R002' and ReceiptDate 
+between '2018-01-01' and '2018-01-02'
+
+CREATE OR ALTER FUNCTION fn_partiallyUsedReceipts(@from date, @to date)
+returns table
+as
+return
+(
+	select 
+		UPPER(CAST(Receiptname AS VARCHAR(30))) AS ReceiptName, 
+		ReceiptID, 
+		UPPER(CAST(Remarks AS VARCHAR(30))) AS Remarks, 
+		CONVERT(varchar(20), ReceiptDate, 103) AS ReceiptDate
+	from Receipt
+	where ReceiptStatusID = 'R002' and ReceiptDate 
+	between @from and @to
+);
+
+select * from dbo.fn_partiallyUsedReceipts('2018-01-01','2018-01-02')
+
+SELECT TOP 20 * FROM SystemErrorLog
+--WHERE JobScheduleID = 'M13'
+ORDER BY logdate DESC
+

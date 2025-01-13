@@ -1,0 +1,1 @@
+http://192.168.2.14/hms/wpgPrtPrintLayoutAll.asp?PrintLayoutName=LabRequest&PositionForTableName=LabRequest&LabRequestID=124090718

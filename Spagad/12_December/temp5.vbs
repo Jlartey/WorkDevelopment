@@ -1,0 +1,1 @@
+wpgPrtPrintLayoutAll.asp?PrintLayoutName=RequestBloodForPat&PositionForTableName=WorkingDay&WorkingDayID=DAY20180220&TableList=LabRequest&TableFilterKey=VisitationID&TableFilterValue=<PFBCTX>VisitationID<PFECTX>

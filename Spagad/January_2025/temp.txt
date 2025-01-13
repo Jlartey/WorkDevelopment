@@ -1,0 +1,4 @@
+TDProp**1**right**Top%%Default**Assessment no change
+TDProp**1**Left**Top%%Usertext
+TDProp**1**right**Top%%Default**RN Time
+TDProp**3**Left**Top%%Userdate

@@ -1,0 +1,148 @@
+'<<--BEGIN_CODE_SEGMENT_PRINTHEADER-->>
+
+'Sub MainPage()
+'
+'End Sub
+response.write "<!DOCTYPE html>"
+response.write "<html lang=""en"">"
+response.write "  <head>"
+response.write "    <meta charset=""UTF-8"" />"
+response.write "    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"" />"
+response.write "    <title>Request for Payment - Petty Cash</title>"
+response.write "    <style>"
+
+response.write "      .heading {"
+response.write "        text-align: center;"
+response.write "        text-transform: uppercase;"
+response.write "        margin-bottom: 20px;"
+response.write "        font-family: Arial, sans-serif;"
+response.write "      }"
+
+response.write "      .container {"
+response.write "        border: 3px solid black;"
+response.write "        padding: 20px 20px;"
+response.write "        margin-top: 20px;"
+response.write "        width: 90vw;"
+response.write "        margin: 0 auto;"
+response.write "        font-family: Arial, sans-serif;"
+response.write "        line-height: 1.6;"
+response.write "      }"
+
+response.write "      .row {"
+response.write "        display: flex;"
+response.write "        margin-bottom: 10px;"
+response.write "      }"
+
+response.write "      .label {"
+response.write "        width: 200px;"
+response.write "        margin-right: 20px;"
+response.write "        text-align: right;"
+response.write "      }"
+
+response.write "      .value {"
+response.write "        flex: 1;"
+response.write "        text-align: left;"
+response.write "      }"
+
+response.write "      .signature-section {"
+response.write "        margin-top: 30px;"
+response.write "      }"
+
+response.write "      .signature-section .row {"
+response.write "        justify-content: space-around;"
+response.write "      }"
+
+response.write "      .signature {"
+response.write "        text-align: center;"
+response.write "      }"
+
+response.write "      .title {"
+response.write "        margin-top: -20px;"
+response.write "        margin-bottom: 40px;"
+response.write "      }"
+response.write "    </style>"
+response.write "  </head>"
+
+response.write "  <body>"
+
+response.write " <div class=""heading"">"
+    response.write " <h3>Foundation of Orthopaedic and Complex Spine</h3> "
+    response.write " <h3 style=""margin-top: -5px;"">Request for Payment - Petty Cash </h3>"
+response.write " </div>"
+
+response.write "    <div class=""container"">"
+response.write "      <!-- <div style=""display: flex; justify-content: space-between""> -->"
+response.write "      <div class=""row"">"
+response.write "        <span class=""label"">Entry No:</span>"
+response.write "        <span class=""value""><strong>FH/2024/25997</strong></span>"
+response.write "        <span class=""label"">Date :</span>"
+response.write "        <span class=""value"">01-Jul-2024</span>"
+response.write "      </div>"
+response.write ""
+response.write "      <div class=""row"">"
+response.write "        <span class=""label"">Employee Name:</span>"
+response.write "        <span class=""value""><strong>HR UNIT</strong></span>"
+response.write "      </div>"
+response.write "      <div class=""row"">"
+response.write "        <span class=""label"">Department:</span>"
+response.write "        <span class=""value"">HR</span>"
+response.write "      </div>"
+response.write "      <div class=""row"">"
+response.write "        <span class=""label"">Amount:</span>"
+response.write "        <span class=""value""><strong>200.00 CEDIS</strong></span>"
+response.write "      </div>"
+response.write "      <div class=""row"">"
+response.write "        <span class=""label"">Amount (In words):</span>"
+response.write "        <span class=""value"">Two Hundred Cedis</span>"
+response.write "      </div>"
+response.write "      <div class=""row"">"
+response.write "        <span class=""label"">Payment Type:</span>"
+response.write "        <span class=""value"">Advance, Refund, Reimbursement</span>"
+response.write "      </div>"
+response.write "      <div class=""row"">"
+response.write "        <span class=""label"">Purpose:</span>"
+response.write "        <span class=""value"">"
+response.write "          Cost of Water for Front desk staff during the scheduled customer"
+response.write "          service training on 2nd and 5th July 2024"
+response.write "        </span>"
+response.write "      </div>"
+response.write "      <div class=""row"">"
+response.write "        <span class=""label"">Receipt Status:</span>"
+response.write "        <span class=""value"">I would produce receipt/evidence of payment</span>"
+response.write "      </div>"
+response.write ""
+response.write "      <div class=""signature-section"">"
+response.write "        <div class=""row"">"
+response.write "          <div class=""signature"">"
+response.write "            <p>Authority : _______________________</p>"
+response.write "            <div class=""title"">(Department Head)</div>"
+response.write "          </div>"
+response.write "          <div class=""signature"" style=""margin-left: -25px"">"
+response.write "            <p>Approved : _______________________</p>"
+response.write "            <div class=""title"">(Chief Administrative Officer)</div>"
+response.write "          </div>"
+response.write "        </div>"
+response.write "        <div class=""row"">"
+response.write "          <div class=""signature"">"
+response.write "            <p>Check By : _______________________</p>"
+response.write "            <div class=""title"">(Finance Officer)</div>"
+response.write "          </div>"
+response.write "          <div class=""signature"" style=""margin-top: 20px"">"
+response.write "            Claimant :__________________________"
+response.write "          </div>"
+response.write "        </div>"
+response.write "      </div>"
+response.write "    </div>"
+response.write "  </body>"
+response.write "</html>"
+
+
+'<<--END_CODE_SEGMENT_PRINTHEADER-->>
+'>
+'>
+'>
+'>
+'>
+'<<--BEGIN_CODE_SEGMENT_PRINTFOOTER-->>
+
+'<<--END_CODE_SEGMENT_PRINTFOOTER-->>

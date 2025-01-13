@@ -1,0 +1,4 @@
+colspan**4%%UserRadio**EMRVar3B****1**EMRVar3AID**EMRVar3B.EMRVar3AID = 'E007'
+
+This also worked:
+colspan**4%%UserRadio**EMRVar3B****1**EMRVar3AID**EMRVar3B.EMRVar3AID like 'E007%'

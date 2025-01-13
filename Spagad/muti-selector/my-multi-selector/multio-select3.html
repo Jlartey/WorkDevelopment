@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script> -->
+    <title>Document</title>
+  </head>
+  <script src="scripts.js"></script>
+  <body>
+    <form action="">
+      <div id="countries-wrapper">
+        <select name="countries" id="countries" multiple>
+          <option value="1">Afghanistan</option>
+          <option value="2">Australia</option>
+          <option value="3">Germany</option>
+          <option value="4">Canada</option>
+          <option value="5">Russia</option>
+          <option value="6">Ghana</option>
+          <option value="7">Togo</option>
+          <option value="8">Ivory Coast</option>
+          <option value="9">Burkina Faso</option>
+          <option value="10">Nigeria</option>
+        </select>
+      </div>
+      <button onsubmit=""></button>
+    </form>
+
+    <script>
+      const arr = [];
+      new MultiSelectTag('countries', {
+        rounded: true, // default true
+        shadow: true, // default false
+        placeholder: 'Search', // default Search...
+        tagColor: {
+          textColor: '#327b2c',
+          borderColor: '#92e681',
+          bgColor: '#eaffe6',
+        },
+        onChange: function (values) {
+          arr.push(values);
+          console.log(arr);
+        },
+      });
+    </script>
+  </body>
+</html>

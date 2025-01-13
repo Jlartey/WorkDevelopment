@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excuse Duty Form</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .mybody {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f9;
+        padding: 40px;
+      }
+
+      .container {
+        max-width: 600px;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+        border-top: 5px solid #007bff;
+      }
+
+      .myheader {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .logo {
+        width: 80px;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+        color: #333;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: #555;
+        margin-bottom: 5px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1.5rem;
+        color: #333;
+      }
+
+      .myform {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mylabel {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .myinput[type='text'] {
+        padding: 10px 5px;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 2px solid #007bff;
+        font-size: 1rem;
+        color: #333;
+        background-color: transparent;
+        outline: none;
+        transition: border-bottom 0.3s ease;
+      }
+
+      .myinput[type='text']:focus {
+        border-bottom: 2px solid #0056b3;
+      }
+
+      .signature {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .signature p {
+        font-size: 1rem;
+        color: #333;
+      }
+
+      .signature .myinput[type='text'] {
+        width: calc(100% - 160px);
+      }
+
+      .signature .myinput[type='date'] {
+        width: 150px;
+      }
+    </style>
+  </head>
+  <div class="mybody">
+    <div class="container">
+      <header class="myheader">
+        <img
+          src="https://via.placeholder.com/100"
+          alt="Clinic Logo"
+          class="logo"
+        />
+        <h1>Airport Clinic Limited</h1>
+        <p>Private Mail Bag</p>
+        <p>Kotoka International Airport, Accra, Ghana</p>
+        <p>Tel: (+233-302) 764987 / 0505 527641</p>
+      </header>
+
+      <h2>Excuse Duty Form</h2>
+
+      <form class="myform">
+        <label for="name" class="mylabel">Name:</label>
+        <input
+          class="myinput"
+          type="text"
+          id="name"
+          name="name"
+          value="ATUOBI Alexander"
+        />
+
+        <label for="admission" class="mylabel">Date of Admission:</label>
+        <input
+          type="text"
+          id="admission"
+          name="admission"
+          value="05 sep 2024"
+          class="myinput"
+        />
+
+        <label for="discharge" class="mylabel">Date of Discharge:</label>
+        <input
+          class="myinput"
+          type="text"
+          id="discharge"
+          name="discharge"
+          value="10 sep 2024"
+        />
+
+        <label for="operation" class="mylabel">Operation:</label>
+        <input
+          class="myinput"
+          type="text"
+          id="operation"
+          name="operation"
+          value="CS"
+        />
+
+        <label for="excuse" class="mylabel">Excuse Duty:</label>
+        <input
+          class="myinput"
+          type="text"
+          id="excuse"
+          name="excuse"
+          value="Patient needs a vacation and a special treat at Zanziba"
+        />
+
+        <div class="signature">
+          <p>Medical Officer:</p>
+          <input
+            class="myinput"
+            type="text"
+            id="medicalOfficer"
+            name="medicalOfficer"
+            value="Dr. ATUOBI Alexander"
+          />
+          <label for="date" class="mylabel">Date:</label>
+          <input
+            class="myinput"
+            type="text"
+            id="date"
+            name="date"
+            value="11 sep 2024"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</html>

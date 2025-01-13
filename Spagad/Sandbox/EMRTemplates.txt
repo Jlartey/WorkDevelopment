@@ -1,0 +1,35 @@
+
+URL for EMR done by Monica
+http://172.2.2.31/hms/wpgEditCompKey.asp?PositionForTableName=EMRData&EMRDataID=NEU00010
+
+http://172.2.2.31/hms/wpgprocessCompKeydata.asp?PositionForTableName=EMRData&EMRDataID=NEU00010
+
+colspan**5%%UserRadio**EMRVar3B****EMRVar3b.EMRVar3AID = 'E001'
+
+colspan**4%%UserRadio**EMRVar3B****EMRVar3b.EMRVar3AID = 'E007'
+
+2 PrintLayout
+TDProp**1**Left**Top%%Default**Name of Client:
+TDProp**1**Left**%%UserText
+TDProp**1**Left**Top%%Default**Gender:
+colspan**1%%UserRadio**EMRVar3B****1**EMRVar3AID**EMRVar3B.EMRVar3AID = 'E007'
+
+This is the link for patient medical records:
+http://172.2.2.31/hms/wpgPrtPrintLayoutAll.asp?PrintLayoutName=PatientMedicalRecord&PositionForTableName=WorkingDay&PositionForCtxTableName=Visitation&VisitationID=V1240910021&FullScreen=Yes
+
+Treatment Flow Sheet - Physio
+http://172.2.2.31/hms/wpgEditCompKey.asp?PositionForTableName=EMRData&EMRDataID=E000059
+
+EOSQ 
+TDProp**2**left**TOP****%%UserRadio**EMRVAR3B****1****EMRVAR3B.EMRVAR3AID = 'E014'
+TDProp**2**left**TOP****%%UserRadio**EMRVAR2B****1****EMRVAR2B.EMRVAR2AID = 'AA1'
+
+Vital Signs EMR - http://172.2.2.31/HMS/wpgEMRData.asp?PageMode=ProcessSelect&EMRDataID=EMR001
+
+colspan**6%%usertextarea
+
+malaria:
+Colspan**1%%UserCombo**T_Present
+
+
+Pass@2020

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Early Communication Assessment (ECA)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 1000px;
+        margin: auto;
+      }
+      h1,
+      h2 {
+        text-align: center;
+      }
+      .form-section {
+        margin: 20px 0;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      table th,
+      table td {
+        padding: 15px;
+        border: 1px solid #ddd;
+        position: relative;
+        text-align: center;
+        vertical-align: middle;
+      }
+      table th {
+        background-color: #007bff;
+        color: white;
+      }
+      table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      .diagonal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          transparent 49%,
+          #ccc 49%,
+          #ccc 51%,
+          transparent 51%
+        );
+        z-index: 1;
+      }
+      .cell-content {
+        position: relative;
+        z-index: 2;
+      }
+      .input-box {
+        width: 80px;
+        padding: 5px;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 0.9em;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Early Communication Assessment (ECA)</h1>
+      <h2>Summary Sheet</h2>
+
+      <div class="form-section">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter name" />
+
+        <label for="dob">DOB:</label>
+        <input type="date" id="dob" />
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" />
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Levels</th>
+            <th>Reflexive</th>
+            <th>Reactive</th>
+            <th>Proactive</th>
+            <th>Primitive</th>
+            <th>Conventional</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Affective Communication</td>
+            <td>
+              <div class="diagonal"></div>
+              <div class="cell-content">
+                <input type="text" class="input-box" />
+              </div>
+            </td>
+            <td>
+              <div class="diagonal"></div>
+              <div class="cell-content">
+                <input type="text" class="input-box" />
+              </div>
+            </td>
+            <td>
+              <div class="diagonal"></div>
+              <div class="cell-content">
+                <input type="text" class="input-box" />
+              </div>
+            </td>
+            <td>
+              <div class="diagonal"></div>
+              <div class="cell-content">
+                <input type="text" class="input-box" />
+              </div>
+            </td>
+            <td>
+              <div class="diagonal"></div>
+              <div class="cell-content">
+                <input type="text" class="input-box" />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Mutual Gaze</td>
+            <td>
+              <div class="diagonal"></div>
+              <div class="cell-content">
+                <input type="text" class="input-box" />
+              </div>
+            </td>
+            <td>
+              <div class="diagonal"></div>
+              <div class="cell-content">
+                <input type="text" class="input-box" />
+              </div>
+            </td>
+            <td>
+              <div class="diagonal"></div>
+              <div class="cell-content">
+                <input type="text" class="input-box" />
+              </div>
+            </td>
+            <td>
+              <div class="diagonal"></div>
+              <div class="cell-content">
+                <input type="text" class="input-box" />
+              </div>
+            </td>
+            <td>
+              <div class="diagonal"></div>
+              <div class="cell-content">
+                <input type="text" class="input-box" />
+              </div>
+            </td>
+          </tr>
+          <!-- Add additional rows as needed -->
+        </tbody>
+      </table>
+
+      <div class="footer">
+        <p>&copy; 2024 Early Communication Assessment</p>
+      </div>
+    </div>
+  </body>
+</html>

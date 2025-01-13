@@ -1,0 +1,46 @@
+--select top 10 * from AdmissionStatus
+
+With AdmissionCTE AS
+(
+	select convert(varchar(20), admissiondate, 103) admissiondate,
+	count(admissiondate) Admissions
+	from Admission
+	where convert(date, admissiondate) between dateadd(day, -1, '2018-01-01') and '2023-11-30'
+	group by convert(varchar(20), admissiondate, 103)
+),
+
+DischargeCTE AS
+(
+select convert(varchar(20), dischargedate, 103) dischargedate,
+count(dischargedate) discharge
+from Admission
+where convert(date, dischargedate) between '2018-01-01' and '2018-11-30' 
+group by convert(varchar(20), dischargedate, 103)
+),
+
+DiedCTE AS
+(
+	select convert(varchar(20), dischargedate, 103) Diedon,
+	COUNT(dischargedate) died
+	FROM Admission
+	where convert(date, dischargedate) between '2018-01-01' AND '2018-11-30' 
+	AND admissionstatusid = 'A006'
+	group by convert(varchar(20), dischargedate, 103)
+)
+
+select  
+CASE 
+	WHEN admissiondate = dischargedate THEN admissiondate
+	WHEN admissiondate IS NULL THEN dischargedate
+	WHEN dischargedate IS NULL THEN admissiondate
+END AS [date],
+isnull(Admissions, 0) admissions, 
+isnull(discharge, 0) discharge, 
+ISNULL(died, 0) died from AdmissionCTE 
+full outer join  DischargeCTE
+on AdmissionCTE.admissiondate = DischargeCTE.dischargedate
+FULL OUTER JOIN DiedCTE
+ON AdmissionCTE.admissiondate = DiedCTE.Diedon;
+
+
+--select getdate()

@@ -24,6 +24,7 @@ birthdate = GetComboNameFld("Patient", patientID, "BirthDate")
 insuranceNum = GetComboNameFld("Visitation", visitationID, "InsuranceNo")
 'Response.Write insuranceNum
 
+
 CSS_Styles
 NHISForm
 

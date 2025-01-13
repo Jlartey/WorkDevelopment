@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="From">From</label>
+    <input type="date" name="From" id="From" />
+
+    <label for="To">To</label>
+    <input type="date" name="To" id="To" />
+
+    <button id="process">Process</button>
+    <script language="VBScript">
+      Sub ProcessButton_Click()
+          Dim fromDate, toDate
+          fromDate = Document.getElementById("From").value
+          toDate = Document.getElementById("To").value
+          MsgBox "From Date: " & fromDate & vbCrLf & "To Date: " & toDate
+      End Sub
+    </script>
+  </body>
+
+  <script>
+    const fromDate = document.getElementById('From');
+    const toDate = document.getElementById('To');
+    document.getElementById('process').addEventListener('click', function () {
+      console.log(fromDate.value, toDate.value);
+      //Run a function where the fromDate and the toDate are parameters
+    });
+  </script>
+</html>
+
+displayDrug

@@ -1,0 +1,72 @@
+ sql = "WITH DispensedCTE " & _
+      "AS " & _
+      "( " & _
+      "SELECT  Drug.Drugname [DispensedDrug],DrugSaleItems.DispenseDate, DrugsaleItems.VisitationID " & _
+      "FROM DrugsaleItems " & _
+      "JOIN Drug " & _
+      "ON Drug.DrugID = DrugsaleItems.DrugID " & _
+      "WHERE DispenseDate " & _
+      "BETWEEN '" & fromDate & "' AND '" & toDate & "'  " & _
+      "), " & _
+      "--319,673, 2 secs " & _
+
+      "PrescriptionCTE " & _
+      "AS " & _
+      "( " & _
+      "SELECT Drug.Drugname [PrescribedDrug], " & _
+      "Prescription.PrescriptionDate, " & _
+      "Prescription.VisitationID " & _
+      "FROM Drug " & _
+      "JOIN Prescription " & _
+      "ON Drug.DrugID = Prescription.DrugID " & _
+      "LEFT JOIN DrugsaleItems " & _
+      "ON DrugsaleItems.VisitationID = Prescription.VisitationID " & _
+      "WHERE PrescriptionDate " & _
+      "BETWEEN '" & fromDate & "' AND '" & toDate & "'  " & _
+      "), " & _
+      "--964,390, 14 secs " & _
+
+      "NOTDISPENSEDCTE " & _
+      "AS " & _
+      "( " & _
+      "SELECT PrescriptionCTE.PrescribedDrug, DispensedCTE.DispensedDrug, " & _
+      "PrescriptionCTE.PrescriptionDate, DispensedCTE.DispenseDate, " & _
+      "PrescriptionCTE.VisitationID [PresVstID], DispensedCTE.VisitationID [DisVstID] " & _
+      "FROM PrescriptionCTE " & _
+      "LEFT JOIN DispensedCTE " & _
+      "ON PrescriptionCTE.VisitationID = DispensedCTE.VisitationID) " & _
+      " " & _
+      "SELECT Count(*) NumberOfPrescriptions, PrescribedDrug  " & _
+      "FROM NOTDISPENSEDCTE " & _
+      "WHERE DispensedDrug IS NULL " & _
+      "GROUP BY PrescribedDrug " & _
+      "ORDER BY NumberOfPrescriptions DESC, PrescribedDrug;"
+
+    response.write sql
+
+    Set rst = server.CreateObject("ADODB.Recordset")
+    With rst
+      .open sql, conn, 3, 4
+
+      If Not .EOF Then
+      .MoveFirst
+      Do While Not .EOF
+        numberOfPrescriptions = .fields("NumberOfPrescriptions")
+        prescribedDrug = .fields("PrescribedDrug")
+        
+        
+        response.write "<tr>"
+         response.write "<td>" & numberOfPrescriptions & "</td>"
+         response.write "<td>" & prescribedDrug & "</td>"
+        response.write "</tr>"
+        .MoveNext
+      Loop
+      Else
+        response.write "No records found"
+      End If
+      .Close
+    End With
+
+response.write " </script>"
+
+response.write "</body>"

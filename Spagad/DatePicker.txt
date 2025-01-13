@@ -1,0 +1,112 @@
+DatePicker
+Sub DatePicker()
+    Dim rst, sql, periodStart, periodEnd
+    datePeriod = Trim(request.querystring("Dateperiod"))
+    If datePeriod <> "" Then
+        dateArr = Split(datePeriod, "||")
+        periodStart = dateArr(0)
+        periodEnd = dateArr(1)
+    End If
+    
+    Set rst = CreateObject("ADODB.RecordSet")
+    sql = "WITH DispensedCTE"
+    sql = sql & " AS"
+    sql = sql & " ("
+    sql = sql & " SELECT  Drug.Drugname [DispensedDrug],DrugSaleItems.DispenseDate, DrugsaleItems.VisitationID"
+    sql = sql & " FROM DrugsaleItems"
+    sql = sql & " JOIN Drug"
+    sql = sql & " ON Drug.DrugID = DrugsaleItems.DrugID"
+    sql = sql & " WHERE DispenseDate"
+    If (periodStart <> "" And periodEnd <> "") Then
+    sql = sql & " BETWEEN '" & periodStart & "' AND '" & periodEnd & "'"
+    Else
+        sql = sql & " BETWEEN '2018-01-10'AND '2018-12-31'"
+    End If
+    sql = sql & " ),"
+    sql = sql & " PrescriptionCTE"
+    sql = sql & " AS"
+    sql = sql & " ("
+    sql = sql & " SELECT Drug.Drugname [PrescribedDrug],"
+    sql = sql & " Prescription.PrescriptionDate,"
+    sql = sql & " Prescription.VisitationID"
+    sql = sql & " FROM Drug"
+    sql = sql & " JOIN Prescription "
+    sql = sql & " ON Drug.DrugID = Prescription.DrugID"
+    sql = sql & " LEFT JOIN DrugsaleItems "
+    sql = sql & " ON DrugsaleItems.VisitationID = Prescription.VisitationID "
+    sql = sql & " WHERE PrescriptionDate"
+    If (periodStart <> "" And periodEnd <> "") Then
+    sql = sql & " BETWEEN '" & periodStart & "' AND '" & periodEnd & "'"
+    Else
+        sql = sql & " BETWEEN '2018-01-10'AND '2018-12-31'"
+    End If
+    sql = sql & " ),"
+    sql = sql & " NOTDISPENSEDCTE"
+    sql = sql & " AS "
+    sql = sql & " ("
+    sql = sql & " SELECT PrescriptionCTE.PrescribedDrug, DispensedCTE.DispensedDrug, "
+    sql = sql & " PrescriptionCTE.PrescriptionDate, DispensedCTE.DispenseDate, "
+    sql = sql & " PrescriptionCTE.VisitationID [PresVstID], DispensedCTE.VisitationID [DisVstID]"
+    sql = sql & " FROM PrescriptionCTE "
+    sql = sql & " LEFT JOIN DispensedCTE"
+    sql = sql & " ON PrescriptionCTE.VisitationID = DispensedCTE.VisitationID)"
+    sql = sql & " SELECT Count(*) NumberOfPrescriptions,PrescribedDrug  FROM NOTDISPENSEDCTE"
+    sql = sql & " WHERE DispensedDrug IS NULL"
+    sql = sql & " GROUP BY PrescribedDrug"
+    sql = sql & " ORDER BY NumberOfPrescriptions DESC, PrescribedDrug;"
+'    response.write sql
+    response.write datePeriod
+    
+    With rst
+        .Open sql, conn, 3, 4
+        If .recordcount > 0 Then
+            response.write "<form id='dateForm'> "
+            response.write "    <div style='display: flex;'> "
+            response.write "        <div> "
+            response.write "            <label for='from'>From</label> "
+            response.write "            <input type='date' name='from' id='from'> "
+            response.write "        </div> "
+            response.write "        <div> "
+            response.write "            <label for='to'>To</label> "
+            response.write "            <input type='date' name='to' id='to'> "
+            response.write "        </div> "
+            response.write "        <div> "
+            response.write "            <button type='button' onclick='updateUrl()'>Show Data</button> "
+            response.write "        </div>    "
+            response.write "    </div> "
+            response.write "</form> "
+            response.write "<script> "
+            response.write "    function updateUrl() { "
+            response.write "        const fromDate = document.getElementById('from').value; "
+            response.write "        const toDate = document.getElementById('to').value; "
+            response.write "        const baseUrl = 'http://192.168.5.11/rhhms07/wpgPrtPrintLayoutAll.asp'; "
+            response.write "        const params = new URLSearchParams({ "
+            response.write "            PrintLayoutName: 'datePickerForm', "
+            response.write "            PositionForTableName: 'WorkingDay', "
+            response.write "            WorkingDayID: '' ,"
+            response.write "            Dateperiod: `${fromDate}||${toDate}`"
+            response.write "        }); "
+            response.write "        const newUrl = `${baseUrl}?${params.toString()}`; "
+            response.write "        window.location.href = newUrl; "
+            response.write "    } "
+            response.write "</script> "
+            .MoveFirst
+            
+            response.write "<table width='100%' cellspacing='0' cellpadding='2' border='1'>"
+            response.write "<tr>"
+                response.write "<th background-color='#043cd6'> Prescribed Drug </th>"
+                response.write "<th> Number Of Prescriptions </th>"
+                response.write "</tr>"
+            Do While Not .EOF
+                response.write "<tr>"
+                response.write "<td>" & .fields("PrescribedDrug") & "</td>"
+                response.write "<td>" & .fields("NumberOfPrescriptions") & "</td>"
+                response.write "</tr>"
+                .MoveNext
+            Loop
+            response.write "</table>"
+        End If
+        .Close
+    End With
+    
+End Sub

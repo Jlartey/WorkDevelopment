@@ -1,0 +1,103 @@
+--between when visitdate and beginconsult
+WITH VisitLogs AS (
+    SELECT TOP 10 v.visitationID, v.visitdate, s.logdate
+    FROM Visitation v
+    JOIN SystemLog s
+    ON v.visitationID = s.keyvalue
+    WHERE v.WorkingYearID = 'YRS2024'
+    AND s.keyPrefix = 'BEGIN_CONSULTATION'
+)
+SELECT AVG(DATEDIFF(MINUTE, visitdate, logdate)) AS AvgTimeDifferenceInMinutes
+FROM VisitLogs;
+
+--time spent during consultation
+WITH ConsultationPairs AS (
+    SELECT 
+        keyvalue,
+        MAX(CASE WHEN keyPrefix = 'BEGIN_CONSULTATION' THEN logdate END) AS BeginConsultationDate,
+        MAX(CASE WHEN keyPrefix = 'END_CONSULTATION' THEN logdate END) AS EndConsultationDate
+    FROM SystemLog
+    WHERE keyPrefix IN ('BEGIN_CONSULTATION', 'END_CONSULTATION')
+    GROUP BY keyvalue
+)
+SELECT 
+    AVG(DATEDIFF(MINUTE, BeginConsultationDate, EndConsultationDate)) AS AvgTimeDifferenceInMinutes
+FROM ConsultationPairs
+WHERE BeginConsultationDate IS NOT NULL AND EndConsultationDate IS NOT NULL;
+
+--Patient Waiting Time at Lab/XRAY (time labrequest is filled till results are ready)
+WITH patWaitingTime AS (
+SELECT Investigation.VisitationID, labrequest.LabRequestID
+, Investigation.LabTestID, LabRequest.requestdate AS RequestDate
+, Investigation.requestdate1 AS ReadyDate FROM Investigation
+JOIN LabRequest ON LabRequest.LabRequestID = Investigation.LabRequestID 
+WHERE Investigation.RequestStatusID = 'RRD002' --AND Investigation.LabRequestID = '124090175'
+AND Investigation.RequestDate BETWEEN '01 June 2024 00:00:00' AND '05 june 2024 23:59:59'
+UNION 
+SELECT Investigation2.VisitationID, labrequest.LabRequestID
+, Investigation2.LabTestID, LabRequest.requestdate AS RequestDate
+, Investigation2.requestdate1 AS ReadyDate FROM Investigation2
+JOIN LabRequest ON LabRequest.LabRequestID = Investigation2.LabRequestID
+WHERE Investigation2.RequestStatusID = 'RRD002' --AND Investigation2.LabRequestID = '124090175'
+AND Investigation2.RequestDate BETWEEN '01 June 2024 00:00:00' AND '05 june 2024 23:59:59'
+) SELECT AVG(DATEDIFF(MINUTE, RequestDate, ReadyDate))/60 AS AvgTimeDifferenceInMinutes
+FROM patWaitingTime
+
+--Total Admission vs FallRiskAssessment || Pain Scale || BraidingScale || SBar
+
+SELECT COUNT(Admission.AdmissionID), EMRRequestItems.EMRDataID, EMRData.EMRDataName
+FROM Admission
+JOIN EMRRequest ON EMRRequest.VisitationID = Admission.VisitationID
+JOIN EMRRequestItems ON EMRRequestItems.EMRRequestID = EMRRequest.EMRRequestID
+JOIN EMRData ON EMRData.EMRDataID = EMRRequestItems.EMRDataID
+WHERE EMRRequestItems.EMRDataID IN ('NUR006', 'NUR011', 'TH054', 'E000038', 'PT0017')
+GROUP BY EMRRequestItems.EMRDataID, EMRData.EMRDataName
+
+--Top 10 Diagnosis
+
+SELECT TOP 10 diseaseid, COUNT(DiseaseID) AS cnt
+FROM diagnosis
+WHERE maindate1 BETWEEN '2024-09-05 00:00:00' AND '2024-09-05 23:59:59'
+GROUP BY diseaseid
+ORDER BY cnt DESC;
+
+--Appointment Cancellation
+SELECT 
+	AppointmentName, 
+	convert(VARCHAR(20), AppointDate, 103) AppointmentDate, 
+	SpecialistID, SpecialistTypeID 
+FROM Appointment
+WHERE AppointmentStatusID = 'A004' AND appointdate BETWEEN '01 june 2024 00:00:00' AND '30 june 2024 23:59:59'
+
+--Mortality Rate
+
+SELECT 
+    COUNT(DISTINCT CASE WHEN Admission.AdmissionID IS NOT NULL THEN Visitation.VisitationID END) AS InPatient,
+    COUNT(DISTINCT CASE WHEN Admission.AdmissionID IS NULL THEN Visitation.VisitationID END) AS OutPatient
+FROM Visitation
+LEFT JOIN Admission ON Admission.VisitationID = Visitation.VisitationID
+WHERE Visitation.MedicalOutcomeID = 'M002';
+
+
+-- Top 10 surgical cases
+
+WITH SurgeryList AS (
+    SELECT 
+        LTRIM(RTRIM(REPLACE(LEFT(CAST(COLUMN2 AS NVARCHAR(MAX)), CHARINDEX('||', CAST(COLUMN2 AS NVARCHAR(MAX)) + '||') - 1), '|', ''))) AS Surgery,
+        CAST(STUFF(CAST(COLUMN2 AS NVARCHAR(MAX)), 1, CHARINDEX('||', CAST(COLUMN2 AS NVARCHAR(MAX)) + '||'), '') AS NVARCHAR(MAX)) AS RemainingSurgeries
+    FROM EMRResults
+    WHERE emrdataid = 'FOH013' AND EMRComponentID = 'FOH013001.9' AND CAST(COLUMN2 AS NVARCHAR(MAX)) <> ''
+
+    UNION ALL
+    
+    SELECT 
+        LTRIM(RTRIM(REPLACE(LEFT(RemainingSurgeries, CHARINDEX('||', RemainingSurgeries + '||') - 1), '|', ''))) AS Surgery,
+        CAST(STUFF(RemainingSurgeries, 1, CHARINDEX('||', RemainingSurgeries + '||'), '') AS NVARCHAR(MAX)) AS RemainingSurgeries
+    FROM SurgeryList
+    WHERE RemainingSurgeries <> ''
+)
+SELECT TOP 10 Surgery, COUNT(*) AS SurgeryCount
+FROM SurgeryList
+WHERE Surgery <> '' 
+GROUP BY Surgery
+ORDER BY SurgeryCount DESC;

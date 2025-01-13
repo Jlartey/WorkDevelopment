@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App Version 3</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      .container {
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+
+      /* Spinner Styles */
+      .spinner {
+        margin: 20px auto;
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        display: none; /* Hidden initially */
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Weather App</h2>
+      <p>Enter a city name to get the weather:</p>
+      <input type="text" id="cityInput" placeholder="Enter City Name" />
+      <button type="submit" onclick="getWeather()">Get Weather</button>
+      <div class="spinner" id="spinner"></div>
+      <!-- Spinner element -->
+      <p id="weatherInfo"></p>
+    </div>
+
+    <script>
+      async function getWeather() {
+        const city = document.getElementById('cityInput').value;
+        const apiKey = 'dd694bf04d157bc87a57beaf7190b413';
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+        const spinner = document.getElementById('spinner');
+        const weatherInfo = document.getElementById('weatherInfo');
+
+        try {
+          // Show the spinner
+          spinner.style.display = 'block';
+          weatherInfo.innerHTML = '';
+
+          // Fetch data
+          const response = await fetch(url);
+          const data = await response.json();
+
+          // Hide the spinner and show the result
+          spinner.style.display = 'none';
+          weatherInfo.innerHTML = `
+              <h3>${data.name}, ${data.sys.country}</h3>
+              <p>Temperature: ${data.main.temp}°C</p>
+              <p>Humidity: ${data.main.humidity}%</p>
+              <p>Description: ${data.weather[0].description}</p>
+            `;
+        } catch (error) {
+          console.error('Error fetching weather data:', error);
+
+          // Hide the spinner and show an error message
+          spinner.style.display = 'none';
+          weatherInfo.innerHTML =
+            'Failed to fetch weather data. Please try again later.';
+        }
+      }
+    </script>
+  </body>
+</html>

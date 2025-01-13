@@ -1,0 +1,17 @@
+sponsorAttendanceRpt - key||SponsorID** key||WorkingYearID
+specialisttypeRpt - Date||Select Period
+recordsDailyBilling - Date||Select Period
+genderReports - Key||GenderID**Date||Select Period
+MapDiseaseReportCategory - Key||TestVar1AID
+dailyregopd - Date||Select a Period
+GenerateAttendanceReportByGender - Date||Select Period
+dailyopdreport - Key||BillMonthID
+MonthlyAttendanceBySponsor - Key||WorkingYearID
+dhimsOPDMobidityReport - Date||Select Period
+sponsorlistrpt - Key||WorkingYearID
+IPDStatement - Date||Select Period
+SpecialistDiagnosisReport
+
+22/10/2024
+DPT040
+MapDiseaseReportCategory
