@@ -1,0 +1,15 @@
+Default**<script>
+window.onload = function () {
+  // Get all radio buttons with the name 'animal'
+  const radios = document.getElementsByName('NUR006^^NUR00607Column3');
+  let age = document.getElementById("NUR006^^NUR00607Column6")
+  // Add a change event listener to each radio button
+  for (let i = 0; i < radios.length; i++) {
+    radios[i].addEventListener('change', function () {
+      if (radios[i].checked) {
+        age.value = i
+      }
+    });
+  }
+};
+</script>

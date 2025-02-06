@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Checkbox Sum Example</title>
+    <script>
+      window.onload = function () {
+        // Get all checkboxes with the name 'hobby'
+        const checkboxes = document.getElementsByName('hobby');
+
+        // Assign values to each checkbox
+        const values = [2, 4, 6];
+
+        // Function to calculate the sum of checked checkboxes
+        function calculateSum() {
+          let sum = 0;
+          for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+              sum += values[i]; // Add the corresponding value if checked
+            }
+          }
+          console.log(`Sum: ${sum}`);
+        }
+
+        // Add a change event listener to each checkbox
+        for (let i = 0; i < checkboxes.length; i++) {
+          checkboxes[i].addEventListener('change', calculateSum);
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <form>
+      <label><input type="checkbox" name="hobby" /> Reading (2)</label><br />
+      <label><input type="checkbox" name="hobby" /> Sports (4)</label><br />
+      <label><input type="checkbox" name="hobby" /> Music (6)</label>
+    </form>
+  </body>
+</html>

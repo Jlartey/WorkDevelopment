@@ -1,0 +1,2 @@
+--S21
+>>	Medical Store Requisition Dashboard	DataOrigin	Close	IN	-	-	-	NAV	151	wpgPrtPrintLayoutAll.asp?PrintLayoutName=DrugReqDashboard&PositionForTableName=WorkingDay&WorkingDayID=

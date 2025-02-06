@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Radio Button Example</title>
+    <script>
+      function handleRadioClick() {
+        // Get all radio buttons with the name 'animal'
+        const radios = document.getElementsByName('animal');
+        // Loop through each radio button
+        for (let i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            // Print corresponding number to the console when a radio button is selected
+            console.log(i + 1); // Outputs 1 for the first, 2 for the second, etc.
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <label
+        ><input
+          type="radio"
+          name="animal"
+          value="dog"
+          onclick="handleRadioClick()"
+        />
+        Dog</label
+      ><br />
+      <label
+        ><input
+          type="radio"
+          name="animal"
+          value="cat"
+          onclick="handleRadioClick()"
+        />
+        Cat</label
+      ><br />
+      <label
+        ><input
+          type="radio"
+          name="animal"
+          value="goat"
+          onclick="handleRadioClick()"
+        />
+        Goat</label
+      >
+    </form>
+  </body>
+</html>
