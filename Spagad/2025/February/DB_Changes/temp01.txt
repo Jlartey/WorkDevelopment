@@ -1,0 +1,8 @@
+PARAMETER    	Column5	
+TREEVIEW
+PARAMETER    	Column6	
+TREEVIEW
+Position	02	L0860	TestComponentID
+Osmolality Serum	Column1	
+TREEVIEW
+Osmolality Serum	Column2	
