@@ -20,3 +20,4 @@ Function getEMRResult(EMRRequestID, emrDataID, CompID, column)
     getEMRResult = emrValue
     Set rst = Nothing
 End Function
+ 47

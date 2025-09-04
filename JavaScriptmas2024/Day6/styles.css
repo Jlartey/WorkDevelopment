@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #d90429;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn.primary {
+  background-color: white;
+  color: #d90429;
+}
+
+.btn.secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #d90429;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.hero-buttons {
+  margin-bottom: 40px;
+}
+
+.hero-buttons a {
+  margin: 0 10px;
+}
+
+.dashboard-preview {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.dashboard-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats,
+.my-bank {
+  flex: 1;
+}
+
+.analytics {
+  flex: 2;
+}
+
+#analytics-chart,
+#benefits-chart {
+  width: 100%;
+  height: 200px;
+  background-color: #f0f0f0; /* Placeholder */
+}
+
+.features,
+.benefits,
+.pricing,
+.testimonials {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.features h2,
+.benefits h2,
+.pricing h2,
+.testimonials h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.feature-cards,
+.testimonial-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.feature-card,
+.testimonial-card {
+  flex: 1;
+  max-width: 250px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+.feature-card img {
+  margin-bottom: 10px;
+}
+
+.link {
+  color: #d90429;
+  text-decoration: none;
+}
+
+.benefits-preview {
+  margin-top: 20px;
+}
+
+.pricing-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.pricing-card {
+  flex: 1;
+  max-width: 300px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+.pricing-card.popular {
+  background-color: #d90429;
+  color: white;
+}
+
+.price {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.price span {
+  font-size: 16px;
+}
+
+.pricing-card ul {
+  list-style: none;
+  text-align: left;
+  margin: 20px 0;
+}
+
+.pricing-card ul li {
+  margin-bottom: 10px;
+}
+
+.testimonial-card img {
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.stars {
+  color: #ffd700;
+}
+
+footer {
+  background-color: #d90429;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-links a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.copyright {
+  font-size: 12px;
+}

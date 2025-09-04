@@ -1,0 +1,108 @@
+'<<--BEGIN_CODE_SEGMENT_PRINTHEADER-->>
+
+Dim rst, sql, cnt, gen, spid
+Dim arPeriod, periodStart, periodEnd
+arPeriod = getDatePeriodFromDelim(Trim(Request.querystring("PrintFilter1")))
+periodStart = arPeriod(0)
+periodEnd = arPeriod(1)
+
+gen = Trim(Request.querystring("PrintFilter0"))
+spid = Trim(Request.querystring("PrintFilter2"))
+Set rst = CreateObject("ADODB.Recordset")
+
+
+Response.write "<style>"
+Response.write "  * { font-family: Arial, sans-serif; }"
+Response.write "  table#myTable, table#myTable th, table#myTable td { border: 1px solid silver; border-collapse: collapse; padding: 5px; }"
+Response.write "  table#myTable { width: 800px; margin: 0; font-size: 13px; box-sizing: border-box; }"
+Response.write "  table#myTable thead { text-align: center; }"
+Response.write "  table#myTable thead th { padding: 4px; }"
+Response.write "  table#myTable thead .h_res { background-color: #FC046A; color: #fff; }"
+Response.write "  table#myTable thead .h_title { background-color: blanchedalmond; }"
+Response.write "  table#myTable thead .h_names { font-size: 14px; }"
+Response.write "  table#myTable tbody td { text-align: center; }"
+Response.write "  table#myTable .last { background-color: #3C8F6D; color: #fff; font-weight: 700; text-align: center; }"
+Response.write "  h1.no-records { font-family: Arial, sans-serif; text-align: left; }"
+Response.write "</style>"
+
+sql = "SELECT DISTINCT Visitation.PatientID, Patient.ResidencePhone, Visitation.VisitDate, Visitation.BirthDate, Visitation.PatientAge, visitation.specialisttypeid "
+sql = sql & " FROM Visitation INNER JOIN patient ON Visitation.PatientID = Patient.PatientID WHERE "
+If Len(gen) > 0 Then
+  sql = sql & " Visitation.GenderID = '" & gen & "' AND "
+Else
+  sql = sql & " "
+End If
+If Len(spid) > 0 Then
+  sql = sql & " Visitation.SponsorID = '" & spid & "' AND "
+Else
+  sql = sql & " "
+End If
+sql = sql & " Visitation.visitdate BETWEEN '" & periodStart & "' AND '" & periodEnd & "' "
+sql = sql & " ORDER BY Visitation.VisitDate"
+cnt = 0
+With rst
+  .open qryPro.FltQry(sql), conn, 3, 4
+  If .RecordCount > 0 Then
+    Response.write "<table id='myTable'> <thead><tr class='h_res'><th colspan='15'>Found " & rst.RecordCount & "Results...</th></tr> "
+    Response.write "<tr class='h_title'><th colspan='15'>Generated Attendance Report</th></tr>"
+    Response.write "<tr class='h_names'><th>No.</th><th>VisitDate</th><th>Full Name</th><th>Contact Number</th><th>Date of Birth</th><th>Age</th><th>Cons. Type</th></tr></thead><tbody>"
+    .movefirst
+    Do While Not .EOF
+      cnt = cnt + 1
+      Response.write "<tr><td>" & cnt & "</td><td>" & .fields("VisitDate") & "</td><td>" & GetComboName("Patient", .fields("PatientID")) & "</td>"
+      Response.write "<td>" & .fields("ResidencePhone") & "</td><td>" & FormatDate(.fields("BirthDate")) & "</td><td>" & .fields("PatientAge") & "</td><td>" & GetComboName("SpecialistType", .fields("specialisttypeid")) & "</td></tr>"
+      
+      If cnt Mod 100 = 0 Then Response.Flush
+      .MoveNext
+    Loop
+    
+    Response.Flush
+  Else
+    Response.write "<h1 class='no-records'>No records found</h1>"
+    Response.Flush
+  End If
+  rst.Close
+  Set rst = Nothing
+End With
+Response.write "</tbody></table>"
+Response.Flush
+
+Function getDatePeriodFromDelim(strDelimPeriod)
+    Dim arPeriod, periodStart, periodEnd
+    Dim arOut(1)
+    arPeriod = Split(strDelimPeriod, "||")
+    If UBound(arPeriod) >= 0 Then
+        periodStart = arPeriod(0)
+    End If
+    If UBound(arPeriod) >= 1 Then
+        periodEnd = arPeriod(1)
+    End If
+    periodStart = makeDatePeriod(Trim(periodStart), periodEnd, "0:00:00")
+    periodEnd = makeDatePeriod(Trim(periodEnd), periodStart, "23:59:59")
+    arOut(0) = periodStart
+    arOut(1) = periodEnd
+    getDatePeriodFromDelim = arOut
+End Function
+
+Function makeDatePeriod(strDateStart, defaultDate, strTime)
+    If IsDate(strDateStart) Then
+        makeDatePeriod = FormatDate(strDateStart) & " " & Trim(strTime)
+    Else
+        If IsDate(defaultDate) Then
+            makeDatePeriod = FormatDate(defaultDate) & " " & Trim(strTime)
+        Else
+            makeDatePeriod = FormatDate(Now()) & " " & Trim(strTime)
+        End If
+    End If
+End Function
+'<<--END_CODE_SEGMENT_PRINTHEADER-->>
+'>
+'>
+'>
+'>
+'>
+'<<--BEGIN_CODE_SEGMENT_PRINTFOOTER-->>
+
+'<<--END_CODE_SEGMENT_PRINTFOOTER-->>
+
+

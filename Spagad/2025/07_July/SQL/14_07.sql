@@ -1,0 +1,3 @@
+INSERT INTO "YBMHMS01"."dbo"."AccessRightAlloc" ("UserRoleID", "AccessRightID", "TableID", "UserRightID", "AccessDetail", "Description") VALUES (N'S17', N'frmStockIssueURT003', N'StockIssue', N'URT003', N'Yes', N'');
+SELECT "UserRoleID", "AccessRightID", "TableID", "UserRightID", "AccessDetail", "Description" FROM "YBMHMS01"."dbo"."AccessRightAlloc" WHERE  "AccessRightID"=N'frmStockIssueURT003' AND "UserRoleID"=N'S17';
+SELECT SUM("rows") FROM "sys"."partitions" WHERE "index_id" IN (0, 1) AND "object_id" = object_id('YBMHMS01.dbo.AccessRightAlloc');

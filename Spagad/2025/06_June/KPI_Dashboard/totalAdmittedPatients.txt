@@ -1,0 +1,146 @@
+'<<--BEGIN_CODE_SEGMENT_PRINTHEADER-->>
+addCSS
+generateReport
+
+Sub generateReport()
+  Dim sql, rst, dt, StartDate, endDate, PatientID
+  Set rst = CreateObject("ADODB.RecordSet")
+  StartDate = Request.QueryString("printfilter")
+  endDate = Request.QueryString("printfilter1")
+
+  sql = "SELECT DISTINCT PatientID from Admission"
+  sql = sql & " WHERE AdmissionDate BETWEEN '" & StartDate & "' AND '" & endDate & "'"
+
+  cnt = 0
+  With rst
+    .open qryPro.FltQry(sql), conn, 3, 4
+      If .RecordCount > 0 Then
+        response.write "<table class = 'anaesthesia' > "
+        response.write "    <thead> "
+        response.write "    <tr class = 'anaesthesia'>"
+        response.write "        <th colspan = '10'> " & .RecordCount & " Patients Admitted Between " & FormatDate(StartDate) & " and " & FormatDate(endDate) & "</th>"
+        response.write "    </tr>"
+        response.write "    </thead><tbody> "
+        .movefirst
+          Do While Not .EOF
+            PatientID = .fields("PatientID")
+            TrackPatientAdmission PatientID, StartDate, endDate
+        .MoveNext
+          Loop
+          response.write "    </tbody></table> "
+      End If
+    .Close
+    Set rst = Nothing
+  End With
+End Sub
+
+Sub TrackPatientAdmission(PatientID, StartDate, endDate)
+    Dim sql, rst, cnt, daysDifference
+    Set rst = CreateObject("ADODB.Recordset")
+
+    sql = "SELECT * FROM Admission WHERE AdmissionDate BETWEEN '" & StartDate & "' AND '" & endDate & "'"
+    sql = sql & " AND PatientID = '" & PatientID & "'"
+    sql = sql & " ORDER BY AdmissionDate ASC;"
+    cnt = 0
+    daysDifference = 0
+
+    With rst
+      .open qryPro.FltQry(sql), conn, 3, 4
+        If .RecordCount > 0 Then
+
+          response.write "    <tr class = 'tHead'> "
+          response.write "         <th colspan='4' style=""text-align: left; font-size: 18px;"">" & GetComboName("Patient", PatientID) & "</th>"
+          response.write "         <th colspan='4' style=""text-align: center; font-size: 18px;"">" & GetComboName("Country", GetComboNameFld("Patient", PatientID, "CountryID")) & "</th>"
+          response.write "    </tr> "
+          response.write "    <tr class = 'tHead'> "
+          response.write "        <th>No.</th> "
+          response.write "        <th>Admission ID</th> "
+          response.write "        <th>Admission Date</th> "
+          response.write "        <th>Ward</th> "
+          response.write "        <th>Bed</th> "
+          response.write "        <th>Discharge Date</th> "
+          response.write "        <th>Length of Stay</th> "
+          response.write "        <th>Specialist</th> "
+          response.write "    </tr> "
+
+          .movefirst
+          Do While Not .EOF
+            cnt = cnt + 1
+            
+            addDate = FormatDate(.fields("AdmissionDate"))
+            disDate = FormatDate(.fields("DischargeDate"))
+            
+            If IsDate(addDate) And IsDate(disDate) Then
+                daysDifference = DateDiff("d", CDate(addDate), CDate(disDate))
+            Else
+                daysDifference = 0
+            End If
+            
+            response.write "  <tr class = 'queryData text-align'> "
+            response.write "      <td>" & cnt & "</td> "
+            response.write "      <td>" & .fields("AdmissionID") & "</td> "
+            response.write "      <td>" & FormatDate(.fields("AdmissionDate")) & "</td> "
+            response.write "      <td>" & GetComboName("Ward", .fields("WardID")) & "</td> "
+            response.write "      <td>" & GetComboName("Bed", .fields("BedID")) & "</td> "
+            response.write "      <td>" & FormatDate(.fields("DischargeDate")) & "</td> "
+            response.write "      <td>" & daysDifference & "</td> "
+            response.write "      <td>" & GetComboName("Specialist", .fields("SpecialistID")) & "</td> "
+            response.write "  </tr> "
+            .MoveNext
+          Loop
+        End If
+      .Close
+        Set rst = Nothing
+    End With
+End Sub
+
+Sub addCSS()
+  With response
+    .write " <style> "
+    .write "    .anaesthesia, .anaesthesia th, .anaesthesia td{ "
+    .write "        border: 1px solid silver; "
+    .write "        border-collapse: collapse; "
+    .write "        padding: 5px; "
+    .write "    } "
+    .write "    .anaesthesia{ "
+    .write "        width: 800px; "
+    .write "        margin: 0 auto; "
+    .write "        font-family: sans-serif; "
+    .write "        font-size: 13px; "
+    .write "        box-sizing: border-box; "
+    .write "    }"
+    .write "    .anaesthesia tr{page-break-inside:avoid; "
+    .write "        page-break-after:auto "
+    .write "    } "
+    .write "    .anaesthesia th, .anaesthesia td { "
+    .write "        border: 1px solid silver; "
+    .write "        text-align: center; "
+    .write "        padding: 5px; "
+    .write "        font-size:13px; "
+    .write "        margin: 0 auto; "
+    .write "    } "
+    .write "    .tHead{ "
+    .write "        position: sticky; top: 0; "
+    .write "    }  "
+    .write "    .queryData td{ "
+    .write "        font-size: 12; "
+    .write "    }  "
+    .write "    .anaesthesia th{ "
+    .write "        background-color: blanchedalmond; "
+    .write "        text-align: center; "
+    .write "        font-weight: bold;"
+    .write "        font-size: 14px;color:#000;"
+    .write "   } "
+    .write " </style> "
+  End With
+End Sub
+
+'<<--END_CODE_SEGMENT_PRINTHEADER-->>
+'>
+'>
+'>
+'>
+'>
+'<<--BEGIN_CODE_SEGMENT_PRINTFOOTER-->>
+
+'<<--END_CODE_SEGMENT_PRINTFOOTER-->>

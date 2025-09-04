@@ -1,0 +1,138 @@
+'<<--BEGIN_CODE_SEGMENT_PRINTHEADER-->>
+addCSS
+generateReport
+
+Sub generateReport()
+  Dim sql, rst, cnt, periodStart, periodEnd, SpecialistTypeID, TotalAppts
+  Set rst = CreateObject("ADODB.Recordset")
+  
+  periodStart = Request.QueryString("printfilter")
+  periodEnd = Request.QueryString("printfilter1")
+  ' SpecialistTypeID = Request.QueryString("SpecialistTypeID")
+
+  sql = "SELECT AppointmentStatusID, COUNT(AppointmentID) AS TotalAppts"
+  sql = sql & " FROM Appointment"
+  sql = sql & " WHERE AppointDate BETWEEN '" & periodStart & "' AND '" & periodEnd & "'"
+  sql = sql & " GROUP BY AppointmentStatusID"
+
+  cnt = 0
+
+  With rst
+    .open qryPro.FltQry(sql), conn, 3, 4
+      If .RecordCount > 0 Then
+
+        .movefirst
+        Do While Not .EOF
+          cnt = cnt + 1
+          AppointmentStatusID = .fields("AppointmentStatusID")
+          TotalAppts = .fields("TotalAppts")
+          reportData periodStart, periodEnd, AppointmentStatusID, TotalAppts
+          .MoveNext
+        Loop
+      End If
+    .Close
+    Set rst = Nothing
+  End With
+End Sub
+
+Sub reportData(periodStart, periodEnd, AppointmentStatusID, TotalAppts)
+  Dim sql, rst, cnt
+  Set rst = CreateObject("ADODB.Recordset")
+
+  sql = "SELECT AppointmentName AS PatientName, AppointDate AS Date, AppointmentCatTypeID [Department], SpecialistID"
+  sql = sql & " FROM Appointment"
+  sql = sql & " WHERE AppointDate BETWEEN '" & periodStart & "' AND '" & periodEnd & "'"
+  sql = sql & " AND AppointmentStatusID = '" & AppointmentStatusID & "'"
+
+  cnt = 0
+
+  With rst
+    .open qryPro.FltQry(sql), conn, 3, 4
+      If .RecordCount > 0 Then
+
+        response.write "<table class = 'myTable' > "
+        response.write "    <thead> "
+        response.write "    <tr class = 'myTable' style=""position: sticky; top: 0;"">"
+        response.write "        <th colspan = '13'>" & TotalAppts & "  " & GetComboName("AppointmentStatus", AppointmentStatusID) & " Appointments Between " & periodStart & " and " & periodEnd & "</th>"
+        response.write "    </tr>"
+        response.write "    <tr class = 'tHead'> "
+        response.write "        <th>No.</th> "
+        response.write "        <th>Date</th> "
+        response.write "        <th style=""text-align: left;"">Name</th> "
+        response.write "        <th>Department</th> "
+        response.write "        <th style=""text-align: left;"">Specialist</th> "
+        response.write "    </tr> "
+        response.write "    </thead><tbody> "
+
+        .movefirst
+        Do While Not .EOF
+          cnt = cnt + 1
+
+          response.write "  <tr class = 'queryData'> "
+          response.write "      <td>" & (cnt) & "</td> "
+          response.write "      <td>" & FormatDate(.fields("Date")) & "</td> "
+          response.write "      <td style=""text-align: left;"">" & .fields("PatientName") & "</td> "
+          response.write "      <td style=""text-align: left;"">" & GetComboName("AppointmentCatType", .fields("Department")) & "</td> "
+          response.write "      <td style=""text-align: left;"">" & GetComboName("Specialist", .fields("SpecialistID")) & "</td> "
+          response.write "  </tr> "
+          response.Flush
+          .MoveNext
+
+        Loop
+      End If
+      response.write "</tbody></table><br><br><br>"
+    .Close
+    Set rst = Nothing
+  End With
+End Sub
+
+Sub addCSS()
+  With response
+    .write " <style> "
+    .write "    .myTable, .myTable th, .myTable td{ "
+    .write "        border: 1px solid silver; "
+    .write "        border-collapse: collapse; "
+    .write "        padding: 5px; "
+    .write "    } "
+    .write "    .myTable{ "
+    .write "        width: 80vw; "
+    .write "        margin: 0 auto; "
+    .write "        font-family: sans-serif; "
+    .write "        font-size: 13px; "
+    .write "        box-sizing: border-box; "
+    .write "    }"
+    .write "    .myTable tr{page-break-inside:avoid; "
+    .write "        page-break-after:auto "
+    .write "    } "
+    .write "    .myTable th, .myTable td { "
+    .write "        border: 1px solid silver; "
+    .write "        text-align: center; "
+    .write "        padding: 5px; "
+    .write "        font-size:13px; "
+    .write "        margin: 0 auto; "
+    .write "    } "
+    .write "    .tHead{ "
+    .write "        position: sticky; top: 28px; "
+    .write "    }  "
+    .write "    .queryData td{ "
+    .write "        font-size: 12; "
+    .write "    }  "
+    .write "    .myTable th{ "
+    .write "        background-color: blanchedalmond; "
+    .write "        text-align: center; "
+    .write "        font-weight: bold;"
+    .write "        font-size: 14px;color:#000;"
+    .write "   } "
+    .write " </style> "
+  End With
+End Sub
+
+'<<--END_CODE_SEGMENT_PRINTHEADER-->>
+'>
+'>
+'>
+'>
+'>
+'<<--BEGIN_CODE_SEGMENT_PRINTFOOTER-->>
+
+'<<--END_CODE_SEGMENT_PRINTFOOTER-->>

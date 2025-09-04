@@ -1,0 +1,17 @@
+V1250520229
+
+
+SELECT 
+    Visitation.VisitationID, 
+    Patient.PatientName,
+    STRING_AGG(Drug.DrugName, ', ') AS [Drugs Prescribed]
+FROM Visitation
+JOIN Patient
+ON Patient.PatientID = Visitation.PatientID
+LEFT JOIN Prescription
+    ON Visitation.VisitationID = Prescription.VisitationID
+LEFT JOIN Drug
+	 ON Prescription.DrugID = Drug.DrugID
+WHERE VisitDate BETWEEN '' AND ''
+GROUP BY Visitation.VisitationID, Patient.PatientName
+HAVING STRING_AGG(CAST(Prescription.DrugID AS VARCHAR), ', ') IS NOT NULL 

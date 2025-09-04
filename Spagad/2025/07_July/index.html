@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Section One</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      font-size: 10px;
+    }
+    input[type="number"],
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    input[type="datetime-local"]
+       {
+      padding: 0.2rem;
+      width: 90px;
+      margin-top: 0.2rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    textarea {
+      font-family: monospace;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0.2rem;
+      margin-top: 0.2rem;
+    }
+    
+    table {
+      width: 720px;
+      height: 100vh;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      border: 1px solid #333;
+    }
+    thead {
+      background-color: #007bff;
+      color: white;
+    }
+    th,
+    td {
+      padding: 0.3rem;
+      text-align: left;
+     
+    }
+    .edata{
+       display: flex;
+      flex-direction: row;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tbody tr:hover {
+      background-color: #eef2f5;
+    }
+    pre {
+      background-color: #272822;
+      color: #f8f8f2;
+      padding: 0.4rem;
+      border-radius: 3px;
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    .table-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+  </style>
+</head>
+<body>
+    <div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th colspan="5">
+          Section 1: Instructions:<br />
+          1. Upon completion of the form, please submit this to your Supervisor within 24 hours from the time of the incident.<br />
+          2. Please write legibly and answer all pertinent parts of this report.<br />
+          3. All reports will be submitted to the Quality Unit after immediate action (if any) has been taken.
+        </th>
+      </tr>
+      <tr>
+        <th colspan="2">Incident Details</th>
+        <th colspan="3">Other Information</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <label for="dateincident">Date of Incident:</label><br /> </td>
+        <td><input type="date" id="dateincident" name="dateincident" required /></td>
+        <td><label for="department">Reporting Department:</label><br /></td>
+          <td><input type="text" id="department" name="department" required /></td>
+          <td></td>
+      </tr>
+
+      <tr>
+        <td><label for="timeincident">Time of Incident:</label><br /></td>
+         <td><input type="date" id="timeincident" name="timeincident" required /></td>
+         <td><label for="deptrespon">Department Responsible for the incident</label></td>
+          <td><input type="date" id="deptrespon" name="deptrespon" required /></td>
+          <td></td>
+      </tr>
+
+       <tr>
+        <td><label for="timeincident">Time of Incident:</label><br /></td>
+         <td><input type="time" id="timeincident" name="timeincident" required /></td>
+         <td><label for="deptrespon">Department Responsible for the incident</label></td>
+          <td><input type="text" id="deptrespon" name="deptrespon" required /></td>
+          <td></td>
+      </tr>
+
+        <tr>
+        <td><label for="">location of Incident:</label><br /></td>
+         <td><input type="text" id="" name="" required /></td>
+         <td><label for="">Reported by</label></td>
+          <td><input type="text" id="" name="" required /></td>
+          <td></td>
+      </tr>
+
+       <tr>
+        <td><label for="">Date and Time of Report:</label><br /></td>
+         <td><input type="datetime-local" id="" name="" required /></td>
+         <td><label for="">Signature</label></td>
+          <td><input type="text" id="" name="" required /></td>
+          <td></td>
+      </tr>
+
+       <tr>
+        <td><label for="">Category:</label><br /></td>
+         <td><input type="checkbox" id="" name="" value="" required /><label for="">Impatient</label></td>
+           <td><input type="checkbox" id="" name="" value="" required /><label for="">Incident</label></td>
+             <td><input type="checkbox" id="" name="" value="" required /><label for="">Sentinel Event</label></td>
+               <td><input type="checkbox" id="" name="" value="" required /><label for="">Serious Event</label></td>
+              
+      </tr>
+
+       <tr>
+        <th colspan="5">PERSON(S) AFFECTED </th>
+       
+      </tr>
+      <tr>
+         <td><input type="checkbox" id="" name="" value="" required /><label for="">Inpatient</label></td>
+           <td><input type="checkbox" id="" name="" value="" required /><label for="">Outpatient</label></td>
+             <td><input type="checkbox" id="" name="" value="" required /><label for="">Visitor</label></td>
+               <td><input type="checkbox" id="" name="" value="" required /><label for="">Others:...................................</label>
+            </td>
+            <td></td>
+      </tr>
+       <tr>
+    
+            <td colspan="3"><input type="checkbox" id="" name="" value="" required /><label for="">IF Employee Name:..........................................................</label>
+            <td colspan="2"><input type="checkbox" id="" name="" value="" required /><label for="">Department:...................................</label>
+
+            </td>
+           
+      </tr>
+
+      <tr>
+        <th colspan="5">BRIEF DESCRIPTION OF THE INCIDENT</th>
+       
+      </tr>
+       <tr>
+                
+                    <td colspan="5" ><textarea rows="20"  cols="100%" name="" value="" require>  </textarea>
+                    </td>
+        </tr>
+        <tr>
+               <td colspan="3"><label for="">Name : </label><input type="text" id="" name="" value="" required />
+                <td colspan="2"><label for=""> Signature: </label><input type="text" id="" name="" value="" required />
+
+        </tr>
+
+        <tr>
+        <th colspan="5">Immediate Action taken:</th>
+       
+      </tr>
+        <tr>
+                
+                    <td colspan="5" ><textarea rows="20"  cols="100%" name="" value="" require>  </textarea>
+                    </td>
+        </tr>
+        <tr>
+               <td colspan="2"><label for="">Name : </label><input type="text" id="" name="" value="" required />
+                 <td colspan="1"><input type="datetime-local" id="" name="" required /></td>
+                <td colspan="2"><label for=""> Signature: </label><input type="text" id="" name="" value="" required />
+
+        </tr>
+
+
+          <tr>
+            <!-- Second page -->
+
+        <th colspan="5"><b>PHYSICIAN FOLLOW-UP (If Physical Harm)</b></th>
+       
+      </tr>
+
+        <tr>
+            <td colspan="2">
+            <label>Physician Informed:</label><br />
+            <label for="physicianYes">
+                <input type="radio" id="physicianYes" name="physicianInformed" value="Yes" /> Yes
+            </label>
+            <label for="physicianNo" style="margin-left: 1rem;">
+                <input type="radio" id="physicianNo" name="physicianInformed" value="No" /> No
+            </label>
+            </td>
+            
+
+             <td colspan="2">
+            <label> Seen By Physician:</label><br />
+            <label for="">
+                <input type="radio" id="" name="SphysicianInformed" value="Yes" /> Yes
+            </label>
+            <label for="" style="margin-left: 1rem;">
+                <input type="radio" id="" name="SphysicianInformed" value="No" /> No
+            </label>
+            </td>
+        <td colspan="2"><label for="">Assessment/Diagnosis: </label><input type="text" id="" name="" value="" required />
+
+          
+      </tr>
+
+       <tr>
+        <td><label for="">Injury Outcome:</label><br /></td>
+         <td><input type="checkbox" id="" name="" value="" required /><label for="">No injury</label></td>
+           <td><input type="checkbox" id="" name="" value="" required /><label for="">Minor</label></td>
+             <td><input type="checkbox" id="" name="" value="" required /><label for="">Serious</label></td>
+               <td style="display: flex;">
+                <input type="checkbox" id="" name="" value="" required /><label for="">Death</label>
+                 <input type="checkbox" id="" name="" value="" required /><label for="">Others.............</label>
+            </td>
+              
+      </tr>
+
+      <tr>
+        <td><label for="">Nature of Treatment/Exam:</label><br /></td>
+         <td><input type="checkbox" id="" name="" value="" required /><label for="">First Aid</label></td>
+           <td><input type="checkbox" id="" name="" value="" required /><label for="">Sutures</label></td>
+             <td><input type="checkbox" id="" name="" value="" required /><label for="">Observation</label></td>
+               <td>
+                <input type="checkbox" id="" name="" value="" required /><label for="">Bloodwork</label>
+              
+            </td>
+              
+      </tr>
+      <tr>
+        
+         <td><input type="checkbox" id="" name="" value="" required /><label for="">Radialogy Test</label></td>
+        
+           <td><input type="checkbox" id="" name="" value="" required /><label for="">Hospitalize</label></td>
+          
+             <td colspan="2"><input type="checkbox" id="" name="" value="" required /><label for="">Transferred to :............................................................</label></td>
+             
+              
+      </tr>
+
+       <tr>
+        <th colspan="5">Physician Notes:</th>
+       
+      </tr>
+      <tr>
+                
+                    <td colspan="5" ><textarea rows="20"  cols="100%" name="" value="" require>  </textarea>
+                    </td>
+        </tr>
+        <tr>
+               <td colspan="2"><label for="">Name : </label><input type="text" id="" name="" value="" required />
+                 <td colspan="1"><input type="datetime-local" id="" name="" required /></td>
+                <td colspan="2"><label for=""> Signature: </label><input type="text" id="" name="" value="" required />
+
+        </tr>
+  
+        <th colspan="5">
+        <b>
+             SECTION 2:  TO BE COMPLETED BY THE INVESTIGATING DEPARTMENT / QUALITY UNIT : TYPE INCIDENT  
+        </b>
+        </th>
+    <tr>
+        <th colspan="2">FALLS/SLIP/FOUND ON THE FLOOR</th>
+        <th colspan="2">HOSPITAL ACQUIRED INJURY</th>
+        <th>MEDICAL / CLINICAL CARE</th>
+      </tr>
+
+        <tr>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Stretcher/Table</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Walker</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Chair</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wheelchair</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Bed</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Found on the floor</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">While ambulating assisted</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">While ambulating unassisted</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">While being transported</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Slip</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Rehabilitation Activity</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+            
+
+
+        </td>
+           <td colspan="2">
+            <input type="checkbox" id="" name="" value=""/><label for="">Struck against by equipment</label><br>
+            <input type="checkbox" id="" name="" value=""/><label for="">Bed sores</label><br>
+            <input type="checkbox" id="" name="" value=""/><label for="">Adverse effect resulting from treatment</label><br>
+            <input type="checkbox" id="" name="" value=""/><label for="">Electrical shock</label><br>
+            <input type="checkbox" id="" name="" value=""/><label for="">Fall from height/ same level</label><br>
+            <input type="checkbox" id="" name="" value=""/><label for="">Caught Between / in an Equipment</label><br>
+            <input type="checkbox" id="" name="" value=""/><label for="">Over Exertion</label><br>
+            <input type="checkbox" id="" name="" value=""/><label for="">Obstructions in pathways</label><br>
+            <input type="checkbox" id="" name="" value=""/><label for="">Injury working tools</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+
+
+
+        </td>
+             <td>
+                <input type="checkbox" id="" name="" value=""/><label for="">Refusal to deliver care</label><br>
+                <input type="checkbox" id="" name="" value=""/><label for="">No response to call</label><br>
+                <input type="checkbox" id="" name="" value=""/><label for="">Delays in response to call</label><br>
+                <input type="checkbox" id="" name="" value=""/><label for="">Others(Specify)</label><br>
+                <input type="text" id="" name="" value="" />
+
+            </td>       
+      </tr>
+
+       <tr>
+        <th colspan="2">IV RELATED</th>
+        <th colspan="2">OR RELATED</th>
+        <th>TRANSFUSION</th>
+      </tr>
+<tr>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Infiltration</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Solution</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Omission</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Extravasations</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong rate</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Tubing leak</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Expired IV fluids</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Additive Related</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+          <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Anesthesia problem/injury</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Incorrect count</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong site</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong procedure</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong patient</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Foreign body left in patient</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Return to OR on the samw day</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Delayed surgery/ procedure</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Cancellation of surgery</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Unplanned removal of organ</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Unplanned repair of organ</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Complications</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Incorrect patient preparation</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Specimen handling</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+
+          <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Inappropriate storage of blood/blood products</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Delay in adminstrating blood/blood products</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Accidental puncture</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Transfusion reaction</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Duration of adminstering</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Blood type or product</label><br>
+            
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+</tr>
+
+<tr>
+        <th colspan="2">LABORATORY/ PHLEBOTOMY RELATED</th>
+        <th colspan="2">BREAK IN STANDARD PRECUATIONS</th>
+        <th>RADIOLOGY / DIAGNOSTIC IMAGING RELATED</th>
+      </tr>
+<tr>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Blood sample not collected</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Delay in blood/body fluids</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Lost specimen</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong patient</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Specimen integrity</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Delayed results</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+
+          <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Needle stick injury</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Splash of blood/body fluids</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Infectious disease exposure</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Toxic and hazardous materials exposure</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+         <td colspan="1">
+            <input type="checkbox" id="" name="" value="" /><label for="">Contrast reaction</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Incorrect patient</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Preparation</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong site / part</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong patient</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+</tr>
+
+
+<tr>
+        <th colspan="2">MEDICAL RECORDS/PATIENT IDENTIFICATION</th>
+        <th colspan="2">FIRE AND SAFETY</th>
+        <th>SECURITY VARIANCE</th>
+      </tr>
+<tr>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong chart/file</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Lost chart / file</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Lost specimen</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Unauthorized access to patients information</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Results/notes in wrong chart</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong/ no arm band</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong labeling</label><br>
+           
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+
+          <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Fire</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Fire Alarm</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Gas Leak</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Water Leak</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">Expired Fire Extinguisher</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Property damage</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Exposed Cables</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Overheated Machines/elements</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Equipment Breakdown</label><br>
+             
+             <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+         <td colspan="1">
+            <input type="checkbox" id="" name="" value="" /><label for="">Loss of personal property</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Suicide attempt</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Theft</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Abduction</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Patient attack staff</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">Fight among patients</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Staff abused patient</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Patient abused staff</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Visitor Abused</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Fight among staff</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">Violent act/threat</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Breach of confidentiality</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Unauthorized Entry</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Self-inflicted injury</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+</tr>
+
+
+
+
+<tr>
+        <th colspan="2">IT RELATED</th>
+        <th colspan="2">UNAUTHORIZED DISCHARGE</th>
+        <th>EQUIPMENT RELATED</th>
+      </tr>
+<tr>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Suspended virus/worm/trojan infection</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">ICT hardware or software theft, damage or loss</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Inappropriate use of FOCOS ICT facilities or service</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Loss of sensitive or valuable information. i.e patients records, financial records</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Suspected breach of information security or ICT Policies</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+
+          <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Patient refusal to be hospitalized in short stay or at the ward</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Patient refusal to continue treatment</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Unsatisfied with treatment/care</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">financial reasons</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">Absconded</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Social reasons</label><br>   
+             <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+         <td colspan="1">
+            <input type="checkbox" id="" name="" value="" /><label for="">Equipment not available</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong Equipment</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Equipment failure</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Damaged/loss of Equipment</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+</tr>
+
+
+
+
+
+
+
+<tr>
+        <th colspan="2">SUPPLY CHAIN RELATED</th>
+        <th colspan="2">DIET THERAPY RELATED</th>
+        <th>OTHERS</th>
+      </tr>
+<tr>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Delay in request of supplies</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Poor quality of supplies</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Delay in receiving of supplies</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+
+          <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong tray served</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Delay inserving patients food</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong labeling</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Foreign material in Food</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+         <td colspan="1">
+         
+         </td>
+</tr>
+
+
+<tr>     
+ <td colspan="5"><label for="">MEDICATION ERROR (Drug Name:)  </label><input type="text" id="" name="" value="" required />        
+</tr>
+
+
+<tr>     
+ <td colspan="3"><label for="">Dose:  </label><input type="text" id="" name="" value="" required />        
+ <td colspan="2"><label for="">Quantity:  </label><input type="text" id="" name="" value="" required />        
+</tr>
+
+
+
+
+<tr>
+        <th colspan="2">REPORTED BY</th>
+        <th colspan="2">TYPE OF ERROR</th>
+        <th>INTERVENTIONS</th>
+      </tr>
+<tr>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Pharmacist</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Medical Doctor</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Nurse</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Pharmacy Support staff</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+
+          <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong dosage</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong drug</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Omission of dosage</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong strenght</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">Wrong route</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong time</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong patient</label><br> 
+            <input type="checkbox" id="" name="" value="" /><label for="">Expired dose</label><br>  
+            <input type="checkbox" id="" name="" value="" /><label for="">Wrong IV rate</label><br>         
+             <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+         <td colspan="1">
+            <input type="checkbox" id="" name="" value="" /><label for="">Antidote adminstered</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Appropriate frequency reinserted</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Change to correct dose</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Change to correct drug</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Monitoring</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">No intervention needed</label><br>      
+             <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+</tr>
+
+
+
+
+
+<tr>
+        <th colspan="2">CAUSED BY</th>
+        <th colspan="1">STAGE INVOLED</th>
+        <th colspan="2">CONSEQUENCES</th>
+      </tr>
+<tr>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">Pharmacist</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Medical Doctor</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Nurse</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Pharmacy Support staff</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+
+          <td colspan="1">
+            <input type="checkbox" id="" name="" value="" /><label for="">Prescribing</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Order entry</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Dispensing</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Adminstration</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">No harm to patient apparent</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Monitoring/intervention to prevent harm</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Temporary harm required hospitalization</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Delay in discharge</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Permanent harm</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">Death</label><br>      
+             <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+</tr>
+
+<tr >
+        <th colspan="5"><b>OTHER SIGNIFICANT DETAILS</b></th>
+      
+      </tr>
+
+       <tr>
+                
+                    <td colspan="5" ><textarea rows="20"  cols="100%" name="" value="" require>  </textarea>
+                    </td>
+        </tr>
+
+  
+  <tr>
+          <td colspan="2">
+            <p><b>Medication Error Category:</b> </p>
+          </td>
+         <td colspan="3">
+            <input type="checkbox" id="" name="" value="" />A<label for=""></label>
+            <input type="checkbox" id="" name="" value="" />B<label for=""></label>
+            <input type="checkbox" id="" name="" value="" />C<label for=""></label>
+            <input type="checkbox" id="" name="" value="" />D<label for=""></label>
+             <input type="checkbox" id="" name="" value="" />E<label for=""></label>
+            <input type="checkbox" id="" name="" value="" />F<label for=""></label>
+            <input type="checkbox" id="" name="" value="" />G<label for=""></label>
+            <input type="checkbox" id="" name="" value="" />H<label for=""></label>
+             <input type="checkbox" id="" name="" value="" />I<label for=""></label>
+            
+         </td>
+
+  </tr>
+
+<tr>
+        <th colspan="2"><b>Other Incidents Severity Score:</b> </th>
+     
+  </tr>
+ <tr>
+        <th>0: No Harm</th>
+        <th>1:Minor</th>
+        <th>2:Non-Immobilizing Injury</th>
+        <th>3:Severe Injury</th>
+        <th>4: Severe injury</th>
+      </tr>
+<tr>
+  <th>
+   5: Vary Severe Life-threatening
+  </th>
+</tr>
+   
+
+<tr>
+  <th>
+    <b>
+      CONTRIBUTING FACTORS
+    </b>
+  </th>
+</tr>
+
+<tr>
+      <th colspan="2"><b>A. PATIENT FACTORS</b></th>
+      <th><b>B. STAFF FACTORS</b></th>
+      <th><b>C. SAFETY DEVICES</b></th>
+
+</tr>
+
+
+<tr>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">a1 Pre occurrence mental condition</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">a.1.1 confused/disoriented</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">a.1.2 Agtated</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">a.1.3 Faint/Seizure</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">a.1.4 Sedated</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">a.1.5 Weakness</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">a.1.6  Unconscious</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">a.2 Lack of Knowledge</label><br>
+           <input type="checkbox" id="" name="" value="" /><label for="">a.3 Lack of Education</label><br>
+           <input type="checkbox" id="" name="" value="" /><label for="">a.4 Psychosocial</label><br>
+           
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+
+          <td colspan="1">
+            <input type="checkbox" id="" name="" value="" /><label for="">b.1 Needed assistance not requested</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">b.2 Staff competency</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">b.3 Patient left unattended</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">b.4 Shortage of staff</label><br>
+             <input type="checkbox" id="" name="" value="" /><label for="">b.5 Lack of communication</label><br>
+              <input type="checkbox" id="" name="" value="" /><label for="">b.6 Policy and Procedure not followed/ enforced</label><br>
+           
+           
+            <input type="checkbox" id="" name="" value="" /><label for="">Others(specify):</label><br>
+            <input type="text" id="" name="" value="" />
+
+         </td>
+         <td colspan="2">
+            <input type="checkbox" id="" name="" value="" /><label for="">c.1 Equipment malfunction</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">c.2 Inappropriate equipment use</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">c.3 System down</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">c.4 Others:</label><br>
+            <input type="text" id="" name="" value="" /><br>
+            <p><b>D. MISCELLANEOUS</b></p>
+            
+            <input type="checkbox" id="" name="" value="" /><label for="">d.1 Language problem</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">d.2 Negligence</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">d.3 Bleep problem</label><br>
+            <input type="checkbox" id="" name="" value="" /><label for="">d.4 Resource not available</label><br>
+           <input type="checkbox" id="" name="" value="" /><label for="">d.5 Lack of coordination</label><br>
+           
+            <input type="checkbox" id="" name="" value="" /><label for="">d.6 Others:</label><br>
+            <input type="text" id="" name="" value="" />
+         </td>
+</tr>
+
+<tr >
+        <th colspan="5"><b>CORRECTIVE ACTIONS:</b></th>
+      
+      </tr>
+
+       <tr>
+                
+                    <td colspan="5" ><textarea rows="20"  cols="100%" name="" value="" require>  </textarea>
+                    </td>
+        </tr>
+
+  <tr >
+        <th colspan="5"><b>PREVENTIVE MEASURES AND RECOMMENDATIONS FOR FUTURE:</b></th>
+      
+      </tr>
+
+       <tr>
+                
+                    <td colspan="5" ><textarea rows="20"  cols="100%" name="" value="" require>  </textarea>
+                    </td>
+        </tr>
+
+
+         <tr>
+        <th colspan="5">For Quality Unit Only</th>
+       
+      </tr>
+        <tr>
+                
+                    <td colspan="5" ><textarea rows="20"  cols="100%" name="" value="" require>  </textarea>
+                    </td>
+        </tr>
+        <tr>
+               <td colspan="2"><label for="">Date : </label><input type="text" id="" name="" value="" required />
+                 <td colspan="1"><input type="time" id="" name="" required /></td>
+                <td colspan="1"><label for=""> Signature: </label><input type="text" id="" name="" value="" required />
+
+        </tr>
+
+
+
+    </tbody>
+  </table>
+  
+  </div>
+</body>
+</html>

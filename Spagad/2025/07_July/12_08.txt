@@ -1,0 +1,1 @@
+wpgPrtPrintLayoutAll.asp?PositionForTableName=WorkingDay&WorkingDayID=DAY20160401&PrintLayoutName=EMRSelector&EMRDataID=ANS001&EMRCompTabID=&POSITIONFORQUERYSTRING&CompTableKeyID=EMRComponentID

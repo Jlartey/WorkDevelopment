@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase Order</title>
+    <style>
+      body {
+        font-family: 'Times New Roman', Times, serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .container {
+        width: 800px;
+        background-color: white;
+        padding: 30px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 2px solid black;
+        padding-bottom: 10px;
+      }
+      .header-left h1 {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+        line-height: 1.2;
+      }
+      .header-left p {
+        font-size: 14px;
+        margin: 2px 0;
+      }
+      .header-right {
+        text-align: right;
+        font-size: 12px;
+      }
+      .header-right p {
+        margin: 2px 0;
+      }
+      .to-section {
+        margin-top: 15px;
+        font-size: 12px;
+      }
+      .to-section p {
+        margin: 3px 0;
+      }
+      .to-section strong {
+        font-weight: bold;
+      }
+      .details {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        font-size: 12px;
+      }
+      .details-left,
+      .details-right {
+        width: 48%;
+      }
+      .details p {
+        margin: 3px 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        font-size: 11px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+      th,
+      td {
+        padding: 5px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+      .total {
+        margin-top: 15px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .total p {
+        margin: 3px 0;
+      }
+      .terms {
+        margin-top: 20px;
+        font-size: 10px;
+        line-height: 1.4;
+      }
+      .terms h3 {
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        text-decoration: underline;
+      }
+      .terms p {
+        margin: 5px 0;
+      }
+      .terms strong {
+        font-weight: bold;
+      }
+      .handwritten {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 24px;
+        color: blue;
+        text-align: center;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header-left">
+          <h1>INTERNATIONAL MARITIME HOSPITAL</h1>
+          <p>PURCHASE ORDER</p>
+          <p>IMAH-004915-1</p>
+        </div>
+        <div class="header-right">
+          <p>1 of 1</p>
+          <p>2/19/2025</p>
+          <p>2/21/2025</p>
+          <p>Theophilus Adam Bonsu</p>
+        </div>
+      </div>
+
+      <div class="to-section">
+        <p><strong>TO:</strong></p>
+        <p>Vine Medics Ltd/50000506T</p>
+        <p>Achimota ABC Junction</p>
+        <p>Accra BOX</p>
+        <p>GHA</p>
+      </div>
+
+      <div class="details">
+        <div class="details-left">
+          <p>Creation date: ---</p>
+          <p>Purchase date: 2/19/2025 11:18:21 PM</p>
+          <p>Delivery date: ---</p>
+          <p>Payment date: ---</p>
+          <p>Currency: GHS</p>
+        </div>
+        <div class="details-right">
+          <p>Telephone: 500</p>
+          <p>Fax: ---</p>
+          <p>Tax registration number: ---</p>
+          <p>PRQ number: ---</p>
+          <p>Created by: ---</p>
+          <p>Requested by: ---</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>U/Price</th>
+            <th>Subtotal</th>
+            <th>Discount</th>
+            <th>Total Charges</th>
+            <th>VAT</th>
+            <th>Tax Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>250003</td>
+            <td>Achima Blood Lancet</td>
+            <td>500</td>
+            <td>PK</td>
+            <td>14.0000</td>
+            <td>7000.00</td>
+            <td>0.00</td>
+            <td>7000.00</td>
+            <td>0.00</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td colspan="7">Misc. Charges</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>---</td>
+          </tr>
+          <tr>
+            <td colspan="7"><strong>TOTAL</strong></td>
+            <td><strong>7000.00</strong></td>
+            <td><strong>0.00</strong></td>
+            <td>---</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="total">
+        <p>Total Amount: 7000.00</p>
+        <p>Tax: 0.00</p>
+        <p>Bonus: 0.00</p>
+      </div>
+
+      <div class="terms">
+        <h3>CEO (INTERNATIONAL MARITIME HOSPITAL)</h3>
+        <p><strong>DELIVERY TERMS:</strong></p>
+        <p><strong>DELIVERY MODE:</strong> Net of 60 days</p>
+        <p><strong>PAYMENT TERM:</strong> Net of 60 days</p>
+        <p><strong>REMARKS:</strong></p>
+        <p>
+          <strong>THE TERMS and Conditions from IMAH are as follows:</strong>
+        </p>
+        <p>
+          <strong>WARRANTY:</strong> Goods supplied under this Purchase Order
+          must be covered by warranty and clearly stated on the delivery
+          Documents.
+        </p>
+        <p>
+          <strong>ACCEPTANCE:</strong> Goods delivered are deemed to be accepted
+          only after the IMAH has gone through its internal Goods acceptance
+          processes.
+        </p>
+        <p>
+          <strong>CANCELLATION:</strong> IMAH reserves the right to cancel the
+          Purchase Order at any time prior to delivery and shall not be subject
+          to any charges or fees as a result of the cancellation.
+        </p>
+        <p>
+          <strong>DELIVERY:</strong> The specific quantity ordered must be
+          delivered in full to the buyers address as stated without notice when
+          the date elapse.
+        </p>
+        <p>
+          <strong>TERMINATION:</strong> The seller must comply with stated
+          delivery date. IMAH reserves the right to cancel the order without
+          notice when the date elapse.
+        </p>
+        <p>
+          <strong>TAXES:</strong> Invoices will be subject to existing
+          Government of Ghana withholding taxes unless seller provides proof of
+          exemption.
+        </p>
+      </div>
+
+      <div class="handwritten">2/4/25</div>
+    </div>
+  </body>
+</html>

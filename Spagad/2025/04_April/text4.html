@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Texting 4.....</title>
+    <style>
+      body {
+        margin: 0.625rem 1rem;
+        font-family: Arial, Helvetica, sans-serif;
+        max-width: 220mm;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px; /* Set spacing between image and header text to 10px */
+        margin: 0.625rem 0;
+      }
+
+      .header-text {
+        flex-grow: 1;
+        text-align: center;
+      }
+
+      .header-text h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      .header-text h3 {
+        font-size: 1rem;
+        margin: 0.25rem 0;
+      }
+
+      .contact-details {
+        font-size: 0.875rem;
+        line-height: 0.3125rem;
+        width: 100%;
+        max-width: 25rem;
+        margin: 0.125rem 0 0 auto;
+      }
+
+      .contact-details p {
+        display: flex;
+        align-items: center;
+      }
+
+      .contact-details p strong {
+        width: 12.5rem;
+        display: inline-block;
+      }
+
+      .contact-details p span {
+        margin-left: 0.3125rem;
+      }
+
+      .address-and-po-details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 12.8125rem;
+        margin-top: 1rem;
+      }
+
+      .address {
+        font-weight: bold;
+        line-height: 10px;
+        width: fit-content;
+      }
+
+      .po-details {
+        flex: 2;
+        line-height: 0.3125rem;
+        font-size: 0.875rem;
+      }
+
+      .po-details p {
+        display: flex;
+        align-items: center;
+      }
+
+      .po-details p label {
+        width: 12.5rem;
+        display: inline-block;
+        font-weight: bold;
+      }
+
+      .po-details p span {
+        margin-left: 0.3125rem;
+      }
+
+      .table {
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 0.3rem;
+        text-align: left;
+      }
+
+      .signatories {
+        margin-top: 5rem;
+        line-height: 1rem;
+      }
+
+      .remarks {
+        margin-top: 1rem;
+        line-height: 1.2rem;
+        font-size: 0.875rem;
+      }
+
+      .remarks p {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5625rem;
+      }
+
+      .remarks p label {
+        flex: 0 0 100px;
+        text-align: left;
+        font-weight: bold;
+      }
+
+      .remarks p span {
+        flex: 1;
+        text-align: left;
+      }
+
+      .tdr {
+        text-align: right;
+      }
+
+      @media screen and (max-width: 768px) {
+        body {
+          margin: 0.5rem;
+        }
+
+        .header {
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .header-text {
+          margin-top: 0.5rem;
+        }
+
+        .contact-details {
+          margin: 0.5rem 0;
+          max-width: 100%;
+        }
+
+        .address-and-po-details {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .address,
+        .po-details {
+          flex: none;
+          width: 100%;
+        }
+
+        .remarks p {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .remarks p label,
+        .remarks p span {
+          flex: none;
+          width: 100%;
+          text-align: left;
+        }
+      }
+
+      @media print {
+        body {
+          margin-top: 5px;
+          font-size: 12pt;
+          width: 210mm;
+          height: 297mm;
+        }
+
+        .header {
+          width: 100%;
+          margin: 1.6px 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          position: relative;
+        }
+
+        .image {
+          position: absolute;
+          left: 60px;
+        }
+        .header-text {
+          flex-grow: 1;
+          text-align: center;
+        }
+
+        .contact-details {
+          font-size: 10pt;
+          line-height: 5px;
+          width: auto;
+          max-width: 25rem;
+          margin: 0 0 0 auto;
+        }
+
+        .contact-details p strong {
+          width: 12.5rem;
+          display: inline-block;
+        }
+
+        .contact-details p span {
+          margin-left: 0.3125rem;
+        }
+
+        .address-and-po-details {
+          display: flex;
+          flex-direction: row;
+          gap: 93px;
+          margin-top: 5px;
+          width: 100%;
+        }
+
+        .address {
+          flex: 1;
+          flex-basis: 100px;
+          flex-wrap: wrap;
+          font-weight: bold;
+          line-height: 10px;
+        }
+
+        .po-details {
+          flex: 2;
+          line-height: 0.3125rem;
+          font-size: 0.875rem;
+        }
+
+        .po-details p label {
+          width: 12.5rem;
+        }
+
+        .table {
+          width: 100%;
+          margin-top: 1rem;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        th,
+        td {
+          border: 1px solid black;
+          padding: 0.3rem;
+          text-align: left;
+        }
+
+        .signatories {
+          margin-top: 3rem;
+          line-height: 1rem;
+        }
+
+        .remarks {
+          margin-top: 1rem;
+          line-height: 1.2rem;
+          font-size: 10pt;
+        }
+
+        .remarks p {
+          display: flex;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .remarks p label {
+          flex: 0 0 100px;
+          text-align: left;
+        }
+
+        .remarks p span {
+          flex: 1;
+          text-align: left;
+        }
+
+        * {
+          overflow: visible !important;
+        }
+
+        .tdr {
+          text-align: right;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="image">
+        <img src="./images/imah.jpeg" width="90" height="90" alt="Imah Logo" />
+      </div>
+      <div class="header-text">
+        <h1>INTERNATIONAL MARITIME HOSPITAL</h1>
+        <h3>Purchase Order No: IMAH-004915-1</h3>
+      </div>
+    </div>
+
+    <div class="contact-details">
+      <p><strong>Telephone</strong> <span>:</span></p>
+      <p><strong>Fax</strong> <span>:</span></p>
+      <p><strong>Tax registration number</strong> <span>:</span></p>
+    </div>
+
+    <div class="address-and-po-details">
+      <div class="address">
+        <p>To: Vine Medics Ltd/30000661</p>
+        <p style="padding-left: 28px">Achimota ABC Junction</p>
+        <p style="padding-left: 28px">Accra, Box</p>
+        <p style="padding-left: 28px">GHA</p>
+      </div>
+      <div class="po-details">
+        <p><label>Page</label> <span>: 1 of 1</span></p>
+        <p><label>Creation date</label> <span>: 2/19/2025</span></p>
+        <p>
+          <label>Print date/time</label>
+          <span>: 2/19/2025 1:18:21 PM</span>
+        </p>
+        <p>
+          <label>Prepayment obligation</label>
+          <span>: No</span>
+        </p>
+        <p><label>Currency</label> <span>: GHS</span></p>
+        <p><label>Delivery date</label> <span>: 2/21/2025</span></p>
+        <p><label>PR Number</label> <span>: </span></p>
+        <p><label>RFQ Number</label> <span>: </span></p>
+        <p><label>Requisitioner</label> <span>: </span></p>
+        <p><label>Created by</label> <span>: Theophilus Adom Bonsu</span></p>
+      </div>
+    </div>
+
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Unit Price</th>
+            <th class="tdr">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>25000033</td>
+            <td>Blood Lancet:</td>
+            <td class="tdr">50.00</td>
+            <td>Pck</td>
+            <td class="tdr">14.0000</td>
+            <td class="tdr">700.00</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3" class="tdr"><strong>SubTotal</strong></td>
+            <td class="tdr"><strong> 700.00</strong></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3" class="tdr"><strong>Discount</strong></td>
+            <td class="tdr"><strong>0.00</strong></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3" class="tdr"><strong>Msc. Charges</strong></td>
+            <td class="tdr"><strong> 0.00</strong></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3" class="tdr"><strong>Total VAT</strong></td>
+            <td class="tdr"><strong>0.00</strong></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3" class="tdr"><strong>Total Amount</strong></td>
+            <td class="tdr"><strong>700.00</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="signatories">
+      <p>
+        .............................................................................
+      </p>
+      <p>CEO (International Maritime Hospital)</p>
+      <p><strong>Delivery Terms:</strong> <span></span></p>
+      <p><strong>Delivery Mode: </strong><span></span></p>
+      <p><strong>Payment Terms: </strong><span>Net of 60 days</span></p>
+    </div>
+
+    <div class="remarks">
+      <p><u>Remarks</u></p>
+      <p><strong>The Terms and Conditions from IMaH are as follows:</strong></p>
+      <p>
+        <label><u>WARRANTY:</u></label>
+        <span
+          >Goods supplied under this Purchase Order must be covered by warranty
+          and clearly stated on the delivery Documents</span
+        >
+      </p>
+      <p>
+        <label><u>ACCEPTANCE:</u></label>
+        <span
+          >Goods delivered are deemed to be accepted only after the IMaH has
+          gone through its internal Goods acceptance processes.</span
+        >
+      </p>
+      <p>
+        <label><u>CANCELLATION:</u></label>
+        <span
+          >IMAH reserves the right to cancel the Purchase Order at any time
+          prior to delivery and shall not be subject to any charges or fees as a
+          result of the cancellation</span
+        >
+      </p>
+      <p>
+        <label><u>DELIVERY:</u></label>
+        <span
+          >The specific quantity ordered must be delivered in full to the buyers
+          address as stated</span
+        >
+      </p>
+      <p>
+        <label><u>TERMINATION:</u></label>
+        <span
+          >The seller must comply with stated delivery date. IMaH reserves the
+          right to cancel the order without notice when the date elapse</span
+        >
+      </p>
+      <p>
+        <label><u>TAXES:</u></label>
+        <span
+          >Invoices will be subjected to existing Government of Ghana
+          withholding taxes unless seller provides proof of exemption</span
+        >
+      </p>
+    </div>
+  </body>
+</html>

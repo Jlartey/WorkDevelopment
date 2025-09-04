@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adverse Drug Reaction 2</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        width: 55vw;
+        margin: 0 auto;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .form-header {
+        text-align: right;
+        font-size: 12px;
+      }
+      .section-title {
+        font-weight: bold;
+        background-color: #f0f0f0;
+        padding: 5px;
+        margin-bottom: 10px;
+      }
+      .section1,
+      .dates {
+        display: flex;
+        justify-content: space-between;
+      }
+      textarea {
+        min-height: 100px;
+        min-width: 800px;
+        /* border: 3px solid red; */
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+      }
+      th,
+      td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <div class="container">
+    <div class="form-header">
+      FDA/ADR <br />
+      FOOD AND DRUGS AUTHORITY<br />
+      In Strict Confidence
+    </div>
+    <h1>
+      ADVERSE REACTION REPORTING FORM <br />
+      (Please complete all sections as much as possible)
+    </h1>
+
+    <div class="section-title">(A) PATIENT DETAILS</div>
+    <div class="section1">
+      <div class="group1">
+        <p>
+          <label for="">Age/Date Of Birth</label> <span>:</span>
+          <span class="answer">13/Jul/1991</span>
+        </p>
+        <p>
+          <label for="">Gender</label> <span>:</span>
+          <span class="answer">Male</span>
+        </p>
+        <p>
+          <label for="">If Female, Pregnant</label> <span>:</span>
+          <span class="answer">No</span>
+        </p>
+        <p>
+          <label for="">Name/Folder Number</label> <span>:</span>
+          <span class="answer">Kwame Mansah</span>
+        </p>
+        <p>
+          <label for="">Hospital/Treatment Centre</label> <span>:</span>
+          <span class="answer">Focos</span>
+        </p>
+      </div>
+
+      <div class="group2">
+        <p>
+          <label for="">Wt(kg)</label> <span>:</span>
+          <span class="answer">67 kg</span>
+        </p>
+        <p>
+          <label for="">Age of Pregnancy</label> <span>:</span>
+          <span class="answer">3 months</span>
+        </p>
+        <p>
+          <label for="">Telephone No</label> <span>:</span>
+          <span class="answer">0208973472</span>
+        </p>
+      </div>
+    </div>
+    <div class="section-title">
+      (B) DETAILS OF ADVERSE REACTION AND ANY TREATMENT GIVEN<br />
+      (Attach a separate sheet and all relevant laboratory tests/data where
+      necessary)
+    </div>
+  </div>
+  <textarea name="textarea" rows="5" cols="15"></textarea>
+  <div class="dates" style="margin-bottom: 15px">
+    <label>Date reaction started(dd/mm/yyy):</label> <span>23/05/2003</span>
+    <label>Date reaction stopped(dd/mm/yyy):</label> <span>30/05/2003</span>
+  </div>
+
+  <div class="section-title">(C) OUTCOME OF ADVERSE REACTION</div>
+  <p><label>Outcome:</label> <span>Recovered</span></p>
+  <p>
+    Did the adverse result in any untoward medical condition?<span>Yes</span>
+  </p>
+  <p>If yes, Specify <span>This is the specifics</span></p>
+  <h4>SERIOUSNESS</h4>
+  <p><span>Disability</span></p>
+  <p>Specifics</p>
+
+  <div class="section-title">
+    (D) SUSPECTED PRODUCT(S) (Attach sample or product label if available)
+  </div>
+  <table>
+    <tr>
+      <th>Brand name</th>
+      <th>Generic name</th>
+      <th>Batch name</th>
+      <th>Expiry date</th>
+      <th>Manufacturer</th>
+    </tr>
+    <tr>
+      <td>Yipeekaayee</td>
+      <td>Yipeekaayee</td>
+      <td>Yipeekaayee</td>
+      <td>Yipeekaayee</td>
+      <td>Yipeekaayee</td>
+    </tr>
+    <tr>
+      <th colspan="2">Reasons for use (Indication):</th>
+      <th>Dosage regimen:</th>
+      <th>No. of days given</th>
+      <th>Route of administration:</th>
+    </tr>
+    <tr>
+      <td colspan="2">Yipeekaayee</td>
+      <td>Yipeekaayoo</td>
+      <td>Yipeekaayee</td>
+      <td>Yipeekaayee</td>
+    </tr>
+    <tr>
+      <td colspan="5">
+        Date started (dd/mm/yyyy): <span>25/06/2018</span> &nbsp; &nbsp; &nbsp;
+        &nbsp; Date stopped (dd/mm/yyyy): <span>25/06/2018</span>
+        <br />
+        <em
+          >Did the adverse reaction subside when the drug was
+          stopped(de-challenge)? <span>Yes</span></em
+        >
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">Was the product prescribed? <span>Yes</span></td>
+      <td colspan="2">Source of drug: <span>Doctor</span></td>
+    </tr>
+    <tr>
+      <td colspan="5">
+        Was the product re-used after detection of adverse reaction
+        (re-challenge)? <span class="answer">Yes</span>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5">
+        Did adverse reaction re-appear upon re-use?
+        <span class="answer">Yes</span>
+      </td>
+    </tr>
+  </table>
+
+  <div class="section-title">
+    (E) CONCOMITANT DRUGS: INCLUDING COMPLEMENTARY MEDICINES, ADMINISTERED
+    <br />
+    AT THE SAME TIME AND/OR 3 MONTHS BEFORE (Attach a separate sheet when
+    necessary)
+  </div>
+
+  <table>
+    <tr>
+      <th>Name of Drug</th>
+      <th>Daily dose</th>
+      <th>Date started</th>
+      <th>Date stopped/Ongoing</th>
+      <th>Reason(s) for use</th>
+    </tr>
+    <tr>
+      <td>Para</td>
+      <td>Para</td>
+      <td>Para</td>
+      <td>Para</td>
+      <td>Para</td>
+    </tr>
+  </table>
+
+  <div class="section-title">(F) REPORTER DETAILS</div>
+
+  <div class="section1">
+    <div class="group1">
+      <p>
+        <label for="">Name of Reporter</label> <span>:</span>
+        <span class="answer">Kwame Afrifa</span>
+      </p>
+      <p>
+        <label for="">Institution's Address</label> <span>:</span>
+        <span class="answer">Nungua Kantamanto</span>
+      </p>
+      <p>
+        <label for="">Signature</label> <span>:</span>
+        <span class="answer">No</span>
+      </p>
+      <p>
+        <label for="">Date</label> <span>:</span>
+        <span class="answer">19 Aug 2025</span>
+      </p>
+    </div>
+
+    <div class="group2">
+      <p>
+        <label for="">Profession</label> <span>:</span>
+        <span class="answer">Caterer</span>
+      </p>
+      <p>
+        <label for="">Tel.</label> <span>:</span>
+        <span class="answer">0502697415</span>
+      </p>
+      <p>
+        <label for="">Email</label> <span>:</span>
+        <span class="answer">josephlarteyadu@gmail.com</span>
+      </p>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,138 @@
+'<<--BEGIN_CODE_SEGMENT_PRINTHEADER-->>
+
+Dim doctorName, periodStart, periodEnd
+doctorName = Request.QueryString("staffName")
+periodStart = Request.QueryString("periodStart")
+periodEnd = Request.QueryString("periodEnd")
+visitTotal = Request.QueryString("visitTotal")
+
+tableStyles
+DoctorConsultationDetails periodStart, periodEnd, visitTotal
+
+Sub DoctorConsultationDetails(periodStart, periodEnd, visitTotal)
+    Dim count, sql, rst, visitationID
+    count = 1
+
+    Set rst = CreateObject("ADODB.Recordset")
+
+  sql = "SELECT DISTINCT v.VisitationID, p.PatientName, v.VisitCost, CONVERT(VARCHAR(20), d.ConsultReviewDate, 106) VisitDate " & _
+      "FROM Diagnosis d " & _
+      "JOIN SystemUser su ON su.SystemUserID = d.SystemUserID " & _
+      "JOIN Staff s ON s.StaffID = su.StaffID " & _
+      "JOIN Visitation v ON d.VisitationId = v.VisitationID " & _
+      "JOIN Patient p ON v.PatientID = p.PatientID " & _
+      "WHERE s.StaffName = '" & doctorName & "' AND d.ConsultReviewDate BETWEEN '" & periodStart & "' AND '" & periodEnd & "' " & _
+      "ORDER BY v.VisitationID DESC"
+
+    With rst
+        .open sql, conn, 3, 4
+        
+        If .RecordCount > 0 Then
+            response.write "<h1 style='text-align: center'>CONSULTATIONS DONE BY " & doctorName & "</h1>"
+            
+            response.write "<table width='100%' cellspacing='0' cellpadding='2' border='1' class='mytable'>"
+            response.write "<tr class='mytr'>"
+            response.write "<th class='myth'>No.</th>"
+            response.write "<th class='myth'>VisitationID</th>"
+            response.write "<th class='myth'>Date</th>"
+            response.write "<th class='myth'>Patient</th>"
+            response.write "<th class='myth'>Visit Cost</th>"
+            response.write "</tr class='mytr'>"
+
+            Do While Not .EOF
+                visitationID = .fields("VisitationID")
+                response.write "<tr class='mytr' onclick='redirectToVisitation(""" & visitationID & """)' style='cursor: pointer;'>"
+                response.write "<td class='mytd'>" & count & "</td>"
+                response.write "<td class='mytd'>" & visitationID & "</td>"
+                response.write "<td class='mytd'>" & .fields("VisitDate") & "</td>"
+                response.write "<td class='mytd'>" & .fields("PatientName") & "</td>"
+                response.write "<td class='mytd'>" & FormatNumber(.fields("VisitCost"), 2) & "</td>"
+                response.write "</tr class='mytr'>"
+
+                .MoveNext
+                count = count + 1
+            Loop
+                
+                response.write "<tr class='mytr'>"
+                response.write "<td class='mytd' colspan='4' style='font-weight: bold; text-align: right;'>Total:</td>"
+                response.write "<td class='mytd'>" & FormatNumber(CDbl(visitTotal), 2) & "</td>"
+                response.write "</tr>"
+            
+            response.write "</table>"
+            response.write "<script>"
+            response.write "    function redirectToVisitation(visitationID) {"
+            response.write "        const baseUrl = 'http://192.168.1.80/hms/wpgPrtPrintLayoutAll.asp';"
+            response.write "        const params = new URLSearchParams({"
+            response.write "            PrintLayoutName: 'VisitationRCP',"
+            response.write "            PositionForTableName: 'Visitation',"
+            response.write "            VisitationID: visitationID,"
+            response.write "            WorkFlowNav: 'POP'"
+            response.write "        });"
+            response.write "        const newUrl = baseUrl + '?' + params.toString();"
+            response.write "        window.open(newUrl, '_blank');"
+            response.write "    }"
+            response.write "</script>"
+        Else
+            response.write "<h1>No records found</h1>"
+        End If
+        
+        .Close
+    End With
+    
+    Set rst = Nothing
+End Sub
+
+
+Sub tableStyles()
+    response.write "<style>"
+        response.write ".mytable {"
+        response.write "    width: 65vw;"
+        response.write "    border-collapse: collapse;"
+        response.write "    margin: 20px 0;"
+        response.write "    font-size: 16px;"
+        response.write "    font-family: Arial, sans-serif;"
+        response.write "}"
+        response.write ".mytable, .myth, .mytd {"
+        response.write "    border: 1px solid #dddddd;"
+        response.write "}"
+        response.write ".myth, .mytd {"
+        response.write "    padding: 12px;"
+        response.write "    text-align: left;"
+        response.write "}"
+        response.write ".myth {"
+        response.write "    background-color: #f2f2f2;"
+        response.write "    color: #333;"
+        response.write "    font-weight: bold;"
+        response.write "}"
+        response.write ".mytr:nth-child(even) {"
+        response.write "    background-color: #f9f9f9;"
+        response.write "}"
+        response.write ".mytr:hover {"
+        response.write "    background-color: #f1f1f1;"
+        response.write "}"
+        response.write ".myth {"
+        response.write "    text-transform: uppercase;"
+        response.write "}"
+        response.write "h1 {"
+        response.write "    font-size: 18px;"
+        response.write "    color: #555;"
+        response.write "    font-family: Arial, sans-serif;"
+        response.write "    margin: 20px 0;"
+        response.write "}"
+response.write "</style>"
+
+End Sub
+
+
+
+'<<--END_CODE_SEGMENT_PRINTHEADER-->>
+'>
+'>
+'>
+'>
+'>
+'<<--BEGIN_CODE_SEGMENT_PRINTFOOTER-->>
+
+'<<--END_CODE_SEGMENT_PRINTFOOTER-->>
+
+

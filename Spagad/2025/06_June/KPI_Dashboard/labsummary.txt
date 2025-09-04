@@ -1,0 +1,99 @@
+'<<--BEGIN_CODE_SEGMENT_PRINTHEADER-->>
+Dim sql, cnt
+Dim arPeriod, periodStart, periodEnd
+' arPeriod = getDatePeriodFromDelim(Trim(Request.QueryString("PrintFilter0")))
+periodStart = Request.QueryString("printfilter")
+periodEnd = Request.QueryString("printfilter1")
+response.write "<style> table#myTable, table#myTable th, table#myTable td{border: 1px solid silver; border-collapse: collapse; padding: 5px;} table#myTable{width: 80vw;; margin: 0 auto; font-size: 13px; font-family: sans-serif; box-sizing: border-box; } table#myTable thead{ text-align: center;font-size:16px; } table#myTable thead th{padding: 4px;} table#myTable thead .h_res{ background-color: #FC046A; color:#fff } table#myTable thead .h_title{ background-color: blanchedalmond; } table#myTable thead .h_names{ font-size: 14px;} table#myTable tbody td{text-align:center;} table#myTable .last{background-color: #3C8F6D;color:#fff;font-weight:700;text-align:center;}  </style>"
+
+response.write "<div class='tabs'><a href=''>By Sponsor</a> <a href=''>By Gender/Age Group</a></div>"
+AllLabsRpt periodStart, periodEnd
+
+Sub AllLabsRpt(periodStart, periodEnd)
+Set rst0 = CreateObject("ADODB.Recordset")
+sql = "SELECT data.labtestid, sum(data.vst) AS vst, sum(distinct(data.ptid)) AS ptid, sum(data.qt) AS qt, sum(data.famt) AS famt FROM ( "
+sql = sql & " SELECT labtestid, count(visitationid) AS vst, count(distinct(patientid)) AS ptid, sum(qty) AS qt, sum(finalamt) AS famt from "
+sql = sql & " Investigation WHERE requestdate between '" & periodStart & "' AND '" & periodEnd & "' AND billgroupid='B13' GROUP BY labtestid UNION ALL "
+sql = sql & " SELECT labtestid, count(visitationid) AS vst, count(distinct(patientid)) AS ptid, sum(qty) AS qt, sum(finalamt) AS famt from "
+sql = sql & " Investigation2 WHERE requestdate between '" & periodStart & "' AND '" & periodEnd & "' AND billgroupid='B13' GROUP BY labtestid "
+sql = sql & " ) AS data GROUP BY labtestid ORDER BY famt DESC"
+'response.write sql
+cnt = 0
+With rst0
+  .open qryPro.FltQry(sql), conn, 3, 4
+  If .RecordCount > 0 Then
+    response.write "<table id='myTable'><thead><tr class='h_title'><td colspan='15'><b>LABORATORY REPORT SUMMARY FROM [" & periodStart & "] to [" & periodEnd & "]</b></td></tr> <tr class='h_names'><th>#</th><th>LABTEST NAME</th><th>ENCOUNTERS</th><th>PATIENTS[Count]</th><th>QUANTITY[SUM]</th><th>AMOUNT[SUM]</th><th>VIEW MORE</th></tr></thead><tbody>"
+  .movefirst
+  Do While Not .EOF
+    cnt = cnt + 1
+    lbid = .fields("labtestid")
+    visits = .fields("vst")
+    patids = .fields("ptid")
+    qt = .fields("qt")
+    fAmt = .fields("famt")
+    fvisits = fvisits + patids
+    fqt = fqt + qt
+    tot = tot + fAmt
+
+    hrf = "wpgPrtPrintLayoutAll.asp?PrintLayoutName=labsummarydetail&PositionForTableName=WorkingDay&frm=" & periodStart & "&to=" & periodEnd & "&lbID=" & lbid
+
+    response.write "<tr><td>" & cnt & "</td> <td style='text-align:left;'>" & GetComboName("LabTest", lbid) & "</td> <td>" & visits & "</td> <td>" & patids & "</td> <td>" & qt & "</td> <td>" & (FormatNumber(CStr(fAmt), 2, , , -1)) & "</td><td><a href='" & hrf & "' target='_blank'>View More</a></td></tr>"
+  .MoveNext
+  Loop
+  response.write "<tr><td colspan='3'><b>TOTAL </b></td><td>" & fvisits & "</td><td>" & fqt & "</td><td><b>" & (FormatNumber(CStr(tot), 2, , , -1)) & "</b></td><td></td></tr>"
+  End If
+  response.write "</tbody></table><br><br>"
+rst0.Close
+Set rst0 = Nothing
+End With
+End Sub
+
+Function getDatePeriodFromDelim(strDelimPeriod)
+        
+    Dim arPeriod, periodStart, periodEnd
+
+    Dim arOut(1)
+
+    arPeriod = Split(strDelimPeriod, "||")
+
+    If UBound(arPeriod) >= 0 Then
+        periodStart = arPeriod(0)
+    End If
+
+    If UBound(arPeriod) >= 1 Then
+        periodEnd = arPeriod(1)
+    End If
+
+    periodStart = makeDatePeriod(Trim(periodStart), periodEnd, "0:00:00")
+    periodEnd = makeDatePeriod(Trim(periodEnd), periodStart, "23:59:59")
+
+    arOut(0) = periodStart
+    arOut(1) = periodEnd
+
+    getDatePeriodFromDelim = arOut
+
+End Function
+
+Function makeDatePeriod(strDateStart, defaultDate, strTime)
+
+    If IsDate(strDateStart) Then
+        makeDatePeriod = FormatDate(strDateStart) & " " & Trim(strTime)
+    Else
+
+        If IsDate(defaultDate) Then
+            makeDatePeriod = FormatDate(defaultDate) & " " & Trim(strTime)
+        Else
+            makeDatePeriod = FormatDate(Now()) & " " & Trim(strTime)
+        End If
+    End If
+
+End Function
+'<<--END_CODE_SEGMENT_PRINTHEADER-->>
+'>
+'>
+'>
+'>
+'>
+'<<--BEGIN_CODE_SEGMENT_PRINTFOOTER-->>
+
+'<<--END_CODE_SEGMENT_PRINTFOOTER-->>

@@ -1,0 +1,1 @@
+response.write "         <img src='images/banner1.bmp'/>"

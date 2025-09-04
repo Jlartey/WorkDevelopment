@@ -1,0 +1,147 @@
+'<<--BEGIN_CODE_SEGMENT_PRINTHEADER-->>
+tableStyles
+Dim periodStart, periodEnd
+periodStart = Trim(Request.QueryString("printfilter"))
+periodEnd = Trim(Request.QueryString("printfilter1"))
+getVst
+Sub getVst()
+    Dim sql, rst, vst
+    Set rst = CreateObject("ADODB.RecordSet")
+    sql = "SELECT visitationid FROM Visitation WHERE visitdate BETWEEN '" & periodStart & "' AND '" & periodEnd & "'"
+    With rst
+        .open qryPro.FltQry(sql), conn, 3, 4
+            If .RecordCount > 0 Then
+            
+                response.write "<table width='100%' cellspacing='0' cellpadding='2' border='1' class='mytable'>"
+                response.write "<tr class='mytr'>"
+                response.write "<th class='myth'>Patient</th>"
+                response.write "<th class='myth'>Visit Date</th>"
+                response.write "<th class='myth'>Payment Receipt Date</th>"
+                response.write "<th class='myth'>Vital Signs Date</th>"
+                response.write "<th class='myth'>Begin Consult. Date</th>"
+'                response.write "<th class='myth'>LabRequestDate</th>"
+                response.write "<th class='myth'>Tot Time Btwn VstCons</th>"
+                response.write "</tr class='mytr'>"
+                
+                .movefirst
+                Do While Not .EOF
+                    vst = .fields("visitationID")
+                    dispRegisteredPatientDetails vst
+                    response.flush
+                    .MoveNext
+                Loop
+                response.write "</table>"
+            Else
+                respone.write "<h3>No Records Found</h3>"
+            End If
+        .Close
+    End With
+End Sub
+
+Sub dispRegisteredPatientDetails(vst)
+    Dim count, sql, rst
+    count = 1
+
+    Set rst = CreateObject("ADODB.Recordset")
+
+    sql = "SELECT DISTINCT "
+    sql = sql & "     v.patientID,"
+    sql = sql & "     v.visitdate AS VisitDate,"
+    sql = sql & "     pr.ReceiptDate AS PaymentReceiptDate,"
+    sql = sql & "     sl.logdate AS BeginConsultationDate,"
+    sql = sql & "     er.EMRDate AS EMRRequestDate,"
+'    sql = sql & "     lr.requestdate AS LabRequestDate,"
+    sql = sql & "     CASE "
+    sql = sql & "    WHEN DATEDIFF(Minute, v.visitdate, sl.LogDate) >= 60"
+    sql = sql & "        THEN CAST(DATEDIFF(Hour, v.visitdate, sl.logdate) AS VARCHAR) + ' hour(s)'"
+    sql = sql & "        ELSE CAST(DATEDIFF(Minute, v.visitdate, sl.logdate) AS VARCHAR) + ' minute(s)'"
+    sql = sql & "    END As TotTimeBtwnVstCons"
+    sql = sql & " FROM Visitation v"
+    sql = sql & " LEFT JOIN PatientReceipt2 pr ON pr.visitationid = v.visitationID AND pr.tableid = 'visitation'"
+    sql = sql & " LEFT JOIN EMRRequest er ON er.visitationid = v.visitationID"
+    sql = sql & " JOIN EMRResults emr ON emr.EMRRequestID = er.EMRRequestID AND emr.EMRDataID = 'EMR050'"
+    sql = sql & " LEFT JOIN LabRequest lr ON lr.visitationid = v.visitationID"
+    sql = sql & " LEFT JOIN SystemLog sl ON sl.keyvalue = v.visitationID AND sl.keyprefix = 'BEGIN_CONSULTATION'"
+    sql = sql & " WHERE v.visitationID = '" & vst & "'"
+
+    'response.write sql
+
+    With rst
+        .open qryPro.FltQry(sql), conn, 3, 4
+        
+        If .RecordCount > 0 Then
+
+            Do While Not .EOF
+                response.write "<tr class='mytr'>"
+                response.write "<td class='mytd'>" & GetComboName("Patient", .fields("PatientID")) & "</td>"
+                response.write "<td class='mytd'>" & .fields("VisitDate") & "</td>"
+                response.write "<td class='mytd'>" & .fields("PaymentReceiptDate") & "</td>"
+                response.write "<td class='mytd'>" & .fields("EMRRequestDate") & "</td>"
+                response.write "<td class='mytd'>" & .fields("BeginConsultationDate") & "</td>"
+'                response.write "<td class='mytd'>" & .fields("LabRequestDate") & "</td>"
+                response.write "<td class='mytd'>" & .fields("TotTimeBtwnVstCons") & "</td>"
+                response.write "</tr class='mytr'>"
+
+                .MoveNext
+            Loop
+            
+'        Else
+'            response.write "<h1>No records found</h1>"
+        End If
+        
+        .Close
+    End With
+    
+    Set rst = Nothing
+End Sub
+
+
+Sub tableStyles()
+    response.write "<style>"
+        response.write ".mytable {"
+        response.write "    width: 65vw;"
+        response.write "    border-collapse: collapse;"
+        response.write "    margin: 20px 0;"
+        response.write "    font-size: 16px;"
+        response.write "    font-family: Arial, sans-serif;"
+        response.write "}"
+        response.write ".mytable, .myth, .mytd {"
+        response.write "    border: 1px solid #dddddd;"
+        response.write "}"
+        response.write ".myth, .mytd {"
+        response.write "    padding: 12px;"
+        response.write "    text-align: left;"
+        response.write "}"
+        response.write ".myth {"
+        response.write "    background-color: #f2f2f2;"
+        response.write "    color: #333;"
+        response.write "    font-weight: bold;"
+        response.write "}"
+        response.write ".mytr:nth-child(even) {"
+        response.write "    background-color: #f9f9f9;"
+        response.write "}"
+        response.write ".mytr:hover {"
+        response.write "    background-color: #f1f1f1;"
+        response.write "}"
+        response.write ".myth {"
+        response.write "    text-transform: uppercase;"
+        response.write "}"
+        response.write "h1 {"
+        response.write "    font-size: 18px;"
+        response.write "    color: #555;"
+        response.write "    font-family: Arial, sans-serif;"
+        response.write "    margin: 20px 0;"
+        response.write "}"
+response.write "</style>"
+
+End Sub
+
+'<<--END_CODE_SEGMENT_PRINTHEADER-->>
+'>
+'>
+'>
+'>
+'>
+'<<--BEGIN_CODE_SEGMENT_PRINTFOOTER-->>
+
+'<<--END_CODE_SEGMENT_PRINTFOOTER-->>

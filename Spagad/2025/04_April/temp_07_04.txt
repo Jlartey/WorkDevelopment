@@ -1,0 +1,42 @@
+SELECT PatientID, COUNT(EMRRequestID) Records
+FROM EMRRequestItems
+WHERE EMRDataID = 'NUR007'
+GROUP BY PatientID
+
+
+SELECT EMRRequestID, EMRRequestItems.PatientID, Patient.PatientName
+FROM EMRRequestItems
+JOIN Patient 
+	ON EMRRequestItems.PatientID = Patient.PatientID
+WHERE EMRDataID = 'QC002'
+
+
+SELECT PatientID, COUNT(EMRRequestID) Records
+FROM EMRRequestItems
+WHERE EMRDataID = 'NUR007'
+GROUP BY PatientID
+
+VhslPrescriptionDispenseAnalysisByDate
+
+
+response.write "     .header-style{"
+response.write "         display: flex;"
+response.write "         flex-direction: row;"
+response.write "         justify-content: flex-start;"  ' Aligns items to the left
+response.write "         gap: 20px;"  ' Adds a fixed space between paragraphs
+response.write "         font-size: 12px;"
+response.write "         margin: 5px 0;"
+response.write "         width: 100%;"
+response.write "     }"
+
+D119050027
+
+SELECT Staff.StaffName
+FROM Staff
+JOIN SystemUser 
+  ON SystemUser.StaffID = Staff.StaffID
+JOIN Receipt 
+  ON Receipt.SystemUserID = SystemUser.SystemUserID
+JOIN DrugSale 
+  ON DrugSale.MainInfo2 = Receipt.ReceiptID
+WHERE DrugSale.DrugSaleID = 'D119050027';

@@ -1,0 +1,3 @@
+wpgPrtPrintLayoutAll.asp?PositionForTableName=WorkingDay&WorkingDayID=DAY20160401&PrintLayoutName=EMRSelector&EMRDataID=RHD200&EMRCompTabID=RHD200
+
+MM-M0202-N007-100-111

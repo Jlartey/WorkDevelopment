@@ -1,0 +1,98 @@
+<style>
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .header h2 {
+    margin: 2px 0px;
+    font-size: larger;
+    color: black;
+  }
+  .first-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    padding-bottom: 10px;
+  }
+  .first-head p {
+    margin: 2px 0px;
+    border: 1px solid red;
+  }
+  .first-head img {
+    height: 8vh;
+    width: auto;
+  }
+  .main {
+    position: relative;
+    font-family: sans-serif;
+  }
+  .main::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url(images/banner1.bmp);
+    opacity: 0.06;
+    z-index: -1;
+    background-position: center;
+    background-size: 80%;
+    background-repeat: no-repeat;
+  }
+  .main p {
+    text-align: end;
+    font-size: small;
+  }
+  .main span {
+    font-weight: bold;
+    font-size: medium;
+    font-family: monospace;
+  }
+  h4 {
+    font-size: medium;
+    width: 100%;
+    padding: 6px 0px 6px 0px;
+    background-color: gainsboro;
+    text-align: center;
+  }
+  .table {
+    font-family: monospace;
+    width: 100%;
+    font-size: large;
+  }
+  .table span {
+    font-size: large;
+    font-weight: normal;
+  }
+  .amount {
+    font-size: x-large;
+    font-weight: bold;
+  }
+  .signature {
+    font-size: small;
+    padding-top: 5vh;
+  }
+  .main div {
+    display: flex;
+    padding-left: 20px;
+  }
+  .myfont {
+    font-size: 12px;
+  }
+  .header-style {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 12px;
+    border: 1px solid red;
+  }
+  .location {
+    width: 250px;
+  }
+</style>

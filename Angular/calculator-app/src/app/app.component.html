@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="card shadow-sm p-4" style="max-width: 400px">
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control form-control-lg text-end"
+        [value]="display"
+        readonly
+      />
+    </div>
+    <div class="row row-cols-4 g-2">
+      <button
+        *ngFor="let button of buttons"
+        (click)="onButtonClick(button)"
+        class="btn"
+        [class]="getButtonClass(button)"
+      >
+        {{ button }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  .header{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  .header h2{
+      margin: 2px 0px;
+      font-size: larger;
+      color: black;
+  }
+  .first-head{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: small;
+      padding-bottom: 10px;
+  }
+  .first-head p{
+      margin: 2px 0px;
+      border: 1px solid red;
+  }
+  .first-head img{
+      height: 8vh;
+      width: auto;
+  }
+  .main{
+      position: relative;
+      font-family: sans-serif;
+  }
+  .main::after{
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: url(images/banner1.bmp);
+      opacity: 0.06; 
+      z-index: -1;
+      background-position: center;
+      background-size: 80%;
+      background-repeat: no-repeat;
+  }
+  .main p{
+      text-align: end;
+      font-size: small;
+  }
+  .main span{
+      font-weight: bold;
+      font-size: medium;
+      font-family: monospace;
+  }
+  h4{
+      font-size: medium;
+      width: 100%;
+      padding: 6px 0px 6px 0px;
+      background-color: gainsboro;
+      text-align: center;
+  }
+.table{
+      font-family: monospace;
+      width: 100%;
+      font-size: large;
+  }
+  .table span{
+      font-size: large;
+      font-weight: normal;
+  }
+  .amount{
+      font-size: x-large;
+      font-weight: bold;
+  }
+  .signature{
+      font-size: small;
+      padding-top: 5vh;
+  }
+  .main div{
+      display: flex;
+    padding-left: 20px;
+  }
+  .myfont{
+      font-size: 12px;
+  }
+  .header-style{
+      width: 100%;
+      margin: 0 auto; 
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 12px;
+      border: 1px solid red;
+  }
+  .location {
+    width: 250px;
+  }
+</style>
+
+<div style='width: 80mm; margin: auto' >
+<main class='main' style='width: 75mm; margin: 0 auto'>
+<div class='header'>
+    <div style='padding: 0.5rem 0.5rem;' class='first-head'>
+        <img src='images/banner1.bmp'/>
+    </div>
+    <div class='first-head'>
+        <div style='flex-direction: column; padding: 8px 8px;'>
+            <h2 style='text-align: center;'>International Maritime Hospital(IMaH)</h2>
+            <p style='text-align: center;'>Tel: +233(0)303-220030</p>
+            <p style='text-align: center;' class='location'>Location: Community One, Tema, Accra</p>  
+
+        </div>
+    </div>
+</div>
+    
+    
+<div class='header-style'>
+<label>Item Sale ID: D1234535533 </label>
+<label>Cashier: Lardy Tatania Palazar</label>
+</div>
+    
+<div style='padding: 0.5rem 0.5rem;'>
+    <tr>
+        <td colspan='2'>
+            <table style='width: 100%; margin: 0 auto;'>
+                <tr>
+                    <td class='myfont'><b>ITEM NAME</b></td>
+                    <td class='myfont'><b>QTY</b></td>
+                    <td class='myfont'><b>PRICE</b></td>
+                    <td class='myfont'><b>TOTAL</b></td>
+                </tr>
+                <tr>
+                  <td class='myfont'><b>Banana</b></td>
+                  <td class='myfont'><b>6</b></td>
+                  <td class='myfont'><b>5.00</b></td>
+                  <td class='myfont'><b>30.00</b></td>
+              </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class='myfont' colspan='2'><b>AMOUNT: </b></td>
+        <td class='myfont'><span><b>GH&#8373:  30.00 </b></span></td>
+    </tr>
+            </table>
+        </td>
+    </tr>
+
+</table>
+</main>
+
+</div>
+
+
+
+</html>

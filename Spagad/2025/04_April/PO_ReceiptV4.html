@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase Order Receipt 2</title>
+  </head>
+  <style>
+    body {
+      margin: 0.625rem 5rem;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    
+    .header {
+      width: 43.75rem;
+      margin: 0.625rem auto;
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+    
+    }
+    
+    .contact-details {
+      margin-left: 46.875rem;
+      font-size: 0.875rem; 
+      line-height: 0.3125rem;
+      width: 25rem;
+    }
+
+    .contact-details p {
+      display: flex;
+      align-items: center; 
+    }
+
+    .contact-details p strong {
+      width: 12.5rem; 
+      display: inline-block; 
+    }
+
+    .contact-details p span {
+      margin-left: 0.3125rem; 
+    }
+
+    .address-and-po-details {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 28.125rem;
+    }
+
+    .address{
+      font-weight: bold;
+      line-height: 0.5rem;
+      /* height: 150px; */
+    }
+    
+    .po-details {
+      line-height: 0.3125rem;
+      font-size: 0.875rem;
+    }
+
+    .po-details p{
+      display: flex;
+      align-items: center;
+    }
+
+    .po-details p label {
+      width: 12.5rem; 
+      display: inline-block; 
+      font-weight: bold;
+    }
+
+    .po-details p span {
+      margin-left: 0.3125rem;
+    }
+  </style>
+  <body>
+    <div class="header">
+      <div class="image" style="margin-top: 1.25rem;">
+        <img src="./images/imah.jpeg" width="90" height="90" alt="Imah Logo" />
+      </div>
+      <div class="header-text">
+        <h1>INTERNATIONAL MARITIME HOSPITAL</h1>
+        <h3>Purchase Order No: IMAH-004915-1</h3>
+      </div>
+    </div>
+
+    <div class="contact-details">
+      <p><strong>Telephone</strong> <span>:</span></p>
+      <p><strong>Fax</strong> <span>:</span></p>
+      <p><strong>Tax registration number</strong>  <span>:</span></p>
+    </div>
+
+    <div class="address-and-po-details">
+      <div class="address">
+        <p>To:&nbsp;&nbsp;&nbsp; Vine Medics Ltd/30000661</p>
+        <p style="margin-left: 2.375rem;">Achimota ABC Junction</p>
+        <p style="margin-left: 2.375rem;">Accra, Box</p>
+        <p style="margin-left: 2.375rem;">GHA</p>
+      </div>
+      <div class="po-details">
+        <p><label>Page</label>  <span>: &nbsp; &nbsp; 1 of 1</span> </p>
+        <p><label>Creation date</label> <span>: &nbsp; &nbsp; 2/19/2025</span></p>
+        <p><label>Print date/time</label> <span>: &nbsp; &nbsp; 2/19/2025 1:18:21 PM</span></p>
+        <p><label>Prepayment obligation</label>  <span>: &nbsp; &nbsp;No</span></p>
+        <p><label>Currency </label><span>: &nbsp; &nbsp;GHS</span></p>
+        <p><label>Delivery date</label>  <span>: &nbsp; &nbsp; 2/21/2025</span></p>
+        <p><label>PR Number</label> <span>:</span></p>
+        <p><label> RFQ Number</label><span>:</span></p>
+        <p><label>Requisitioner</label><span>:</span></p>
+        <p><label>Created by</label>  <span>: &nbsp; &nbsp; Theophilus Adom Bonsu</p>
+      </div>
+    </div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Unit Price</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>25000033</td>
+            <td>Blood Lancet:</td>
+            <td>50.00</td>
+            <td>Pck</td>
+            <td>14.0000</td>
+            <td>700.00</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3">SubTotal</td>
+            <td>700.00</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3">Discount</td>
+            <td>0.00</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3">Msc. Charges</td>
+            <td>0.00</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3">Total VAT</td>
+            <td>0.00</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3">Total Amount</td>
+            <td>700.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="signatories">
+      <p>..............................</p>
+      <p>CEO(International Maritime Hospital)</p>
+      <p>Delivery Terms: <span></span></p>
+      <p>Delivery Mode: <span></span> </p>
+      <p>Payment Terms: <span> Net of 60 days</span></p>
+    </div>
+
+    <div class="remarks">
+      <p><u>Remarks</u></p>
+      <p>The Terms and Conditions from IMaH are as follows:</p>
+      <p><u>WARRANTY:</u> <span>Goods supplied under this Purchase Order must be covered by warranty and clearly stated on <br>the delivery Documents</span></p>
+      <p><u>ACCEPTANCE:</u><span>Goods deliverd are deemed to be accepted only after the IMaH has gone through its internal <br> Goods acceptance processes.</span></p>
+      <p><u>CANCELLATION:</u> <span>IMAH reserves the right to cancel the Purchase Order at any time prior to delivery and shall not <br> be subject to any charges or fees as a result of the cancellation</span></p>
+      <p><u>DELIVERY:</u> <span>The specific quantity ordered must be delivered in full to the buyers address as stated</span></p>
+      <p>
+        <u>TERMINATION:</u><span>The seller must comply with stated delivery date. IMaH reserves the right to cancel the order <br>without notice when the date elapse</span>
+      </p>
+      <p>
+        <u>TAXES:</u> <span>Invoices will be subjected to existing Government of Ghana withholding taxes unless seller <br> provides proof of exemption</span>
+      </p>
+    </div>
+  </body>
+</html>

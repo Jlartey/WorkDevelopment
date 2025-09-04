@@ -31,5 +31,6 @@ colspan**6%%usertextarea
 malaria:
 Colspan**1%%UserCombo**T_Present
 
-
 Pass@2020
+
+UserCombo**EMRVar3B****EMRVar3B.EMRVar3AID = 'EMR214B014'

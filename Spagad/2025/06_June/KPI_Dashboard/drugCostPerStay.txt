@@ -1,0 +1,534 @@
+'<<--BEGIN_CODE_SEGMENT_PRINTHEADER-->>
+SetPageVariable "AutoHidePrintControl", "Yes"
+
+Dim rst, sql, cnt
+periodStart = Trim(Request.QueryString("printfilter"))
+periodEnd = Trim(Request.QueryString("printfilter1"))
+
+response.write "<!DOCTYPE html>"
+response.write "<html lang=""en"">"
+
+response.write "<head> "
+response.write "    <title>Patient Records</title>"
+
+
+
+
+response.write "<link href=""https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"" rel=""stylesheet"">"
+response.write "<link href=""https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"" rel=""stylesheet"">"
+response.write "<link href=""https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css"" rel=""stylesheet"">"
+response.write "<link rel=""stylesheet"" href=""https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"" integrity=""sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"" crossorigin=""anonymous"">"
+response.write "<link href=""https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css"" rel=""stylesheet"">"
+response.write "<link href=""https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/b-2.4.1/b-html5-2.4.1/b-print-2.4.1/datatables.min.css"" rel=""stylesheet"">"
+
+
+
+addCSS
+response.write "</head>"
+
+
+
+response.write "<header class=""header_part"">"
+response.write "        <h4>Drug Cost Per Stay By Department</h4>"
+response.write "        <p id=""date-time"" style=""text-align: right;color:#ffffff;""></p>"
+response.write "    </header>"
+response.write "    <div class=""container"">"
+response.write "        <div class=""row"">"
+response.write "            <div class=""col-12"">"
+
+response.write "                <div class=""date_filter"">"
+response.write "                    <label for=""fromDate"" style=""display: none;"">From: </label>"
+response.write "                    <input type=""date"" id=""fromDate"" style=""display: none;"">"
+response.write "                    <label for=""toDate"" style=""display: none;"">To: </label>"
+response.write "                    <input type=""date"" id=""toDate"" style=""display: none;"">"
+response.write "                    <button id=""filterButton"" style=""display: none;"">Apply Filter</button>"
+response.write "                    <button id=""resetButton"" style=""display: none;"">Reset Filter</button>"
+response.write "                    <button id=""previous"">Previous</button>"
+response.write "                    <button id=""next"">Next</button>"
+response.write "                </div>"
+
+response.write "                <div class=""data_table"">"
+
+cnt = 0
+Set rst = CreateObject("ADODB.RecordSet")
+sql = " SELECT SpecialistGroupName As Departments, SUM(totalcost) AS totalcost"
+sql = sql & " FROM ( "
+sql = sql & " SELECT SpecialistGroup.SpecialistGroupName, SUM(FinalAmt) AS totalcost "
+sql = sql & " From DrugSaleItems "
+sql = sql & " LEFT JOIN Visitation ON DrugSaleItems.VisitationID = Visitation.VisitationID "
+sql = sql & " LEFT JOIN SpecialistGroup ON SpecialistGroup.SpecialistGroupID = Visitation.SpecialistGroupID "
+sql = sql & " LEFT JOIN Admission ON Admission.VisitationID = Visitation.VisitationID "
+If (periodStart <> "") And (periodEnd <> "") Then
+  sql = sql & " AND DrugSaleItems.DispenseDate BETWEEN '" & periodStart & "' AND '" & periodEnd & "'"
+End If
+sql = sql & " GROUP BY SpecialistGroup.SpecialistGroupName "
+sql = sql & " Union All "
+sql = sql & " SELECT SpecialistGroup.SpecialistGroupName, SUM(DispenseAmt2) AS totalcost "
+sql = sql & " From DrugSaleItems2 "
+sql = sql & " LEFT JOIN Visitation ON DrugSaleItems2.VisitationID = Visitation.VisitationID "
+sql = sql & " LEFT JOIN SpecialistGroup ON SpecialistGroup.SpecialistGroupID = Visitation.SpecialistGroupID "
+sql = sql & " LEFT JOIN Admission ON Admission.VisitationID = Visitation.VisitationID "
+If (periodStart <> "") And (periodEnd <> "") Then
+  sql = sql & " AND DrugSaleItems2.DispenseDate BETWEEN '" & periodStart & "' AND '" & periodEnd & "'"
+End If
+sql = sql & " GROUP BY SpecialistGroup.SpecialistGroupName "
+sql = sql & " ) AS subquery "
+sql = sql & " GROUP BY SpecialistGroupName "
+With rst
+  .open qryPro.FltQry(sql), conn, 3, 4
+  If .RecordCount > 0 Then
+    response.write "                    <table id=""example"" class=""table table-striped table-bordered"" width=""100%"">"
+    response.write "                        <thead class=""table-dark"">"
+    response.write "                            <tr>"
+    response.write "                                <th>No.</th>"
+    response.write "                                <th>Wards</th>"
+    response.write "                                <th>Cost</th>"
+    response.write "                            </tr>"
+    response.write "                        </thead>"
+    response.write "                        <tbody>"
+    .movefirst
+
+    Do While Not .EOF
+    cnt = cnt + 1
+    totalAmt = totalAmt + .fields("totalcost")
+    
+    response.write "                            <tr>"
+    response.write "                                <td>" & cnt & "</td>"
+    response.write "                                <td>" & .fields("Departments") & "</td>"
+    response.write "                                <td>" & .fields("totalcost") & "</td>"
+    response.write "                            </tr>"
+    .MoveNext
+      
+    Loop
+    
+    response.write "                            <tr>"
+    response.write "                                <td></td>"
+    response.write "                                <td><b>Grand Total:</b></td>"
+    response.write "                                <td><b>" & FormatNumber(totalAmt, 2, -1, vbFalse, vbTrue) & "</b></td>"
+    response.write "                            </tr>"
+    
+  End If
+  rst.Close
+  Set rst = Nothing
+End With
+
+response.write "                        </tbody>"
+response.write "                    </table>"
+response.write "                </div>"
+response.write "            </div>"
+response.write "        </div>"
+response.write "    </div>"
+
+response.write "<script src=""https://code.jquery.com/jquery-3.6.0.min.js""></script>"
+response.write "<script src=""https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js""></script>"
+response.write "<script src=""https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js""></script>"
+
+
+
+
+response.write "<script src=""https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"" integrity=""sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"" crossorigin=""anonymous""></script>"
+response.write "<script src=""https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.js""></script>"
+response.write "<script src=""https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js""></script>"
+response.write "<script src=""https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js""></script>"
+response.write "<script src=""https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.6/b-2.4.1/b-html5-2.4.1/b-print-2.4.1/datatables.min.js""></script>"
+response.write "<script src=""https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js""></script>"
+response.write "<script src=""https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js""></script>"
+
+
+
+response.write "<script>"
+
+response.write "        var dataTable = $('#example').DataTable({"
+response.write "        lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, ""All""]],"
+response.write "        dom: 'lBfrtip',"
+
+
+response.write "            pageLength: 10,"
+response.write "            paging: true, "
+
+response.write "            pagingType: 'simple', "
+
+
+response.write "            search: {"
+response.write "                smart: true"
+response.write "                    },"
+
+response.write "            buttons: ["
+response.write "                {"
+response.write "                    extend: 'csv',"
+response.write "                    text: 'CSV',"
+response.write "                    title: 'Average Stay'"
+response.write "                },"
+
+response.write "            {"
+response.write "                text: 'EXCEL',"
+response.write "                action: function () {"
+response.write "                    exportToExcel();"
+response.write "                }"
+response.write "            },"
+response.write "                {"
+response.write "                    extend: 'print',"
+response.write "                    text: 'PDF',"
+response.write "                    title: 'Average Stay'"
+response.write "                },"
+response.write "                {"
+response.write "                    extend: 'print',"
+response.write "                    text: 'PRINT',"
+response.write "                    title: 'Average Stay'"
+response.write "                },"
+
+'response.write "{"
+'response.write "            text: 'REFRESH',"
+'response.write "            action: function () {"
+'response.write "                dataTable.ajax.reload(); "
+'response.write "            }"
+'response.write "        }"
+
+response.write "            ],"
+
+response.write "        columnDefs: ["
+response.write "        {"
+response.write "            target: 2,"
+response.write "            visible: true,"
+response.write "            searchable: true"
+response.write "        }"
+response.write "    ]"
+
+response.write "        });"
+
+response.write "   dataTable.on('length.dt', function (e, settings, len) {"
+response.write "    var pageInfo = dataTable.page.info();"
+response.write "    var currentPage = pageInfo.page + 1; "
+response.write "    var totalPages = Math.ceil(pageInfo.recordsTotal / len);"
+response.write "    $('#example_info').html('Showing ' + ((currentPage - 1) * len + 1) + ' to ' + Math.min(currentPage * len, pageInfo.recordsTotal) + ' of ' + pageInfo.recordsTotal + ' entries');"
+response.write "});"
+
+
+response.write "    $('#next').on( 'click', function () {"
+response.write "    dataTable.page( 'next' ).draw( 'page' );"
+response.write "} );"
+response.write " "
+response.write "    $('#previous').on( 'click', function () {"
+response.write "    dataTable.page( 'previous' ).draw( 'page' );"
+response.write "} );"
+
+response.write ""
+response.write "        dataTable.buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');"
+response.write "   function exportToExcel() {"
+response.write "    var table = document.getElementById('example');"
+response.write "    var wb = XLSX.utils.table_to_book(table, { sheet: 'Sheet1' });"
+response.write "    var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' });"
+response.write "    function s2ab(s) {"
+response.write "        var buf = new ArrayBuffer(s.length);"
+response.write "        var view = new Uint8Array(buf);"
+response.write "        for (var i = 0; i < s.length; i++) {"
+response.write "            view[i] = s.charCodeAt(i) & 0xFF;"
+response.write "        }"
+response.write "        return buf;"
+response.write "    }"
+response.write "    saveAs(new Blob([s2ab(wbout)], { type: 'application/octet-stream' }), 'AverageStay.xlsx');"
+response.write "}"
+response.write "        var originalRows = dataTable.rows().nodes().toArray();"
+response.write "            $('#filterButton').on('click', function() {"
+response.write "                var fromDate = new Date($('#fromDate').val());"
+response.write "                var toDate = new Date($('#toDate').val());"
+response.write "                dataTable.clear().draw();"
+response.write "                originalRows.forEach(function(row) {"
+response.write "                    var startDate = new Date($(row).find('td:eq(4)').text());"
+response.write "                    if (startDate >= fromDate && startDate <= toDate) {"
+response.write "                        dataTable.row.add($(row)).draw();"
+response.write "                    }"
+response.write "                });"
+
+response.write "            });"
+response.write "            $('#resetButton').on('click', function() {"
+response.write "                dataTable.clear().draw();"
+response.write "                dataTable.rows.add(originalRows).draw();"
+
+response.write "            });"
+response.write "</script>"
+
+
+
+
+
+response.write "</html>"
+
+
+
+Sub addCSS()
+
+response.write "<style>"
+response.write "* {"
+response.write "    margin: 0;"
+response.write "    padding: 0;"
+response.write "    outline: 0;"
+response.write "}"
+response.write ""
+response.write "html {"
+response.write "    scroll-behavior: smooth;"
+response.write "}"
+response.write "table {"
+response.write "    width:100%;"
+response.write "}"
+response.write ""
+response.write "html ::-webkit-scrollbar {"
+response.write "    width: 10px;"
+response.write "    background-color: #111d2c;"
+response.write "    cursor: pointer;"
+response.write "}"
+response.write ""
+response.write "html ::-webkit-scrollbar-thumb {"
+response.write "    background: linear-gradient(160deg, #3c76ba, #1e428b);"
+response.write "    width: 10px;"
+response.write "    border-radius: 5px;"
+response.write "}"
+response.write ""
+response.write "html ::-webkit-scrollbar-thumb:hover {"
+response.write "    background: #379dc3;"
+response.write "    cursor: pointer;"
+response.write "}"
+response.write ""
+response.write "body {"
+response.write "    background: #eee;"
+response.write "    font-family: 'Raleway', sans-serif;"
+response.write "    font-family: 'Roboto', sans-serif;"
+response.write "    font-family: 'Poppins', sans-serif;"
+response.write "    font-family: 'Rubik', sans-serif;"
+response.write "    padding: 100px 0;"
+response.write "}"
+response.write ""
+response.write "h1,"
+response.write "h2,"
+response.write "h3,"
+response.write "h4,"
+response.write "h5,"
+response.write "h6,"
+response.write "p,"
+response.write "a,"
+response.write "ol,"
+response.write "ul,"
+response.write "li,"
+response.write "img,"
+response.write "span,"
+response.write "input,"
+response.write "form,"
+response.write "label,"
+response.write ".btn,"
+response.write ".navbar,"
+response.write ".navbar-brand {"
+response.write "    margin: 0;"
+response.write "    padding: 0;"
+response.write "}"
+response.write ""
+response.write "h1::selection,"
+response.write "h2::selection,"
+response.write "h3::selection,"
+response.write "h4::selection,"
+response.write "h5::selection,"
+response.write "h6::selection,"
+response.write "p::selection,"
+response.write "a::selection,"
+response.write "ol::selection,"
+response.write "ul::selection,"
+response.write "li::selection,"
+response.write "img::selection,"
+response.write "span::selection,"
+response.write "input::selection,"
+response.write "form::selection,"
+response.write "label::selection,"
+response.write ".btn::selection,"
+response.write ".navbar::selection,"
+response.write ".navbar-brand::selection {"
+response.write "    color: #fff;"
+response.write "    background: #187fcc;"
+response.write "    text-shadow: 1px 1px 1px #333;"
+response.write "}"
+response.write ""
+response.write "ol,"
+response.write "ul,"
+response.write "li {"
+response.write "    list-style-type: none;"
+response.write "}"
+response.write ""
+response.write "a,"
+response.write "a:hover {"
+response.write "    text-decoration: none;"
+response.write "    color: #333;"
+response.write "    -webkit-transition: 0.2s;"
+response.write "    transition: 0.2s;"
+response.write "}"
+response.write ""
+response.write "h1 {"
+response.write "    font-size: 50px;"
+response.write "    color: #111;"
+response.write "    font-weight: 600;"
+response.write "}"
+response.write ""
+response.write "h2 {"
+response.write "    font-size: 40px;"
+response.write "    color: #111;"
+response.write "    font-weight: 600;"
+response.write "}"
+response.write ""
+response.write "h3 {"
+response.write "    font-size: 35px;"
+response.write "    color: #111;"
+response.write "    font-weight: 600;"
+response.write "}"
+response.write ""
+response.write "h4 {"
+response.write "    font-size: 30px;"
+response.write "    color: #111;"
+response.write "    font-weight: 600;"
+response.write "}"
+response.write ""
+response.write "h5 {"
+response.write "    font-size: 25px;"
+response.write "    color: #111;"
+response.write "    font-weight: 600;"
+response.write "}"
+response.write ""
+response.write "h6 {"
+response.write "    font-size: 18px;"
+response.write "    color: #111;"
+response.write "}"
+response.write ""
+response.write "p {"
+response.write "    font-size: 14px;"
+response.write "    color: #111;"
+response.write "}"
+response.write ""
+response.write ".ptb-50 {"
+response.write "    padding: 50px 0px;"
+response.write "}"
+response.write ""
+response.write ".mtb-15 {"
+response.write "    margin: 15px 0;"
+response.write "}"
+response.write ""
+response.write ""
+response.write "/* ==== Scoll  = Start ===== */"
+response.write ".totop {"
+response.write "    position: fixed;"
+response.write "    bottom: 0px;"
+response.write "    right: 10px;"
+response.write "    height: 45px;"
+response.write "    width: 45px;"
+response.write "    cursor: pointer;"
+response.write "    display: none;"
+response.write "    background: rgba(0, 0, 0, 0.3);"
+response.write "    color: #fff;"
+response.write "    border-radius: 5px 5px 0 0;"
+response.write "    line-height: 47px;"
+response.write "    font-size: 20px;"
+response.write "    text-align: center;"
+response.write "}"
+response.write ""
+response.write ".totop:hover {"
+response.write "    line-height: 40px;"
+response.write "    color: #fff;"
+response.write "    background: #194274;"
+response.write "    text-shadow: 0 0 5px #000;"
+response.write "}"
+response.write ""
+response.write "/* ==== Scoll  = End ===== */"
+response.write ""
+response.write ""
+response.write ""
+response.write ""
+response.write "/* ==== Header  = Start ===== */"
+response.write ".header_part {"
+response.write "    background: #0c1e2e;"
+response.write "    padding: 5px 80px;"
+response.write "    position: fixed;"
+response.write "    top: 0;"
+response.write "    width: 100%;"
+response.write "    text-align: center;"
+response.write "    z-index: 9999;"
+response.write "}"
+response.write ""
+response.write ".header_part h4 {"
+response.write "    color: #fff;"
+response.write "    padding: 10px;"
+response.write "}"
+response.write ""
+response.write ".header_part img {"
+response.write "    float: left;"
+response.write "    height: 60px;"
+response.write "    border-radius: 50%;"
+response.write "}"
+response.write ""
+response.write "/* ==== Header  = End ===== */"
+response.write ""
+response.write ""
+response.write ""
+response.write ""
+response.write ""
+response.write ""
+response.write "/* ==== Data table  = Start ===== */"
+response.write ""
+response.write ".data_table{"
+response.write "   background: #fff;"
+response.write "    padding: 15px;"
+response.write "    box-shadow: 1px 3px 5px #aaa;"
+response.write "    border-radius: 5px;"
+response.write "}"
+response.write ""
+response.write ".data_table .btn{"
+response.write "    padding: 5px 10px;"
+response.write "    margin: 10px 3px 10px 0;"
+response.write "}"
+
+
+response.write "    #previous, #next {"
+response.write "        float: center;"
+response.write "    }"
+
+response.write "        #filterButton, #resetButton, #previous, #next {"
+response.write "            border-radius: 5px; "
+response.write "            background-color: #007bff; "
+response.write "            color: #ffffff; "
+response.write "            padding: 8px 12px; "
+response.write "            margin-right: 10px; "
+response.write "            border: none;"
+response.write "            cursor: pointer;"
+response.write "        }"
+response.write "        #filterButton:hover, #resetButton:hover, #previous:hover, #next:hover {"
+response.write "            background-color: #0056b3;"
+response.write "        }"
+
+
+response.write "</style>"
+
+
+End Sub
+
+Sub addJS()
+
+response.write "<script>"
+response.write "$(document).ready(function(){"
+response.write "    var table = $('#example').DataTable({"
+response.write "        "
+response.write "        buttons:['copy', 'csv', 'excel', 'pdf', 'print']"
+response.write "        "
+response.write "    });"
+response.write "    "
+response.write "    table.buttons().container()"
+response.write "    .appendTo('#example_wrapper .col-md-6:eq(0)');"
+response.write "});"
+response.write "</script>"
+
+
+End Sub
+
+
+'<<--END_CODE_SEGMENT_PRINTHEADER-->>
+'>
+'>
+'>
+'>
+'>
+'<<--BEGIN_CODE_SEGMENT_PRINTFOOTER-->>
+
+'<<--END_CODE_SEGMENT_PRINTFOOTER-->>

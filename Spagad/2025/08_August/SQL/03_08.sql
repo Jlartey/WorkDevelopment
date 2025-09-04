@@ -1,0 +1,2 @@
+INSERT INTO "PrintLayout" ("PrintLayoutID", "PrintLayoutName", "TableID", "PrintLayoutTypeID", "PrintAfterSave", "PrintProp", "UserAccessibleID", "PrintInputFilter", "CodeStatusID", "PrintHeader", "PrintFooter", "PseudoCodeDesc", "Description", "CodeDescription", "KeyPrefix") VALUES ('ReceiptSlip3B', 'ReceiptSlip3B', 'WorkingDay', 'P001', 'YES', '640||0||0', 'USA001', NULL, 'C001', NULL, NULL, NULL, NULL, NULL, NULL);
+

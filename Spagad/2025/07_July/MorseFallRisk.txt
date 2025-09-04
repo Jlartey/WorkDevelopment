@@ -1,0 +1,111 @@
+TDProp**6**Left**Top%%Default**<script> 
+window.onload = () => {
+  const scoreConfig = {
+    mfs: {
+      totalElement: document.getElementById('EMR050^^FRAS01.4Column2'),
+      riskLevelElement: document.getElementById('EMR050^^FRAS01.4Column5'),
+      riskThresholds: { low: 25, moderate: 45 },
+      categories: {
+        falls: {
+          name: 'EMR050^^FRAS01.1Column2',
+          scores: [0, 0, 15, 25],
+          sum: 0,
+        },
+        amb_aid: {
+          name: 'EMR050^^FRAS01.1Column5',
+          scores: [0, 0, 15, 30],
+          sum: 0,
+        },
+        gait: {
+          name: 'EMR050^^FRAS01.2Column2',
+          scores: [0, 0, 10, 20],
+          sum: 0,
+        },
+        mental: { name: 'EMR050^^FRAS01.2Column5', scores: [0, 0, 15], sum: 0 },
+        review: { name: 'EMR050^^FRAS01.3Column2', scores: [0, 0, 10], sum: 0 },
+      },
+    },
+    adhd: {
+      totalElement: document.getElementById('EMR050^^FRAS02.5Column2'),
+      riskLevelElement: document.getElementById('EMR050^^FRAS02.5Column5'),
+      riskThresholds: { low: 12, moderate: 18 },
+      categories: {
+        ageRange: {
+          name: 'EMR050^^FRAS02.1Column2',
+          scores: [0, 4, 3, 2, 1],
+          sum: 0,
+        },
+        gender: { name: 'EMR050^^FRAS02.1Column5', scores: [0, 2, 1], sum: 0 },
+        diagnosis: {
+          name: 'EMR050^^FRAS02.2Column2',
+          scores: [0, 4, 2, 1],
+          sum: 0,
+        },
+        cogImp: {
+          name: 'EMR050^^FRAS02.2Column5',
+          scores: [0, 3, 2, 1],
+          sum: 0,
+        },
+        envFac: {
+          name: 'EMR050^^FRAS02.3Column2',
+          scores: [0, 4, 2, 1],
+          sum: 0,
+        },
+        respSed: {
+          name: 'EMR050^^FRAS02.3Column5',
+          scores: [0, 3, 2, 1],
+          sum: 0,
+        },
+        medUse: {
+          name: 'EMR050^^FRAS02.4Column2',
+          scores: [0, 3, 2, 1],
+          sum: 0,
+        },
+      },
+    },
+  };
+
+  function setupEventListeners(category, config, sectionKey) {
+    const elements = document.getElementsByName(config.name);
+    elements.forEach((element, index) => {
+      element.addEventListener('change', () => {
+        if (element.checked) {
+          console.log(`${category} has been clicked!`);
+          config.sum = config.scores[index];
+        }
+        updateTotalScore(sectionKey);
+      });
+    });
+  }
+
+  function getNumericValue(value) {
+    return parseInt(value) || 0;
+  }
+
+  function updateTotalScore(sectionKey) {
+    const section = scoreConfig[sectionKey];
+    const totalScore = Object.values(section.categories).reduce(
+      (sum, config) => sum + getNumericValue(config.sum),
+      0
+    );
+
+    console.log(`${sectionKey.toUpperCase()} Total Score: ${totalScore}`);
+    section.totalElement.value = totalScore;
+
+    section.riskLevelElement.value =
+      totalScore < section.riskThresholds.low
+        ? 'Low Risk'
+        : totalScore < section.riskThresholds.moderate
+        ? 'Moderate Risk'
+        : 'High Risk';
+  }
+
+  // Initialize event listeners for all categories in both sections
+  Object.entries(scoreConfig).forEach(([sectionKey, section]) => {
+    Object.entries(section.categories).forEach(([category, config]) =>
+      setupEventListeners(category, config, sectionKey)
+    );
+  });
+};
+ 
+</script>
