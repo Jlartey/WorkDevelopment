@@ -1,0 +1,1 @@
+http://172.19.0.36/hms/wpgPrtPrintLayoutAll.asp?PrintLayoutName=HIMEndoscopyReport&PositionForTableName=WorkingDay&PrintFilter=&PrintFilter0=&PrintFilter1=CON069&PrintFilter2=MH1711009&PrintFilter3=IM0001&PrintFilter4=SELF&WorkingDayID=

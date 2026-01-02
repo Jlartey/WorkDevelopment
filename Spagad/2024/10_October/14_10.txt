@@ -1,0 +1,1 @@
+colspan**1%%UserRadio**EMRVar3B****1**EMRVar3AID**EMRVar3B.EMRVar3AID = 'E008'

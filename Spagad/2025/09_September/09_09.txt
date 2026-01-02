@@ -1,0 +1,15 @@
+wpgPrtPrintLayoutAll.asp?PositionForTableName=WorkingDay&VisitationID=<PFBCTX>VisitationID<PFECTX>&WorkingDayID=DAY20160401&PrintLayoutName=ExcuseDutyReport
+
+
+Connection not valid.
+See Software developer with key 
+ [E51832-C580B42644B393B163334A66-FEFC311C39237EF5042B2D2C4D1F831688EA4CDD4E2483E3B3].
+
+SELECT Staff.StaffName, SystemUser.SystemuserID
+FROM Diagnosis 
+JOIN SystemUser
+ ON Diagnosis.SystemUserID = SystemUser.SystemUserID
+JOIN Staff
+ ON SystemUser.StaffID = Staff.StaffID
+WHERE visitationid = 'V1250909215'
+

@@ -1,0 +1,6 @@
+OLD Medical Excuse Form:
+
+wpgPrtPrintLayoutAll.asp?PositionForTableName=WorkingDay&WorkingDayID=DAY20160401&PrintLayoutName=EMRSelector&EMRDataID=IM060&EMRCompTabID=&POSITIONFORQUERYSTRING&CompTableKeyID=EMRComponentID
+
+OLD Medical Excuse PrintOut:
+wpgPrtPrintLayoutAll.asp?PositionForTableName=WorkingDay&WorkingDayID=DAY20160401&PrintLayoutName=prtMedicalExcuseDutyForm&EMRDataID=IM060&EMRCompTabID=IM060&POSITIONFORQUERYSTRING&CompTableKeyID=EMRComponentID

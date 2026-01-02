@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      width: 600px;
+      margin: 0 auto;
+    }
+    .hospital-name {
+      text-align: center;
+    }
+    .stamp {
+      width: 250px;
+      height: 70px;
+      border: 3px solid black;
+    }
+
+    .label2 {
+      width: 160px;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    textarea {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      padding: 10px;
+      width: 100%;
+      line-height: 1.5;
+      border-radius: 5px;
+      border: 1px solid #cccccc;
+      box-shadow: 1px 1px 1px #999999;
+    }
+  </style>
+  <body>
+    <div style="display: flex; margin-top: 20px">
+      <div style="margin-top: 20px">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUaDaX86m-tFoyAyXEjHd61W1QCguepJ-u8g&s"
+          alt="IMAH Logo"
+          width="100"
+          height="100"
+        />
+      </div>
+
+      <div class="hospital-name">
+        <h3 style="margin-top: 30px">INTERNATIONAL MARITIME HOSPITAL (IMaH)</h3>
+        <h3 style="font-weight: 700; margin-top: -10px">
+          MEDICAL EXCUSE DUTY FORM
+        </h3>
+      </div>
+    </div>
+
+    <div>
+      <!-- <div></div> -->
+      <label class="label2">Name </label>
+      <span style="margin-left: -5px">: Joseph Adu</span> <br />
+      <div style="display: flex">
+        <label class="label2"> Age &nbsp;</label>
+        <span class="value" style="margin-right: 187px">: 57</span>
+        <label style="font-weight: bold">Gender</label>
+        <span>&nbsp;: Male</span>
+      </div>
+
+      <div></div>
+      <div>
+        <label class="label2">Date of Admission</label
+        ><span>: 3rd September, 2024</span>
+      </div>
+      <label class="label2">Date of Discharge</label
+      ><span>: 7th September, 2025</span>
+
+      <div style="display: flex">
+        <div style="margin-right: 94px">
+          <label for class="label2">Excuse Duty From</label>
+          <span style="margin-left: -5px">: 4th September, 2025</span>
+        </div>
+        <div>
+          <label style="font-weight: bold">To</label>
+          <span>: 9th September, 2025</span>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between">
+        <div>
+          <label class="label2">Review Required</label>
+          <span style="margin-left: -5px">: Yes</span>
+        </div>
+
+        <div>
+          <label style="font-weight: bold">(Review Date)</label>
+          <span>: 10th September, 2025</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="comments-label" for="comments" style="font-weight: bold"
+          >Comments:</label
+        ><br />
+        <textarea name="comments" id="comments" rows="4" cols="33">
+Here is a few comments</textarea
+        >
+      </div>
+
+      <div style="margin-top: 10px">
+        <label class="label2">Name Of Practitioner</label>
+        <span>: Dr. Kwaku Adu </span>
+      </div>
+
+      <div
+        style="display: flex; justify-content: space-between; margin-top: 20px"
+      >
+        <div>
+          <label style="font-weight: bold">Practitioner's Signature:</label>
+          <div style="margin-top: 40px"></div>
+          <span>.......................................</span>
+        </div>
+
+        <div style="display: flex">
+          <p style="margin-right: 10px; margin-top: 25px">STAMP:</p>
+          <div class="stamp"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

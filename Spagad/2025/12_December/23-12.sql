@@ -1,0 +1,1 @@
+INSERT INTO "SystemVariables" ("SystemVariableID", "SystemVariableName", "DataTypeID", "SystemVariableValue", "Description", "KeyPrefix") VALUES ('KeyMaxNumPerformVar59PerformVar59ID', 'KeyMaxNumPerformVar59PerformVar59ID', 'DTY001', '10000', NULL, NULL);

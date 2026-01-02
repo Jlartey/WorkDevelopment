@@ -1,0 +1,1265 @@
+<html>
+  <head>
+    <script language="javascript">
+      function formatDateTime(d) {
+        var months = [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec',
+        ];
+        var day = d.getDate().toString().padStart(2, '0');
+        var mon = months[d.getMonth()];
+        var year = d.getFullYear();
+        var hours = d.getHours().toString().padStart(2, '0');
+        var mins = d.getMinutes().toString().padStart(2, '0');
+        var secs = d.getSeconds().toString().padStart(2, '0');
+        return (
+          day + ' ' + mon + ' ' + year + ' ' + hours + ':' + mins + ':' + secs
+        );
+      }
+
+      function adjustDateTime(fieldId, isEndOfDay) {
+        var field = document.getElementById(fieldId);
+        if (!field) return;
+
+        // Flag to avoid infinite loops
+        var isAdjusting = false;
+
+        var observer = new MutationObserver(function (mutations) {
+          if (isAdjusting) return;
+          mutations.forEach(function (mutation) {
+            if (
+              mutation.type === 'attributes' &&
+              mutation.attributeName === 'value'
+            ) {
+              var val = field.value;
+              if (val && val.trim() !== '') {
+                isAdjusting = true;
+                var d = new Date(val);
+                if (isNaN(d.getTime())) {
+                  // If invalid date, try parsing assuming dd mmm yyyy hh:mm:ss format
+                  var parts = val.match(
+                    /(\d{1,2})\s+(\w{3})\s+(\d{4})\s+(\d{2}):(\d{2}):(\d{2})/
+                  );
+                  if (parts) {
+                    var monthIndex = [
+                      'Jan',
+                      'Feb',
+                      'Mar',
+                      'Apr',
+                      'May',
+                      'Jun',
+                      'Jul',
+                      'Aug',
+                      'Sep',
+                      'Oct',
+                      'Nov',
+                      'Dec',
+                    ].indexOf(parts[2]);
+                    d = new Date(
+                      parseInt(parts[3]),
+                      monthIndex,
+                      parseInt(parts[1]),
+                      parseInt(parts[4]),
+                      parseInt(parts[5]),
+                      parseInt(parts[6])
+                    );
+                  }
+                }
+                if (!isNaN(d.getTime())) {
+                  if (isEndOfDay) {
+                    d.setHours(23, 59, 59, 999);
+                  } else {
+                    // Keep selected date, but apply current time
+                    var now = new Date();
+                    d.setHours(
+                      now.getHours(),
+                      now.getMinutes(),
+                      now.getSeconds(),
+                      now.getMilliseconds()
+                    );
+                  }
+                  field.value = formatDateTime(d);
+                }
+                isAdjusting = false;
+              }
+            }
+          });
+        });
+
+        observer.observe(field, { attributes: true });
+      }
+
+      // Apply adjustments after DOM loads
+      if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', function () {
+          adjustDateTime('usrDate||IM081^^IM081.1Column2', false);
+          adjustDateTime('usrDate||IM081^^IM081.1Column5', true);
+        });
+      } else if (document.attachEvent) {
+        document.attachEvent('onreadystatechange', function () {
+          if (document.readyState === 'complete') {
+            adjustDateTime('usrDate||IM081^^IM081.1Column2', false);
+            adjustDateTime('IM081^^IM081.1Column5', true);
+          }
+        });
+      }
+    </script>
+
+    <script
+      language="javascript"
+      src="wpqCommonScript0.asp"
+      id="CommonScript0"
+    ></script>
+    <script
+      language="javascript"
+      src="wpqProcessCompKeyDataCS1.asp"
+      id="CScript1"
+    ></script>
+    <script
+      language="javascript"
+      src="wpqProcessCompKeyDataCS2.asp"
+      id="CScript2"
+    ></script>
+    <script src="Scripts/EMRCache.js"></script>
+    <script
+      language="javascript"
+      src="wpqProcessCompKeyDataCS3.asp"
+      id="CScript3"
+    ></script>
+    <script
+      src="wpqProcessCompKeyDataCS4.asp"
+      id="CScript4"
+      language="javascript"
+    ></script>
+    <script id="CScript6" language="javascript"></script>
+    <script
+      id="CScript7"
+      language="javascript"
+      src="wpqPageExtraLoadCS7.asp"
+    ></script>
+    <meta name="VI60_DTCScriptingPlatform" content="Server (ASP)" />
+    <meta name="VI60_defaultClientScript" content="VBScript" />
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+    <meta name="GENERATOR" content="Microsoft FrontPage 6.0" />
+    <meta name="ProgId" content="FrontPage.Editor.Document" />
+    <title>EMR Setups [Process Component Key Data]</title>
+    <script id="EMRClient" src="scripts/EMRClient.js?version=0"></script>
+    <link rel="stylesheet" href="scripts/jodit/build/jodit.min.css" />
+    <script src="scripts/jodit/build/jodit.min.js"></script>
+    <script src="scripts/EMRComponent/IM081.3.js"></script>
+    <script src="scripts/EMRComponent/IM081.1.js"></script>
+    <script src="scripts/EMRComponent/IM081.2.js"></script>
+    <script src="scripts/EMRComponent/IM081.4.js"></script>
+  </head>
+  <body style="text-align: left" bgcolor="white" topmargin="0">
+    <form
+      method="POST"
+      action="wpgProcessCompKeyData.asp?PositionForTableName=EMRData&amp;EMRDataID=IM081"
+      id="form1"
+      name="form1"
+    >
+      <div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="5">
+          <tbody>
+            <tr>
+              <td>
+                <style>
+                  .cmpTdSty {
+                    border: 1px solid #cccccc;
+                    border-collapse: collapse;
+                  }
+                </style>
+                <table
+                  class="cmpTdSty"
+                  align="Center"
+                  id="tblSub||EMRTemplate"
+                  name="tblSub||EMRTemplate"
+                  valign="top"
+                  cellspacing="0"
+                  cellpadding="5"
+                >
+                  <tbody>
+                    <tr>
+                      <td style="display: none"></td>
+                      <td
+                        colspan="6"
+                        style="display: none"
+                        id="tdCompSecTabList"
+                      >
+                        ||IM081||IM081||IM081||IM081
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td colspan="6" bgcolor="#eaefe0">
+                        <table
+                          id="tblCompSecTab"
+                          border="0"
+                          cellspacing="0"
+                          cellpadding="0"
+                          bgcolor="white"
+                        ></table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class="cmpTdSty"
+                        align="center"
+                        bgcolor="#d0d0d0"
+                        style="
+                          font-family: Arial;
+                          font-size: 12pt;
+                          color: #000000;
+                        "
+                      >
+                        &nbsp;
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="6"
+                        align="center"
+                        bgcolor="#d0d0d0"
+                        style="
+                          font-family: Arial;
+                          font-size: 12pt;
+                          color: #000000;
+                        "
+                      >
+                        <b>Medical Excuse Duty Form</b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class="cmpTdSty"
+                        bgcolor="#efefff"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        &nbsp;
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="1"
+                        bgcolor="#efefff"
+                        align="Left"
+                        valign="Top"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#efefff"
+                          align="Left"
+                          valign="Top"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                              <td bgcolor="#efefff" align="Left" valign="Top">
+                                <b>Date of Admission:</b>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="2"
+                        bgcolor="#efefff"
+                        align="Left"
+                        valign="Top"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#efefff"
+                          align="Left"
+                          valign="Top"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                              <td bgcolor="#efefff" align="Left" valign="Top">
+                                <table
+                                  style="font-size: 11pt"
+                                  border="0"
+                                  cellspacing="0"
+                                  cellpadding="0"
+                                >
+                                  <tbody>
+                                    <tr>
+                                      <td id="valDate||IM081^^IM081.1Column2">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                      </td>
+                                      <td>
+                                        &nbsp;<input
+                                          style="font-size: 11pt"
+                                          type="button"
+                                          name="usrDate||IM081^^IM081.1Column2"
+                                          id="usrDate||IM081^^IM081.1Column2"
+                                          value="Date"
+                                        />
+                                      </td>
+                                      <td>
+                                        &nbsp;<input
+                                          type="hidden"
+                                          name="IM081^^IM081.1Column2"
+                                          id="IM081^^IM081.1Column2"
+                                          value=""
+                                        />
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="1"
+                        bgcolor="#efefff"
+                        align="Left"
+                        valign="Top"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#efefff"
+                          align="Left"
+                          valign="Top"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                              <td bgcolor="#efefff" align="Left" valign="Top">
+                                <b>Date of Discharge:</b>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="2"
+                        bgcolor="#efefff"
+                        align="Left"
+                        valign="Top"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#efefff"
+                          align="Left"
+                          valign="Top"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                              <td bgcolor="#efefff" align="Left" valign="Top">
+                                <table
+                                  style="font-size: 11pt"
+                                  border="0"
+                                  cellspacing="0"
+                                  cellpadding="0"
+                                >
+                                  <tbody>
+                                    <tr>
+                                      <td id="valDate||IM081^^IM081.1Column5">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                      </td>
+                                      <td>
+                                        &nbsp;<input
+                                          style="font-size: 11pt"
+                                          type="button"
+                                          name="usrDate||IM081^^IM081.1Column5"
+                                          id="usrDate||IM081^^IM081.1Column5"
+                                          value="Date"
+                                        />
+                                      </td>
+                                      <td>
+                                        &nbsp;<input
+                                          type="hidden"
+                                          name="IM081^^IM081.1Column5"
+                                          id="IM081^^IM081.1Column5"
+                                          value=""
+                                        />
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class="cmpTdSty"
+                        bgcolor="#ffffff"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        &nbsp;
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="1"
+                        bgcolor="#ffffff"
+                        align="Left"
+                        valign="Top"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#ffffff"
+                          align="Left"
+                          valign="Top"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                              <td bgcolor="#ffffff" align="Left" valign="Top">
+                                <b>Excuse Duty From:</b>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="2"
+                        bgcolor="#ffffff"
+                        align="Left"
+                        valign="Top"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#ffffff"
+                          align="Left"
+                          valign="Top"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                              <td bgcolor="#ffffff" align="Left" valign="Top">
+                                <table
+                                  style="font-size: 11pt"
+                                  border="0"
+                                  cellspacing="0"
+                                  cellpadding="0"
+                                >
+                                  <tbody>
+                                    <tr>
+                                      <td id="valDate||IM081^^IM081.2Column2">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                      </td>
+                                      <td>
+                                        &nbsp;<input
+                                          style="font-size: 11pt"
+                                          type="button"
+                                          name="usrDate||IM081^^IM081.2Column2"
+                                          id="usrDate||IM081^^IM081.2Column2"
+                                          value="Date"
+                                        />
+                                      </td>
+                                      <td>
+                                        &nbsp;<input
+                                          type="hidden"
+                                          name="IM081^^IM081.2Column2"
+                                          id="IM081^^IM081.2Column2"
+                                          value=""
+                                        />
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="1"
+                        bgcolor="#ffffff"
+                        align="Left"
+                        valign="Top"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#ffffff"
+                          align="Left"
+                          valign="Top"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                              <td bgcolor="#ffffff" align="Left" valign="Top">
+                                <b>To:</b>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="2"
+                        bgcolor="#ffffff"
+                        align="Left"
+                        valign="Top"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#ffffff"
+                          align="Left"
+                          valign="Top"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                              <td bgcolor="#ffffff" align="Left" valign="Top">
+                                <table
+                                  style="font-size: 11pt"
+                                  border="0"
+                                  cellspacing="0"
+                                  cellpadding="0"
+                                >
+                                  <tbody>
+                                    <tr>
+                                      <td id="valDate||IM081^^IM081.2Column5">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                      </td>
+                                      <td>
+                                        &nbsp;<input
+                                          style="font-size: 11pt"
+                                          type="button"
+                                          name="usrDate||IM081^^IM081.2Column5"
+                                          id="usrDate||IM081^^IM081.2Column5"
+                                          value="Date"
+                                        />
+                                      </td>
+                                      <td>
+                                        &nbsp;<input
+                                          type="hidden"
+                                          name="IM081^^IM081.2Column5"
+                                          id="IM081^^IM081.2Column5"
+                                          value=""
+                                        />
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class="cmpTdSty"
+                        bgcolor="#efefff"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        &nbsp;
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="1"
+                        bgcolor="#efefff"
+                        align="Left"
+                        valign="Top"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#efefff"
+                          align="Left"
+                          valign="Top"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="Top"
+                              ></td>
+                              <td bgcolor="#efefff" align="Left" valign="Top">
+                                <b>Review Required:</b>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="2"
+                        bgcolor="#efefff"
+                        align="left"
+                        valign="TOP"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#efefff"
+                          align="left"
+                          valign="TOP"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#efefff"
+                                align="left"
+                                valign="TOP"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#efefff"
+                                align="left"
+                                valign="TOP"
+                              ></td>
+                              <td bgcolor="#efefff" align="left" valign="TOP">
+                                <table
+                                  style="font-size: 11pt"
+                                  border="0"
+                                  cellspacing="0"
+                                  cellpadding="0"
+                                >
+                                  <tbody>
+                                    <tr>
+                                      <td>
+                                        &nbsp;<input
+                                          style="font-size: 11pt"
+                                          type="radio"
+                                          name="IM081^^IM081.3Column2"
+                                          id="IM081^^IM081.3Column2"
+                                          value=""
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        &nbsp;<input
+                                          style="font-size: 11pt"
+                                          type="radio"
+                                          name="IM081^^IM081.3Column2"
+                                          id="IM081^^IM081.3Column2"
+                                          value="E067"
+                                        />Yes
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        &nbsp;<input
+                                          style="font-size: 11pt"
+                                          type="radio"
+                                          name="IM081^^IM081.3Column2"
+                                          id="IM081^^IM081.3Column2"
+                                          value="E068"
+                                        />No
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="1"
+                        bgcolor="#efefff"
+                        align="Left"
+                        valign="middle"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#efefff"
+                          align="Left"
+                          valign="middle"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="middle"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="middle"
+                              ></td>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="middle"
+                              >
+                                <b>Review Date:</b>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="2"
+                        bgcolor="#efefff"
+                        align="Left"
+                        valign="middle"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#efefff"
+                          align="Left"
+                          valign="middle"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="middle"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="middle"
+                              ></td>
+                              <td
+                                bgcolor="#efefff"
+                                align="Left"
+                                valign="middle"
+                              >
+                                <table
+                                  style="font-size: 11pt"
+                                  border="0"
+                                  cellspacing="0"
+                                  cellpadding="0"
+                                >
+                                  <tbody>
+                                    <tr>
+                                      <td id="valDate||IM081^^IM081.3Column5">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                      </td>
+                                      <td>
+                                        &nbsp;<input
+                                          style="font-size: 11pt"
+                                          type="button"
+                                          name="usrDate||IM081^^IM081.3Column5"
+                                          id="usrDate||IM081^^IM081.3Column5"
+                                          value="Date"
+                                        />
+                                      </td>
+                                      <td>
+                                        &nbsp;<input
+                                          type="hidden"
+                                          name="IM081^^IM081.3Column5"
+                                          id="IM081^^IM081.3Column5"
+                                          value=""
+                                        />
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class="cmpTdSty"
+                        bgcolor="#ffffff"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        &nbsp;
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="1"
+                        bgcolor="#ffffff"
+                        align="Left"
+                        valign="middle"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#ffffff"
+                          align="Left"
+                          valign="middle"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="middle"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="middle"
+                              ></td>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="middle"
+                              >
+                                <b>Comments:</b>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                      <td
+                        class="cmpTdSty"
+                        colspan="5"
+                        bgcolor="#ffffff"
+                        align="Left"
+                        valign="middle"
+                        style="
+                          font-family: Arial;
+                          font-size: 11pt;
+                          color: #000000;
+                        "
+                      >
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                          bgcolor="#ffffff"
+                          align="Left"
+                          valign="middle"
+                          style="
+                            font-family: Arial;
+                            font-size: 11pt;
+                            color: #000000;
+                          "
+                        >
+                          <tbody>
+                            <tr>
+                              <td></td>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="middle"
+                              ></td>
+                            </tr>
+                            <tr>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="middle"
+                              ></td>
+                              <td
+                                bgcolor="#ffffff"
+                                align="Left"
+                                valign="middle"
+                              >
+                                <textarea
+                                  style="font-size: 11pt"
+                                  name="IM081^^IM081.4Column2"
+                                  id="IM081^^IM081.4Column2"
+                                  rows="4"
+                                  cols="60"
+                                ></textarea>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td colspan="6">
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                        >
+                          <tbody>
+                            <tr>
+                              <td align="center">
+                                <input
+                                  id="cmdRefresh"
+                                  name="cmdRefresh"
+                                  type="submit"
+                                  value="Refresh"
+                                />
+                              </td>
+                              <td align="center">
+                                <input
+                                  id="cmdSave"
+                                  name="cmdSave"
+                                  type="submit"
+                                  value="Save"
+                                />
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align="center">
+                <table
+                  id="tblHiddenFields"
+                  border="0"
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                >
+                  <tbody>
+                    <tr>
+                      <td height="1">
+                        <input
+                          type="hidden"
+                          name="hidpageVariableNames"
+                          value="CurrentSystemDate1*%+?ProcessMonPageRequestID1*%+?appfilext1*%+?appDbType1*%+?enCharUrl1*%+?fontSize1*%+?PagefontSize1*%+?AutoPopDateEdit1*%+?DispRecView1*%+?ShCtx1*%+?DoProcessMon1*%+?SystemUserID1*%+?JobScheduleID1*%+?BranchID1*%+?DepartmentID1*%+?UnitID1*%+?BCodeDetPrefix1*%+?BCodeDetSuffix1*%+?BCodeMaxLen1*%+?BCodeTimeout1*%+?HasBCode1*%+?EditCompTbl1*%+?EditCompKey1*%+?EditCompVal1*%+?DesignSaved"
+                          id="hidpageVariableNames"
+                        /><input
+                          type="hidden"
+                          name="hidpageVariableValues"
+                          value="17 Oct 2025 04:53:071*%+?1*%+?asp1*%+?SQLDB1*%+?/ \1*%+?81*%+?1*%+?1*%+?No1*%+?11*%+?NO1*%+?admin1*%+?SystemAdmin1*%+?B0011*%+?DPT0011*%+?DPT0011*%+?1*%+?1*%+?201*%+?10001*%+?No1*%+?EMRData1*%+?EMRDataID1*%+?IM0811*%+?No"
+                          id="hidpageVariableValues"
+                        /><input
+                          type="hidden"
+                          name="hidMessages"
+                          value=""
+                          id="hidMessages"
+                        /><input
+                          type="hidden"
+                          name="hidPageMode"
+                          value="ViewMode"
+                          id="hidPageMode"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <input
+              type="hidden"
+              name="hidPageTemplateName"
+              id="hidPageTemplateName"
+              value="ProcessCompKeyData"
+            />
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+>	Requisitions	DataOrigin	Close	IN	-	-	-	NAV	14	&
+>>	Medical Stores	DataMigrateStatus	Close	IN	-	-	-	NAV	15	&
+>>>	Outgoing	Country	Close	IN	-	-	-	NAV	16	&
+>>>>	Make Request	AssignedTo	Close	IN	-	-	-	NAV	17	wpgDrugRequest2.POSFORFILEEXT?PageMode=AddNew
+>>>>	Requests By Store	CellComponent	Close	IN	-	-	-	NAV	18	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugRequest2ByDrugRequestStore_WorkingMonth
+>>>>	Requests By Month	BankAccountType	Close	IN	-	-	-	NAV	19	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugRequest2ByWorkingMonth_DrugRequestStore
+>>>>	Issued By Store	BulkEditAlloc	Close	IN	-	-	-	NAV	20	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugIssueByDrugRequestStore_WorkingMonth
+>>>>	Issued By Month	CodeStatus	Close	IN	-	-	-	NAV	21	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugIssueByWorkingMonth_DrugRequestStore
+>>>>	Accept Drugs	UserContextLink	Close	IN	-	-	-	NAV	22	wpgDrugAccept.POSFORFILEEXT?PageMode=AddNew
+>>>>	Accepted By Store	BrowseReport	Close	IN	-	-	-	NAV	23	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugAcceptByDrugRequestStore_WorkingMonth
+>>>>	Accepted By Month	BrowseViewAlloc	Close	IN	-	-	-	NAV	24	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugAcceptByWorkingMonth_DrugRequestStore
+>>>	Incoming	CurrencyType	Close	IN	-	-	-	NAV	25	&
+>>>>	Requests By Store	AdminBrowse	Close	IN	-	-	-	NAV	26	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugRequest2ByDrugStore_WorkingMonth
+>>>>	Requests By Month	BrowseRpt	Close	IN	-	-	-	NAV	27	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugRequest2ByWorkingMonth_DrugStore
+>>>>	Issue Drugs	UserAccessible	Close	IN	-	-	-	NAV	28	wpgDrugIssue.POSFORFILEEXT?PageMode=AddNew
+>>>>	Issued By Store	AdminBrowse	Close	IN	-	-	-	NAV	29	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugIssueByDrugStore_WorkingMonth
+>>>>	Issued By Month	Account	Close	IN	-	-	-	NAV	30	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugIssueByWorkingMonth_DrugStore
+>>>>	Accepted By Store	BulkPrintDependTbl	Close	IN	-	-	-	NAV	31	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugAcceptByDrugStore_WorkingMonth
+>>>>	Accepted By Month	BankCharges	Close	IN	-	-	-	NAV	32	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugAcceptByWorkingMonth_DrugStore
+>>>	Medical Purchases	PageStyle	Close	IN	-	-	-	NAV	33	&
+>>>>	Add New Purchase Order	AccountStatus	Close	IN	-	-	-	NAV	34	wpgDrugPurOrder.POSFORFILEEXT?PageMode=AddNew
+>>>>	Search Purchase Order	LogCategory	Close	IN	-	-	-	NAV	35	wpgSrhDrugPurOrder.POSFORFILEEXT?
+>>>>	Process Purchase Order	TableType	Close	IN	-	-	-	NAV	36	wpgSelectProcessNext.POSFORFILEEXT?PositionForTableName=DrugPurOrder
+>>>>	Imprest Purchase Report	FieldType	Close	IN	-	-	-	NAV	37	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugPurOrderItemsByWorkingMonth_Supplier&
+>>>	Drug Stock Levels	PermuteTable	Close	IN	-	-	-	NAV	38	-
+>>>>	Drug Stock Adjust. Movements	PermuteUpdate	Close	IN	-	-	-	NAV	39	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=drugAdjustReport1&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	All Stock Levels	PermuteUpdate	Close	IN	-	-	-	NAV	40	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugStockLevelByDrugStore_DrugCategory_DrugType&
+>>>>	My Drug Stock Levels	UserProcess	Close	IN	-	-	-	NAV	41	wpgPrtPrintLayoutAll.POSFORFILEEXT?PrintLayoutName=DrugStockTakeReport2&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Drug Stock By Store	UserRole	Close	IN	-	-	-	NAV	42	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=DrugStockTakeReport3&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Negative Drug Stock	UserStatus	Close	IN	-	-	-	NAV	43	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=DrugStockTakeReport4&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Track Drug Item	UserLink	Close	IN	-	-	-	NAV	44	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=DrugStockLevelTrack&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Drug Stock Movement	UserOptionSetup	Close	IN	-	-	-	NAV	45	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=DrugStockMovement&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	My Stock Taking Sheet	UserRoleAlloc	Close	IN	-	-	-	NAV	46	wpgPrtPrintLayoutAll.POSFORFILEEXT?PrintLayoutName=DrugStockTakeSheet0&PositionForTableName=DrugStore&DrugStoreID=S11
+>>>>	Stock Taking Sheet By Store	UserVariables	Close	IN	-	-	-	NAV	47	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=DrugStockTakeSheet&PositionForTableName=DrugStore&DrugStoreID=S11
+>>>>	Adjustment Report By Date	CellVar14	Close	IN	-	-	-	NAV	48	wpgPrtPrintInputFilter.asp?PrintLayoutName=DrugAdjustmentReport&PositionForTableName=DrugAdjustment&DrugAdjustmentID=D000002
+>>>>	Browse -Drug Stock Take	UserPermit	Close	IN	-	-	-	NAV	49	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=DrugStockTakeReport0&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Report - Drug Stock Take	UserRight	Close	IN	-	-	-	NAV	50	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=DrugStockTakeReport&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Search Stock Level	ProcessCall	Close	IN	-	-	-	NAV	51	WPGsrhDrugStockLevel.asp
+>>>	General Info	PageStyleTbl	Close	IN	-	-	-	NAV	52	&
+>>>>	Supplier List	PermuteTable	Close	IN	-	-	-	NAV	53	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=SupplierBySupplierType&
+>>>>	Search Supplier	BrowseReportAlloc	Close	IN	-	-	-	NAV	54	wpgSrhSupplier.POSFORFILEEXT?
+>>>>	Drug List	BulkEditAlloc	Close	IN	-	-	-	NAV	55	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugByDrugCategory_DrugType&
+>>>>	Search Drug	ItemStore	Close	IN	-	-	-	NAV	56	wpgSrhDrug.POSFORFILEEXT?
+>>>>	Drug Store List	CellVar1	Close	IN	-	-	-	NAV	57	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=DrugStoreByNone&
+>>>>	Search Drug Store	JobSchedule	Close	IN	-	-	-	NAV	58	wpgSrhDrugStore.POSFORFILEEXT
+>>	General Stores	TableField	Close	IN	-	-	-	NAV	59	&
+>>>	Outgoing	SysBranchType	Close	IN	-	-	-	NAV	60	&
+>>>>	Make Request	AssignedTo	Close	IN	-	-	-	NAV	61	wpgItemRequest2.POSFORFILEEXT?PageMode=AddNew
+>>>>	Requests By Store	CellComponent	Close	IN	-	-	-	NAV	62	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemRequest2ByItemRequestStore_WorkingMonth
+>>>>	Requests By Month	BankAccountType	Close	IN	-	-	-	NAV	63	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemRequest2ByWorkingMonth_ItemRequestStore
+>>>>	Issued By Store	BulkEditAlloc	Close	IN	-	-	-	NAV	64	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemIssueByItemRequestStore_WorkingMonth
+>>>>	Issued By Month	CodeStatus	Close	IN	-	-	-	NAV	65	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemIssueByWorkingMonth_ItemRequestStore
+>>>>	Accept Items	UserContextLink	Close	IN	-	-	-	NAV	66	wpgItemAccept.POSFORFILEEXT?PageMode=AddNew
+>>>>	Accepted By Store	BrowseReport	Close	IN	-	-	-	NAV	67	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemAcceptByItemRequestStore_WorkingMonth
+>>>>	Accepted By Month	BrowseViewAlloc	Close	IN	-	-	-	NAV	68	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemAcceptByWorkingMonth_ItemRequestStore
+>>>	Incoming	Country	Close	IN	-	-	-	NAV	69	&
+>>>>	Requests By Store	AdminBrowse	Close	IN	-	-	-	NAV	70	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemRequest2ByItemStore_WorkingMonth
+>>>>	Requests By Month	BrowseRpt	Close	IN	-	-	-	NAV	71	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemRequest2ByWorkingMonth_ItemStore
+>>>>	Issue Items	UserAccessible	Close	IN	-	-	-	NAV	72	wpgItemIssue.POSFORFILEEXT?PageMode=AddNew
+>>>>	Issued By Store	AdminBrowse	Close	IN	-	-	-	NAV	73	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemIssueByItemStore_WorkingMonth
+>>>>	Issued By Month	Account	Close	IN	-	-	-	NAV	74	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemIssueByWorkingMonth_ItemStore
+>>>>	Accepted By Store	BulkPrintDependTbl	Close	IN	-	-	-	NAV	75	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemAcceptByItemStore_WorkingMonth
+>>>>	Accepted By Month	BankCharges	Close	IN	-	-	-	NAV	76	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemAcceptByWorkingMonth_ItemStore
+>>>	General Purchases	PasswordPolicy	Close	IN	-	-	-	NAV	77	&
+>>>>	Add New Purchase Order	AccountStatus	Close	IN	-	-	-	NAV	78	wpgItemPurOrder.POSFORFILEEXT?PageMode=AddNew
+>>>>	Search Purchase Order	LogCategory	Close	IN	-	-	-	NAV	79	wpgSrhItemPurOrder.POSFORFILEEXT?
+>>>>	Process Purchase Order	TableType	Close	IN	-	-	-	NAV	80	wpgSelectProcessNext.POSFORFILEEXT?PositionForTableName=ItemPurOrder
+>>>>	Imprest Purchase Report	FieldType	Close	IN	-	-	-	NAV	81	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemPurOrderItemsByWorkingMonth_Supplier&
+>>>	Item Stock Levels	PermuteTable	Close	IN	-	-	-	NAV	82	-
+>>>>	All Stock Levels	PermuteUpdate	Close	IN	-	-	-	NAV	83	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemStockLevelByItemStore_ItemCategory_ItemType&
+>>>>	My Item Stock Levels	UserProcess	Close	IN	-	-	-	NAV	84	wpgPrtPrintLayoutAll.POSFORFILEEXT?PrintLayoutName=ItemStockTakeReport2&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Item Stock By Store	UserRole	Close	IN	-	-	-	NAV	85	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=ItemStockTakeReport3&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Negative Item Stock	UserStatus	Close	IN	-	-	-	NAV	86	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=ItemStockTakeReport4&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Track Items	UserLink	Close	IN	-	-	-	NAV	87	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=ItemStockLevelTrack&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Item Stock Movement	UserOptionSetup	Close	IN	-	-	-	NAV	88	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=ItemStockMovement&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	My Stock Taking Sheet	UserRoleAlloc	Close	IN	-	-	-	NAV	89	wpgPrtPrintLayoutAll.POSFORFILEEXT?PrintLayoutName=ItemStockTakeSheet0&PositionForTableName=ItemStore&ItemStoreID=S11
+>>>>	Stock Taking Sheet By Store	UserVariables	Close	IN	-	-	-	NAV	90	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=ItemStockTakeSheet&PositionForTableName=ItemStore&ItemStoreID=S11
+>>>>	Browse -Item Stock Take	UserPermit	Close	IN	-	-	-	NAV	91	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=ItemStockTakeReport0&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Report - Item Stock Take	UserRight	Close	IN	-	-	-	NAV	92	wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=ItemStockTakeReport&PositionForTableName=WorkingDay&WorkingDayID=DAY20120314
+>>>>	Search Stock Level	ProcessCall	Close	IN	-	-	-	NAV	93	WPGsrhItemStockLevel.asp
+>>>	General Info	PageStyleTbl	Close	IN	-	-	-	NAV	94	&
+>>>>	Supplier List	PermuteTable	Close	IN	-	-	-	NAV	95	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=SupplierBySupplierType&
+>>>>	Search Supplier	BrowseReportAlloc	Close	IN	-	-	-	NAV	96	wpgSrhSupplier.POSFORFILEEXT?
+>>>>	Item List	BulkEditAlloc	Close	IN	-	-	-	NAV	97	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemsByItemCategory_ItemType&
+>>>>	Search Item	ItemStore	Close	IN	-	-	-	NAV	98	wpgSrhItems.POSFORFILEEXT?
+>>>>	Item Store List	CellVar1	Close	IN	-	-	-	NAV	99	WPGNavigateFrame.asp?FrameType=Browse&BROWSEVIEWNAME=ItemStoreByNone&
+>>>>	Search Item Store	JobSchedule	Close	IN	-	-	-	NAV	100	wpgSrhItemStore.POSFORFILEEXT

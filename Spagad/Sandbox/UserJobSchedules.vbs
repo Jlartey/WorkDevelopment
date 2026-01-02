@@ -1,3 +1,20 @@
+'<<--BEGIN_CODE_SEGMENT_PRINTHEADER-->>
+
+Dim datePeriod, periodStart, periodEnd, dateArr
+
+datePeriod = Trim(Request.queryString("PrintFilter"))
+
+periodStart = ""
+periodEnd = ""
+
+If datePeriod <> "" Then
+    dateArr = Split(datePeriod, "||")
+    If UBound(dateArr) >= 1 Then
+        periodStart = dateArr(0)
+        periodEnd = dateArr(1)
+    End If
+End If
+
 tableStyles
 dispUserJobSchedules
 
@@ -96,4 +113,13 @@ response.write "</style>"
 
 End Sub
 
+'<<--END_CODE_SEGMENT_PRINTHEADER-->>
+'>
+'>
+'>
+'>
+'>
+'<<--BEGIN_CODE_SEGMENT_PRINTFOOTER-->>
+
+'<<--END_CODE_SEGMENT_PRINTFOOTER-->>
 

@@ -1,5 +1,0 @@
-
-URL for EMR done by Monica
-http://172.2.2.31/hms/wpgEditCompKey.asp?PositionForTableName=EMRData&EMRDataID=NEU00010
-
-http://172.2.2.31/hms/wpgprocessCompKeydata.asp?PositionForTableName=EMRData&EMRDataID=NEU00010

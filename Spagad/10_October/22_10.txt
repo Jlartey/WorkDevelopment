@@ -1,5 +1,0 @@
-wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=RevenueReportByDate&PositionForTableName=WorkingDay&WorkingDayID=DAY20140814
-
-wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=itemadjustreport&PositionForTableName=WorkingDay&WorkingDayID=DAY20140814
-
-wpgPrtPrintInputFilter.POSFORFILEEXT?PrintLayoutName=drugadjustreport&PositionForTableName=WorkingDay&WorkingDayID=DAY20140814

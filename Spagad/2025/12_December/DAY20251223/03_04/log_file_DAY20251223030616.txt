@@ -1,0 +1,551 @@
+MED001 :: MEDICATION AUDIT TOOL
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRData WHERE ( EMRDataID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRData ( EMRDataID, EMRDataName, EMRCategoryID, EMRTypeID, EMRGroupID, EMRClassID, BillGroupCatID, BillGroupID, LevelOfAccessID, UnitCost, EMRStatusID, ResultTypeID, EMRContainerID, EMRSampleTypeID, EMRDuration, EMRDataAmt1, EMRDataAmt2, EMRDataVal1, EMRDataVal2, EMRDataVal3, EMRDataVal4, EMRDataInfo1, EMRDataInfo2, EMRDataDate1, EMRDataDate2, Description, KeyPrefix, BillInput1, BillInput2, BillInput3, BillInout4) 
+    VALUES ( 'MED001', 'MEDICATION AUDIT TOOL', 'E001', 'E001', 'E001', 'E001', 'COMPUCARE', 'B16', 'All', '0', 'E001', 'RTY003', 'E001', 'E001', '0', '0', '0', '0', '0', '0', '0', '', '', null, null, '', '', '0', '0', '0', '0') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRTemplate WHERE ( EMRComponentID='MED001.7'  and EMRDataID='MED001'  and EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRTemplate ( EMRComponentID, EMRDataID, CompPos, Column1, Column2, Column3, Column4, Column5, Column6, Description, TabDisplayName, TabInfo, TabPos, EMRCompTabID) 
+    VALUES ( 'MED001.7', 'MED001', '07', '', '', '', '', '', '', '', '', '', '1', 'MED001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRComponent WHERE ( EMRComponentID='MED001.7') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRComponent ( EMRComponentID, EMRComponentName, CompPos, FlagPos1, Column1, ResultPos1, Column2, RefPos1, Column3, FlagPos2, Column4, ResultPos2, Column5, RefPos2, Column6, Description, KeyPrefix, EMRCompCatID, EMRCompTypeID, EMRCompStatusID, EMRCompModeID) 
+    VALUES ( 'MED001.7', '&nbsp;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'NONE', 'E001', 'E001', 'E001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRCompTab WHERE ( EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRCompTab ( EMRCompTabID, EMRCompTabName, Description, KeyPrefix, TabInfo1, TabInfo2, TabInfo3, TabValue1) 
+    VALUES ( 'MED001', 'MEDICATION AUDIT TOOL', '', '', null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.7'  and CompFieldID='Column1') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.7', 'Column1', '&nbsp;', 'TDProp**1**Left**Top%%Default**<b>Interventions and Outcome</b>', '', '10', 'DTY002', '', '', 'FALSE', '01', null, null, '01', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.7'  and CompFieldID='Column2') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.7', 'Column2', '&nbsp;', 'TDProp**5**Left**Top%%UserTextArea**3**60', '', '10', 'DTY002', '', '', 'FALSE', '02', null, null, '02', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.7'  and CompFieldID='Column3') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.7', 'Column3', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '03', null, null, '03', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.7'  and CompFieldID='Column4') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.7', 'Column4', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '04', null, null, '04', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.7'  and CompFieldID='Column5') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.7', 'Column5', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '05', null, null, '05', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.7'  and CompFieldID='Column6') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.7', 'Column6', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '06', null, null, '06', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRTemplate WHERE ( EMRComponentID='MED001.1'  and EMRDataID='MED001'  and EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRTemplate ( EMRComponentID, EMRDataID, CompPos, Column1, Column2, Column3, Column4, Column5, Column6, Description, TabDisplayName, TabInfo, TabPos, EMRCompTabID) 
+    VALUES ( 'MED001.1', 'MED001', '01', '', '', '', '', '', '', '', '', '', '1', 'MED001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRComponent WHERE ( EMRComponentID='MED001.1') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRComponent ( EMRComponentID, EMRComponentName, CompPos, FlagPos1, Column1, ResultPos1, Column2, RefPos1, Column3, FlagPos2, Column4, ResultPos2, Column5, RefPos2, Column6, Description, KeyPrefix, EMRCompCatID, EMRCompTypeID, EMRCompStatusID, EMRCompModeID) 
+    VALUES ( 'MED001.1', '&nbsp;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'NONE', 'E001', 'E001', 'E001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRCompTab WHERE ( EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRCompTab ( EMRCompTabID, EMRCompTabName, Description, KeyPrefix, TabInfo1, TabInfo2, TabInfo3, TabValue1) 
+    VALUES ( 'MED001', 'MEDICATION AUDIT TOOL', '', '', null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.1'  and CompFieldID='Column1') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.1', 'Column1', '&nbsp;', 'TDProp**1**Left**Top%%Default**<b>Date</b>', '', '10', 'DTY002', '', '', 'FALSE', '01', null, null, '01', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.1'  and CompFieldID='Column2') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.1', 'Column2', '&nbsp;', 'TDProp**5**Left**Top%%UserDate', '', '10', 'DTY002', '', '', 'FALSE', '02', null, null, '02', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.1'  and CompFieldID='Column3') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.1', 'Column3', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '03', null, null, '03', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.1'  and CompFieldID='Column4') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.1', 'Column4', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '04', null, null, '04', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.1'  and CompFieldID='Column5') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.1', 'Column5', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '05', null, null, '05', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.1'  and CompFieldID='Column6') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.1', 'Column6', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '06', null, null, '06', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRTemplate WHERE ( EMRComponentID='MED001.3'  and EMRDataID='MED001'  and EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRTemplate ( EMRComponentID, EMRDataID, CompPos, Column1, Column2, Column3, Column4, Column5, Column6, Description, TabDisplayName, TabInfo, TabPos, EMRCompTabID) 
+    VALUES ( 'MED001.3', 'MED001', '03', '', '', '', '', '', '', '', '', '', '1', 'MED001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRComponent WHERE ( EMRComponentID='MED001.3') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRComponent ( EMRComponentID, EMRComponentName, CompPos, FlagPos1, Column1, ResultPos1, Column2, RefPos1, Column3, FlagPos2, Column4, ResultPos2, Column5, RefPos2, Column6, Description, KeyPrefix, EMRCompCatID, EMRCompTypeID, EMRCompStatusID, EMRCompModeID) 
+    VALUES ( 'MED001.3', '&nbsp;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'NONE', 'E001', 'E001', 'E001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRCompTab WHERE ( EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRCompTab ( EMRCompTabID, EMRCompTabName, Description, KeyPrefix, TabInfo1, TabInfo2, TabInfo3, TabValue1) 
+    VALUES ( 'MED001', 'MEDICATION AUDIT TOOL', '', '', null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.3'  and CompFieldID='Column1') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.3', 'Column1', '&nbsp;', 'TDProp**1**Left**Top%%Default**<b>Appropriateness of Drug</b>', '', '10', 'DTY002', '', '', 'FALSE', '01', null, null, '01', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.3'  and CompFieldID='Column2') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.3', 'Column2', '&nbsp;', 'TDProp**2**left**TOP****%%UserCombo**EMRVAR3B****EMRVAR3B.EMRVAR3AID = ''E059''', '', '10', 'DTY002', '', '', 'FALSE', '02', null, null, '02', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.3'  and CompFieldID='Column3') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.3', 'Column3', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '03', null, null, '03', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.3'  and CompFieldID='Column4') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.3', 'Column4', '&nbsp;', 'TDProp**1**Left**Top%%Default**<b>Appropriateness of Dose</b>', '', '10', 'DTY002', '', '', 'FALSE', '04', null, null, '04', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.3'  and CompFieldID='Column5') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.3', 'Column5', '&nbsp;', 'TDProp**2**left**TOP****%%UserCombo**EMRVAR3B****EMRVAR3B.EMRVAR3AID = ''E059''', '', '10', 'DTY002', '', '', 'FALSE', '05', null, null, '05', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.3'  and CompFieldID='Column6') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.3', 'Column6', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '06', null, null, '06', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRTemplate WHERE ( EMRComponentID='MED001.4'  and EMRDataID='MED001'  and EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRTemplate ( EMRComponentID, EMRDataID, CompPos, Column1, Column2, Column3, Column4, Column5, Column6, Description, TabDisplayName, TabInfo, TabPos, EMRCompTabID) 
+    VALUES ( 'MED001.4', 'MED001', '04', '', '', '', '', '', '', '', '', '', '1', 'MED001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRComponent WHERE ( EMRComponentID='MED001.4') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRComponent ( EMRComponentID, EMRComponentName, CompPos, FlagPos1, Column1, ResultPos1, Column2, RefPos1, Column3, FlagPos2, Column4, ResultPos2, Column5, RefPos2, Column6, Description, KeyPrefix, EMRCompCatID, EMRCompTypeID, EMRCompStatusID, EMRCompModeID) 
+    VALUES ( 'MED001.4', '&nbsp;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'NONE', 'E001', 'E001', 'E001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRCompTab WHERE ( EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRCompTab ( EMRCompTabID, EMRCompTabName, Description, KeyPrefix, TabInfo1, TabInfo2, TabInfo3, TabValue1) 
+    VALUES ( 'MED001', 'MEDICATION AUDIT TOOL', '', '', null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.4'  and CompFieldID='Column1') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.4', 'Column1', '&nbsp;', 'TDProp**1**Left**Top%%Default**<b>Appropriateness of Frequency</b>', '', '10', 'DTY002', '', '', 'FALSE', '01', null, null, '01', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.4'  and CompFieldID='Column2') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.4', 'Column2', '&nbsp;', 'TDProp**2**left**TOP****%%UserCombo**EMRVAR3B****EMRVAR3B.EMRVAR3AID = ''E059''', '', '10', 'DTY002', '', '', 'FALSE', '02', null, null, '02', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.4'  and CompFieldID='Column3') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.4', 'Column3', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '03', null, null, '03', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.4'  and CompFieldID='Column4') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.4', 'Column4', '&nbsp;', 'TDProp**1**Left**Top%%Default**<b>Appropriateness of Route</b>', '', '10', 'DTY002', '', '', 'FALSE', '04', null, null, '04', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.4'  and CompFieldID='Column5') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.4', 'Column5', '&nbsp;', 'TDProp**2**Left**TOP****%%UserCombo**EMRVAR3B****EMRVAR3B.EMRVAR3AID = ''E059''', '', '10', 'DTY002', '', '', 'FALSE', '05', null, null, '05', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.4'  and CompFieldID='Column6') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.4', 'Column6', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '06', null, null, '06', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRTemplate WHERE ( EMRComponentID='MED001.5'  and EMRDataID='MED001'  and EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRTemplate ( EMRComponentID, EMRDataID, CompPos, Column1, Column2, Column3, Column4, Column5, Column6, Description, TabDisplayName, TabInfo, TabPos, EMRCompTabID) 
+    VALUES ( 'MED001.5', 'MED001', '05', '', '', '', '', '', '', '', '', '', '1', 'MED001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRComponent WHERE ( EMRComponentID='MED001.5') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRComponent ( EMRComponentID, EMRComponentName, CompPos, FlagPos1, Column1, ResultPos1, Column2, RefPos1, Column3, FlagPos2, Column4, ResultPos2, Column5, RefPos2, Column6, Description, KeyPrefix, EMRCompCatID, EMRCompTypeID, EMRCompStatusID, EMRCompModeID) 
+    VALUES ( 'MED001.5', '&nbsp;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'NONE', 'E001', 'E001', 'E001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRCompTab WHERE ( EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRCompTab ( EMRCompTabID, EMRCompTabName, Description, KeyPrefix, TabInfo1, TabInfo2, TabInfo3, TabValue1) 
+    VALUES ( 'MED001', 'MEDICATION AUDIT TOOL', '', '', null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.5'  and CompFieldID='Column1') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.5', 'Column1', '&nbsp;', 'TDProp**1**Left**Top%%Default**<b>Therapeutic Duplication</b>', '', '10', 'DTY002', '', '', 'FALSE', '01', null, null, '01', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.5'  and CompFieldID='Column2') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.5', 'Column2', '&nbsp;', 'TDProp**5**Left**TOP****%%UserCombo**EMRVAR3B****EMRVAR3B.EMRVAR3AID = ''E060''', '', '10', 'DTY002', '', '', 'FALSE', '02', null, null, '02', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.5'  and CompFieldID='Column3') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.5', 'Column3', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '03', null, null, '03', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.5'  and CompFieldID='Column4') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.5', 'Column4', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '04', null, null, '04', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.5'  and CompFieldID='Column5') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.5', 'Column5', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '05', null, null, '05', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.5'  and CompFieldID='Column6') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.5', 'Column6', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '06', null, null, '06', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRTemplate WHERE ( EMRComponentID='MED001.6'  and EMRDataID='MED001'  and EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRTemplate ( EMRComponentID, EMRDataID, CompPos, Column1, Column2, Column3, Column4, Column5, Column6, Description, TabDisplayName, TabInfo, TabPos, EMRCompTabID) 
+    VALUES ( 'MED001.6', 'MED001', '06', '', '', '', '', '', '', '', '', '', '1', 'MED001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRComponent WHERE ( EMRComponentID='MED001.6') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRComponent ( EMRComponentID, EMRComponentName, CompPos, FlagPos1, Column1, ResultPos1, Column2, RefPos1, Column3, FlagPos2, Column4, ResultPos2, Column5, RefPos2, Column6, Description, KeyPrefix, EMRCompCatID, EMRCompTypeID, EMRCompStatusID, EMRCompModeID) 
+    VALUES ( 'MED001.6', '&nbsp;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'NONE', 'E001', 'E001', 'E001') 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM EMRCompTab WHERE ( EMRCompTabID='MED001') 
+  ) 
+  BEGIN 
+    INSERT INTO EMRCompTab ( EMRCompTabID, EMRCompTabName, Description, KeyPrefix, TabInfo1, TabInfo2, TabInfo3, TabValue1) 
+    VALUES ( 'MED001', 'MEDICATION AUDIT TOOL', '', '', null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.6'  and CompFieldID='Column1') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.6', 'Column1', '&nbsp;', 'TDProp**1**Left**Top%%Default**<b>Comments</b>', '', '10', 'DTY002', '', '', 'FALSE', '01', null, null, '01', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.6'  and CompFieldID='Column2') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.6', 'Column2', '&nbsp;', 'TDProp**5**Left**Top%%UserTextArea**3**60', '', '10', 'DTY002', '', '', 'FALSE', '02', null, null, '02', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.6'  and CompFieldID='Column3') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.6', 'Column3', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '03', null, null, '03', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.6'  and CompFieldID='Column4') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.6', 'Column4', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '04', null, null, '04', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.6'  and CompFieldID='Column5') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.6', 'Column5', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '05', null, null, '05', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+
+BEGIN 
+  IF NOT EXISTS (
+    SELECT * FROM CompField WHERE ( RecordKey='MED001.6'  and CompFieldID='Column6') 
+  ) 
+  BEGIN 
+    INSERT INTO CompField ( CompTableKeyID, RecordKey, CompFieldID, CompFieldName, SubTableFieldSource, DisplayName, FieldLen, DataTypeID, DefaultValue, DataFormat, Required, DatagridPos, RecordFilterField, ForeignKeyField, TreeviewDatagridPos, DisabledField, VisibleField, PrimaryKey, TransientField, DetailField, DetailField2, SummaryField, GraphField, HelpDescription, KeyPrefix) 
+    VALUES ( 'EMRComponentID', 'MED001.6', 'Column6', '&nbsp;', 'TREEVIEW', '', '10', 'DTY002', '', '', 'FALSE', '06', null, null, '06', 'FALSE', 'YES||YES', 'NO', null, null, null, null, null, null, null) 
+  END 
+END 
+

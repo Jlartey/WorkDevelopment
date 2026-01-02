@@ -1,0 +1,15 @@
+WITH PatientDetails AS (
+SELECT  TOP 20 p.PatientName, p.Age, p.genderID
+FROM Visitation v
+JOIN Patient p
+ON v.PatientID = p.PatientID
+WHERE visitationID = 'V1240220205'),
+
+WITH EmrRecords AS (
+SELECT TOP 1 EMRRequestID 
+From EMRRequestItems WHERE EMRDataID = 'IM081' 
+AND VisitationID = 'V1240220205'
+)
+SELECT pd.PatientName, pd.Age, pd.genderID, emr.EMRRequestID
+FROM PatientDetails pd JOIN EmrRecords emr
+ON pd.VisitationId = emr.VisitationID

@@ -1,0 +1,19 @@
+Past History of Blood Clots 
+Family History of Blood Clots
+Birth Control Pills 
+Hormone Stimulating Drugs
+Swollen Legs 
+History of Cancer
+Large Dose Vitamins
+Varicose Veins
+Past Illnesses of the Heart, Liver, Lung, or Gastrointestinal Tract.
+History of Multiple Spontaneous Abortions or Miscarriages
+
+
+INSERT INTO "EMRVar3B" ("EMRVar3BID", "EMRVar3BName", "EMRVar3AID", "VarPos", "Description", "KeyPrefix") VALUES ('PL03002', 'Birth Control Pills', 'PL03', 2, '', '');
+
+INSERT INTO "EMRVar3B" ("EMRVar3BID", "EMRVar3BName", "EMRVar3AID", "VarPos", "Description", "KeyPrefix") VALUES ('PL03002', 'Birth Control Pills', 'PL03', 2, '', '');
+
+Hospitals often have rules that certain tissue/implants removed during surgery must be sent<br>
+for evaluation which may result in additional fees. Please check with your surgeon to receive<br>
+an estimate of any additional costs that you may be charged.<br>

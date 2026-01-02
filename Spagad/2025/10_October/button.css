@@ -1,0 +1,23 @@
+.mybutton {
+  width: 12.5rem;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+}
+
+.mybutton {
+  width: 9.375rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease; /* Smooth animation */
+}
+
+.mybutton:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}

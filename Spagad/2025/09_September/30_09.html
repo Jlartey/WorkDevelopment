@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/js/multi-select-tag.min.js"></script>
+    <title>Document</title>
+    <style>
+      .multi-select-tag {
+        font-family: inherit !important;
+        max-width: 300px;
+        display: inline-block;
+      }
+      .multi-select-tag .wrapper {
+        position: relative;
+        width: 100%;
+      }
+      .multi-select-tag .tag-container {
+        display: flex;
+        padding: 0.5rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        background-color: #fff;
+        width: 100%;
+      }
+      .multi-select-tag .tag-input {
+        padding: 0.25rem;
+        flex-grow: 1;
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        border: none;
+        background-color: #fff;
+        margin: 0;
+        line-height: 1.25rem;
+        width: auto;
+      }
+      .multi-select-tag .dropdown {
+        overflow: auto;
+        position: absolute;
+        z-index: 10;
+        padding: 0;
+        margin-top: 0.25rem;
+        border-radius: 0.25rem;
+        border: 1px solid #e5e7eb;
+        width: 100%;
+        max-height: 15rem;
+        background-color: #fff;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      .multi-select-tag .li {
+        padding: 0.5rem;
+        cursor: pointer;
+        list-style-type: none;
+      }
+      .multi-select-tag .li:hover {
+        background-color: #e5e7eb;
+      }
+      .multi-select-tag .li-arrow {
+        background-color: #d1d5db;
+      }
+      .multi-select-tag .tag-item {
+        display: flex;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        align-items: center;
+        border-radius: 0.25rem;
+        color: #1e40af;
+        background-color: #dbeafe;
+      }
+      .multi-select-tag .cross {
+        margin-left: 0.25rem;
+        cursor: pointer;
+      }
+      .multi-select-tag .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <label for="sponsors">Sponsor:</label>
+      <select name="sponsors" id="sponsors" multiple>
+        <option value="">--Please choose an option--</option>
+        <option value="S06">Ecobank</option>
+        <option value="S05">Acacia</option>
+        <option value="S04">Glico</option>
+        <option value="S03">Equity</option>
+        <option value="S02">Nationwide</option>
+      </select>
+
+      <br />
+      <label for="billMonth">Bill Month:</label>
+      <select name="billMonth" id="billMonth" multiple>
+        <option value="">--Please choose an option--</option>
+        <option value="MTH202509">Sept 2025</option>
+        <option value="MTH202508">Aug 2025</option>
+        <option value="MTH202507">Jul 2025</option>
+        <option value="MTH202506">Jun 2025</option>
+        <option value="MTH202505">May 2025</option>
+      </select>
+
+      <br />
+      <label for="amount">Amount:</label>
+      <input type="text" id="amount" name="amount" />
+
+      <br />
+      <!-- Changed onchange to onclick -->
+      <button onclick="sendData()">Save</button>
+    </form>
+
+    <script>
+      new MultiSelectTag('sponsors', {
+        rounded: true,
+        shadow: true,
+        placeholder: 'Search',
+        tagColor: {
+          textColor: '#327b2c',
+          borderColor: '#92e681',
+          bgColor: '#eaffe6',
+        },
+        onChange: function (values) {
+          console.log('Sponsors:', values);
+        },
+      });
+
+      new MultiSelectTag('billMonth', {
+        rounded: true,
+        shadow: true,
+        placeholder: 'Search',
+        tagColor: {
+          textColor: '#327b2c',
+          borderColor: '#92e681',
+          bgColor: '#eaffe6',
+        },
+        onChange: function (values) {
+          console.log('Bill Months:', values);
+        },
+      });
+
+      function sendData() {
+        // Get selected sponsors
+        const sponsorSelect = document.getElementById('sponsors');
+        const selectedSponsors = Array.from(sponsorSelect.selectedOptions).map(
+          (option) => ({
+            id: option.value,
+            value: option.text,
+          })
+        );
+
+        // Get selected bill months
+        const billMonthSelect = document.getElementById('billMonth');
+        const selectedBillMonths = Array.from(
+          billMonthSelect.selectedOptions
+        ).map((option) => ({
+          id: option.value,
+          value: option.text,
+        }));
+
+        // Get amount
+        const amount = document.getElementById('amount').value;
+
+        // Create data object
+        const data = {
+          sponsors: selectedSponsors,
+          billMonths: selectedBillMonths,
+          amount: amount,
+        };
+
+        // Log data to console for testing
+        console.log('Form Data:', data);
+
+        // Optional: Send data to a server (uncomment and configure as needed)
+        /*
+        fetch('https://your-backend-api.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log('Server response:', result);
+            alert('Data submitted successfully!');
+          })
+          .catch((error) => {
+            console.error('Error submitting data:', error);
+            alert('Failed to submit data.');
+          });
+        */
+      }
+    </script>
+  </body>
+</html>

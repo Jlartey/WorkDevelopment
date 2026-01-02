@@ -1,3 +1,0 @@
-UPDATE "FOHMS02"."dbo"."EMRVar3B" SET "EMRVar3BName"=N'Difficulty during recreation <br> or play activities' WHERE  "EMRVar3BID"=N'E167';
-SELECT "EMRVar3BID", "EMRVar3BName", "EMRVar3AID", "VarPos", "Description", "KeyPrefix" FROM "FOHMS02"."dbo"."EMRVar3B" WHERE  "EMRVar3BID"=N'E167';
-SELECT SUM("rows") FROM "sys"."partitions" WHERE "index_id" IN (0, 1) AND "object_id" = object_id('FOHMS02.dbo.EMRVar3B');

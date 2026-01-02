@@ -1,0 +1,7 @@
+Jonas Kotoka:
+ -- Conrad to guide Jonas on the implementation of electronic signature and feature to allow Medical Store to input expiry dates for PO batches
+
+Oswald: 
+ -- Call Edwin concerning Access rights when Pharmacy is saving receipts
+ -- Call Nadia concerning her request to see the consummables used on patients over a period.
+

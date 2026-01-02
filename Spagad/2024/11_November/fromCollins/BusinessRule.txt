@@ -1,0 +1,228 @@
+
+Dim ItemID, storeID, quantity, dt, newStck, newqt, itmID, stoid
+dt = Now
+
+newStck = Split(Trim(Request.querystring("newStock")),",")
+newqt = Split(Trim(Request.querystring("newqty")),",")
+itmID = Split(Trim(Request.querystring("itemid")),",")
+stoid = Trim(Request.querystring("storeid"))
+
+If Len(newStck) > 1 Then
+    newStock newqt, itmID, stoid, dt
+Else
+    SetEmptyItemStock stoid, itmID, dt, newqt
+End If
+
+Sub newStock(newqt, itmID, stoid, dt)
+    Dim resp, ot, sql
+    Set resp = CreateObject("Scripting.Dictionary")
+    adjName = GetComboName("ItemStore", stoid) & " - Expired Items Adjustment [" & FormatDateDetail(dt) & "]"
+    adj = AddStockAdjustment(stoid, adjName)
+    ' If UBound(splitKeyID) >= 1 Then
+    ' End If
+    Call AddStockAdjustItem(adj, itmID, newqt)
+    resp("msg") = "ok"
+     If IsObject(response) Then
+      response.Clear
+      response.contentType = "application/json"
+      response.write gUtils.JSONStringify(resp)
+      response.flush
+     End If
+End Sub
+
+Sub SetEmptyItemStock(storeID, ItemIdsArray, dt, itmQtyArray)
+    Set resp = CreateObject("Scripting.Dictionary")
+     adjName = GetComboName("ItemStore", storeID) & " - Expired Items Adjustment [" & FormatDateDetail(dt) & "]"
+     adj = AddStockAdjustment(storeID, adjName)
+    
+     For i = 0 To UBound(ItemIdsArray)
+      ItemID = Trim(ItemIdsArray(i))
+      itmQty = Trim(itmQtyArray(i))
+      Call AddStockAdjustItem(adj, ItemID, itmQty)
+     Next
+     'resp("status") = "OK"
+     'resp("dat") = drgQtyArray
+     resp("message") = "done"
+     If IsObject(response) Then
+      response.Clear
+      response.contentType = "application/json"
+      response.write gUtils.JSONStringify(resp)
+      response.flush
+     End If
+End Sub
+
+Function AddStockAdjustment(storeID, adjName)
+    Dim sql, rst, rstStore, recKy, dt
+
+    Set rst = CreateObject("ADODB.RecordSet")
+    Set rstStore = CreateObject("ADODB.RecordSet")
+
+    sql = "select * from ItemStore where ItemStoreID='" & storeID & "' "
+    rstStore.open qryPro.FltQry(sql), conn, 3, 4
+    If rstStore.RecordCount > 0 Then
+        dt = Now
+        recKy = GetRecordKey("StockAdjustment", "StockAdjustmentID", "NONE")
+        sql = "select * from StockAdjustment where StockAdjustmentID='" & recKy & "' "
+        rst.open qryPro.FltQry(sql), conn, 3, 4
+        If rst.RecordCount = 0 Then
+            rst.AddNew
+
+            rst.fields("StockAdjustmentID") = recKy
+            rst.fields("StockAdjustmentName") = adjName
+            rst.fields("StockAdjustTypeID") = "S001"
+            rst.fields("StockAdjustPointID") = "NONE"
+            rst.fields("SystemUserID") = uName
+            rst.fields("ItemStoreID") = storeID
+            rst.fields("BranchID") = brnch
+            rst.fields("JobScheduleID") = jschd
+            rst.fields("WorkingYearID") = FormatWorkingYear(dt)
+            rst.fields("WorkingMonthID") = FormatWorkingMonth(dt)
+            rst.fields("WorkingDayID") = FormatWorkingDay(dt)
+            rst.fields("AdjustDate") = dt
+            rst.fields("KeyPrefix") = ""
+            rst.fields("TransProcessStatID") = "T001"
+            rst.fields("TransProcessValID") = "StockAdjustmentPro-T001"
+            rst.fields("PostTransactionID") = "P002"
+            rst.fields("ItemAdjustStatusID") = "I001"
+            rst.fields("EntryDate") = dt
+            rst.fields("EntryValue") = 0
+            rst.fields("EntryInfo") = ""
+            rst.fields("MainValue1") = 0
+            rst.fields("MainValue2") = 0
+            rst.fields("MainDate1") = dt
+            rst.fields("MainDate2") = Null
+            rst.fields("MainInfo1") = ""
+            rst.fields("MainInfo2") = ""
+
+            rst.updatebatch
+
+            AddStockAdjustment = recKy
+        End If
+        rst.Close
+    End If
+    
+    Set rst = Nothing
+End Function
+Function AddStockAdjustItem(itemAdjId, ItemID, actualQty)
+    Dim sql, rstAdj, rstItem, rstItm, dt, rstStck
+
+    dt = Now
+
+    Set rstAdj = CreateObject("ADODB.RecordSet")
+    Set rstItem = CreateObject("ADODB.RecordSet")
+    Set rstItm = CreateObject("ADODB.RecordSet")
+    Set rstStck = CreateObject("ADODB.RecordSet")
+
+    sql = "select * from StockAdjustment where StockAdjustmentID='" & itemAdjId & "' "
+    rstAdj.open qryPro.FltQry(sql), conn, 3, 4
+    If rstAdj.RecordCount > 0 Then
+        rstAdj.MoveFirst
+
+        sql = "select * from Items where ItemId='" & ItemID & "'"
+        rstItm.open qryPro.FltQry(sql), conn, 3, 4
+        If rstItm.RecordCount > 0 Then
+            sql = "select * from StockAdjustItems where ItemID='" & rstItm.fields("ItemID") & "' and StockAdjustmentID='" & rstAdj.fields("StockAdjustmentID") & "' "
+            rstItem.open qryPro.FltQry(sql), conn, 3, 4
+            If rstItem.RecordCount = 0 Then
+                rstItem.AddNew
+
+                sql = "select * from ItemStockLevel where ItemID='" & rstItm.fields("ItemID") & "' and ItemStoreID='" & rstAdj.fields("ItemStoreID") & "' "
+                rstStck.open qryPro.FltQry(sql), conn, 3, 4
+                If rstStck.RecordCount = 0 Then
+                    rstStck.AddNew
+                End If
+
+                rstItem.fields("StockAdjustmentID") = rstAdj.fields("StockAdjustmentID")
+                rstItem.fields("ItemID") = rstItm.fields("ItemID")
+                rstItem.fields("ItemCategoryID") = rstItm.fields("ItemCategoryID")
+                rstItem.fields("ItemTypeID") = rstItm.fields("ItemTypeID")
+                rstItem.fields("UnitOfMeasureID") = rstItm.fields("UnitOfMeasureID")
+                rstItem.fields("StockAdjustTypeID") = rstAdj.fields("StockAdjustTypeID")
+                rstItem.fields("StockAdjustPointID") = rstAdj.fields("StockAdjustPointID")
+                rstItem.fields("Qty") = 0
+                rstItem.fields("ItemStoreID") = rstAdj.fields("ItemStoreID")
+                rstItem.fields("RetailUnitCost") = rstItm.fields("RetailUnitCost")
+                rstItem.fields("BulkUnitCost") = rstItm.fields("BulkUnitCost")
+                rstItem.fields("FinalAmt") = 0
+                rstItem.fields("BranchID") = rstAdj.fields("BranchID")
+                rstItem.fields("SystemUserID") = uName
+                rstItem.fields("JobScheduleID") = jschd
+                rstItem.fields("WorkingYearID") = rstAdj.fields("WorkingYearID")
+                rstItem.fields("WorkingMonthID") = rstAdj.fields("WorkingMonthID")
+                rstItem.fields("WorkingDayID") = rstAdj.fields("WorkingDayID")
+                rstItem.fields("AdjustDate") = rstAdj.fields("AdjustDate")
+                rstItem.fields("PostTransactionID") = rstAdj.fields("PostTransactionID")
+                rstItem.fields("ItemAdjustStatusID") = rstAdj.fields("ItemAdjustStatusID")
+                rstItem.fields("TotalCost") = 0
+                rstItem.fields("AvailableQty") = rstStck.fields("AvailableQty")
+                rstItem.fields("QtyBeforeReorder") = rstStck.fields("AvailableQty")
+                rstItem.fields("PendingAcceptQty") = 0
+                rstItem.fields("AfterAcceptQty") = 0
+                rstItem.fields("StockValue1") = 0
+                rstItem.fields("StockValue2") = 0
+                rstItem.fields("ExpiryDate") = rstStck.fields("ExpiryDate")
+                rstItem.fields("StockDate1") = "6 Nov 2013"
+                rstItem.fields("StockDate2") = "6 Nov 2013"
+                rstItem.fields("StockInfo1") = "-"
+                rstItem.fields("StockInfo2") = "-"
+                rstItem.fields("AdjustDate1") = "6 Nov 2013"
+                rstItem.fields("AdjustDate2") = "6 Nov 2013"
+                rstItem.fields("AdjustmentValue2") = 0
+                rstItem.fields("AdjustmentValue3") = 0
+                rstItem.fields("AdjustmentValue4") = 0
+                rstItem.fields("AdjustmentDate1") = "6 Nov 2013"
+                rstItem.fields("AdjustmentDate2") = "6 Nov 2013"
+                rstItem.fields("AdjustmentInfo1") = "-"
+                rstItem.fields("AdjustmentInfo2") = "-"
+                rstItem.fields("EntryDate") = rstAdj.fields("EntryDate")
+                rstItem.fields("EntryValue") = rstAdj.fields("EntryValue")
+                rstItem.fields("EntryInfo") = rstAdj.fields("EntryInfo")
+                rstItem.fields("TransProcessStatID") = rstAdj.fields("TransProcessStatID")
+                rstItem.fields("TransProcessValID") = rstAdj.fields("TransProcessValID")
+                rstItem.fields("MainValue1") = rstAdj.fields("MainValue1")
+                rstItem.fields("MainValue2") = rstAdj.fields("MainValue2")
+                rstItem.fields("MainDate1") = rstAdj.fields("MainDate1")
+                rstItem.fields("MainDate2") = rstAdj.fields("MainDate2")
+                rstItem.fields("MainInfo1") = rstAdj.fields("MainInfo1")
+                rstItem.fields("MainInfo2") = rstAdj.fields("MainInfo2")
+                rstItem.fields("MainItemValue1") = 0
+                rstItem.fields("MainItemValue2") = 0
+                rstItem.fields("MainItemValue3") = 0
+                rstItem.fields("MainItemValue4") = 0
+                rstItem.fields("MainItemDate1") = "6 Nov 2013"
+                rstItem.fields("MainItemInfo1") = Null
+
+                rstItem.fields("AdjustmentValue1") = actualQty
+                rstItem.fields("AdjustValue1") = -1 * rstItem.fields("AvailableQty") + rstItem.fields("AdjustmentValue1")
+                If rstItem.fields("AdjustValue1") >= 0 Then
+                    rstItem.fields("AdjustValue2") = Abs(rstItem.fields("AdjustValue1"))
+                    rstItem.fields("AdjustValue3") = 0
+                Else
+                    rstItem.fields("AdjustValue2") = 0
+                    rstItem.fields("AdjustValue3") = Abs(rstItem.fields("AdjustValue1"))
+                End If
+
+                rstItem.updatebatch
+
+                sql = " where ItemID='" & rstItm.fields("ItemID") & "' and StockAdjustmentID='" & rstAdj.fields("StockAdjustmentID") & "' "
+                ApplyInventoryTrans "StockAdjustItems", sql
+                rstStck.Close
+            End If
+            rstItem.Close
+        End If
+        rstItm.Close
+    End If
+    rstAdj.Close
+
+    Set rstAdj = Nothing
+    Set rstItem = Nothing
+    Set rstItm = Nothing
+    Set rstStck = Nothing
+
+End Function
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+wpgxmlhttp.asp?procedurename=UpdateSponsorPayment
+
+UpdateProformaInfoClientSponsor&action=getTreats&vst=' + visitID

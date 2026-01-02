@@ -1,0 +1,8 @@
+INSERT INTO "EMRVar2A" ("EMRVar2AID", "EMRVar2AName", "VarPos", "Description", "KeyPrefix") VALUES (N'PON01', N'Peri-Operative Nursing 01', 1, NULL, NULL);
+
+INSERT INTO "EMRVar2B" ("EMRVar2BID", "EMRVar2BName", "EMRVar2AID", "VarPos", "Description", "KeyPrefix") VALUES (N'PON01.1', N'HOME', N'PON01', 1, N'', N'');
+INSERT INTO "EMRVar2B" ("EMRVar2BID", "EMRVar2BName", "EMRVar2AID", "VarPos", "Description", "KeyPrefix") VALUES (N'PON01.2', N'EMERGENCY', N'PON01', 2, N'', N'');
+INSERT INTO "EMRVar2B" ("EMRVar2BID", "EMRVar2BName", "EMRVar2AID", "VarPos", "Description", "KeyPrefix") VALUES (N'PON01.3', N'MEDICAL', N'PON01', 3, N'', N'');
+INSERT INTO "EMRVar2B" ("EMRVar2BID", "EMRVar2BName", "EMRVar2AID", "VarPos", "Description", "KeyPrefix") VALUES (N'PON01.4', N'GENERALIZED SURGICAL', N'PON01', 4, N'', N'');
+INSERT INTO "EMRVar2B" ("EMRVar2BID", "EMRVar2BName", "EMRVar2AID", "VarPos", "Description", "KeyPrefix") VALUES (N'PON01.5', N'SPECIALIZED SURGERY', N'PON01', 5, N'', N'');
+INSERT INTO "EMRVar2B" ("EMRVar2BID", "EMRVar2BName", "EMRVar2AID", "VarPos", "Description", "KeyPrefix") VALUES (N'PON01.6', N'OTHER (SPECIFY)', N'PON01', 6, N'', N'');

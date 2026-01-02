@@ -1,0 +1,3 @@
+parentnavlinkid = 'S21C-N011T-01-B-40'
+
+<a href="javascript:window.open(&quot;wpgPrtPrintLayoutAll.asp?PrintLayoutName=MonitorVisitationDrugEmerg&amp;PositionForTableName=WorkingDay&amp;WorkingDayID=DAY20160401&quot;, &quot;_blank&quot;, &quot;scrollbars=yes&quot;)">Click for Details</a>

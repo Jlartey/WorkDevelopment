@@ -21,8 +21,8 @@ Treatment Flow Sheet - Physio
 http://172.2.2.31/hms/wpgEditCompKey.asp?PositionForTableName=EMRData&EMRDataID=E000059
 
 EOSQ 
-TDProp**2**left**TOP****%%UserRadio**EMRVAR3B****1****EMRVAR3B.EMRVAR3AID = 'E014'
-TDProp**2**left**TOP****%%UserRadio**EMRVAR2B****1****EMRVAR2B.EMRVAR2AID = 'AA1'
+
+TDProp**3**Left**Top%%UserRadio**EMRVAR2B****1****EMRVAR2B.EMRVAR2AID = 'PON01'
 
 Vital Signs EMR - http://172.2.2.31/HMS/wpgEMRData.asp?PageMode=ProcessSelect&EMRDataID=EMR001
 
@@ -34,3 +34,11 @@ Colspan**1%%UserCombo**T_Present
 Pass@2020
 
 UserCombo**EMRVar3B****EMRVar3B.EMRVar3AID = 'EMR214B014'
+
+6th October, 2025
+TDProp**2%%UserMultiGroup**MedicalStaff
+
+
+ColspanAlign**5**Left%%UserTextArea**3**40
+
+TDProp**5%%UserMultiGroup**Drug**Drug.DrugStatusID='IST001'****25**Yes~~FDProp**Dose**Dose%%UserText**4~~FDProp**EMRVar94ID**Route%%UserCombo**EMRVar94~~FDProp**EMRVar93ID**Frequency%%UserCombo**EMRVar93~~FDProp**Days**Days%%UserText**4~~FDProp**Others**Others%%UserTextArea**2**20

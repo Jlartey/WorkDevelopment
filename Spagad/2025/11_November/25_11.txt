@@ -1,0 +1,1 @@
+http://172.19.0.36/hms/wpgPrtPrintLayoutAll.asp?PrintLayoutName=KYClient&PositionForTableName=WorkingDay&PrintFilter=01%20Nov%202025%2000:00:00||25%20Nov%202025%2023:59:59&PrintFilter0=01%20Nov%202025%2000:00:00||25%20Nov%202025%2023:59:59&PrintFilter1=GEN01&PrintFilter2=M002&PrintFilter3=USA&WorkingDayID=DAY20140814

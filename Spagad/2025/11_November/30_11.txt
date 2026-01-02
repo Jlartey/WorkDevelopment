@@ -1,0 +1,14 @@
+Date||Visit Date**Key||GenderID**Key||MaritalStatusID**Key||CountryID**Key||VisitTypeID**Key||AgeGroupID
+
+Date||Visit Date**Key||GenderID**Key||MaritalStatusID**Key||CountryID**Key||SpecialistTypeID**Key||AgeGroupID
+
+http://172.19.0.36/hms/wpgNavigateFrame.asp?FrameType=PrintFilter&FilterButtonLabel=Process%20Report&ProClickType=InFrame&FilterHeight=220&FilterPerRow=2&PrintLayoutName=KYClient&PositionForTableName=WorkingDay&WorkingDayID=&WorkFlowNav=POP
+
+view-source:http://172.19.0.36/hms/wpgPrtPrintLayoutAll.asp?PrintLayoutName=KYClient&PositionForTableName=WorkingDay&PrintFilter=01%20Nov%202025%2000:00:00||30%20Nov%202025%2023:59:59&PrintFilter0=01%20Nov%202025%2000:00:00||30%20Nov%202025%2023:59:59&PrintFilter1=GEN01&PrintFilter2=M003&PrintFilter3=CTR001&PrintFilter4=V002&PrintFilter5=A002&WorkingDayID=&FilterHeight=220&WorkFlowNav=POP
+
+
+--1st December, 2025
+
+wpgPrtPrintLayoutAll.asp?PrintLayoutName=MonitorLaboratory&PositionForTableName=WorkingDay&WorkingDayID=DAY20160401&NoOfDays=0&OrderByType=Time&DefaultUrl=234
+
+http://172.19.0.36/hms/wpgBrowseViewLayout.asp?BrowseViewName=InvestigationByBranch_LabTestXRAY&HomeDispType=12&OpenProp=Pop

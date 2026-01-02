@@ -1,0 +1,13 @@
+view-source:http://192.168.5.11/rmchms01/wpgPrtPrintLayoutAll.asp?PrintLayoutName=DrugStockTakeSheet0&PositionForTableName=DrugStore&DrugStoreID=S11
+
+
+  'My addition
+'    sql = "SELECT drug.drugname, drug.RetailUnitCost, drugstocklevel.drugid, "
+'    sql = sql & "CASE WHEN IncomingDrugItems.ExpiryDate IS NULL THEN 'N/A' ELSE CONVERT(VARCHAR(20), IncomingDrugItems.ExpiryDate, 103) END AS ExpiryDate "
+'    sql = sql & "FROM DrugStockLevel drugstocklevel "
+'    sql = sql & "JOIN Drug drug ON drugstocklevel.drugid = drug.drugid "
+'    sql = sql & "JOIN IncomingDrugItems ON drug.drugid = IncomingDrugItems.DrugID "
+'    sql = sql & "WHERE drug.DrugStatusID <> 'IST002' "
+'    sql = sql & "AND drugstocklevel.drugstockstatusid = 'D001' "
+'    sql = sql & "AND drugstocklevel.drugstoreid = '" & sto & "' "
+'    sql = sql & "ORDER BY drug.drugName"

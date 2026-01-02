@@ -1,0 +1,3 @@
+UPDATE "YBMHMS01"."dbo"."BillPeriod" SET "BillPeriodDate"='2025-10-31T00:00:00.000' WHERE  "BillPeriodID"=N'MTH202509-CASH';
+SELECT "BillPeriodID", "BillPeriodName", "BillYearID", "BillDayID", "BillMonthID", "BillPeriodTypeID", "BillPeriodStatusID", "BillPeriodDate", "BillPeriodInfo1", "BillPeriodInfo2", "BillPeriodInfo3", "BillPeriodInfo4", "BillPeriodDate1", "BillPeriodDate2", "BillPeriodDate3", "BillPeriodDate4", "BillPeriodValue1", "BillPeriodValue2", "BillPeriodValue3", "BillPeriodValue4", "Description", "KeyPrefix" FROM "YBMHMS01"."dbo"."BillPeriod" WHERE  "BillPeriodID"=N'MTH202509-CASH';
+SELECT SUM("rows") FROM "sys"."partitions" WHERE "index_id" IN (0, 1) AND "object_id" = object_id('YBMHMS01.dbo.BillPeriod');
